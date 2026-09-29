@@ -7,6 +7,18 @@ import {
 
 export const runtime = "nodejs";
 
+/** Fallback address shown whenever an enquiry cannot be delivered. */
+const FALLBACK_EMAIL = process.env.CONTACT_TO ?? "muhammadkamranyar@gmail.com";
+
+/**
+ * Without this key there is no way to deliver an enquiry. In production that is a
+ * misconfiguration, and telling a visitor their message was sent would quietly lose a
+ * real lead (function logs are ephemeral), so the route reports the failure and hands
+ * over a direct email address instead. Locally the submission is accepted and logged so
+ * the form stays testable.
+ */
+const canDeliver = Boolean(process.env.RESEND_API_KEY);
+
 /** Small in-memory throttle: 5 submissions per IP per 10 minutes. */
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_PER_WINDOW = 5;
@@ -58,13 +70,13 @@ async function deliver(payload: {
       from: process.env.CONTACT_FROM ?? "Portfolio <onboarding@resend.dev>",
       to: [to],
       reply_to: payload.email,
-      subject: `New enquiry — ${payload.name}`,
+      subject: `New enquiry - ${payload.name}`,
       text: [
         `Name: ${payload.name}`,
         `Email: ${payload.email}`,
-        `Company: ${payload.company || "—"}`,
-        `Project type: ${payload.projectType || "—"}`,
-        `Budget: ${payload.budget || "—"}`,
+        `Company: ${payload.company || "-"}`,
+        `Project type: ${payload.projectType || "-"}`,
+        `Budget: ${payload.budget || "-"}`,
         "",
         payload.message,
       ].join("\n"),
@@ -113,15 +125,30 @@ export async function POST(request: Request) {
     );
   }
 
-  // Honeypot tripped — accept silently so bots do not learn anything.
+  // Honeypot tripped - accept silently so bots do not learn anything.
   if (parsed.data.website) {
     return NextResponse.json<ContactResponse>({
       ok: true,
-      message: "Thanks — your message is on its way.",
+      message: "Thanks - your message is on its way.",
     });
   }
 
   const { name, email, company, projectType, budget, message } = parsed.data;
+
+  if (!canDeliver && process.env.NODE_ENV === "production") {
+    console.error(
+      "[contact] RESEND_API_KEY is not configured - enquiry was NOT delivered. " +
+        "Set RESEND_API_KEY, CONTACT_TO and CONTACT_FROM in the deployment environment.",
+      { name, email, company, projectType, budget, message },
+    );
+    return NextResponse.json<ContactResponse>(
+      {
+        ok: false,
+        message: `Message delivery is temporarily unavailable. Please email me directly at ${FALLBACK_EMAIL} and I'll reply within one business day.`,
+      },
+      { status: 503 },
+    );
+  }
 
   try {
     await deliver({ name, email, company, projectType, budget, message });
@@ -130,8 +157,7 @@ export async function POST(request: Request) {
     return NextResponse.json<ContactResponse>(
       {
         ok: false,
-        message:
-          "Something went wrong on my side. Email me directly at muhammadkamranyar@gmail.com.",
+        message: `Something went wrong on my side. Email me directly at ${FALLBACK_EMAIL}.`,
       },
       { status: 502 },
     );
@@ -139,6 +165,6 @@ export async function POST(request: Request) {
 
   return NextResponse.json<ContactResponse>({
     ok: true,
-    message: "Thanks for reaching out — I usually reply within one business day.",
+    message: "Thanks for reaching out - I usually reply within one business day.",
   });
 }

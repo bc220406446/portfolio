@@ -1,42 +1,69 @@
 "use client";
 
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "motion/react";
+import { useEffect, useRef, useState } from "react";
 
-import { Counter } from "@/components/motion/counter";
+import { Magnetic } from "@/components/motion/magnetic";
+import { Portrait } from "@/components/motion/portrait";
 import { EASE, Reveal } from "@/components/motion/reveal";
 import { CharReveal } from "@/components/motion/text-reveal";
 import { ActionLink } from "@/components/ui/action";
 import { profile } from "@/data/profile";
-import { cn } from "@/lib/utils";
+
+const rotating = [
+  "Full Stack Web Developer",
+  "E-commerce Engineer",
+  "AI Automation Builder",
+  "Performance Obsessive",
+];
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
+  const [roleIndex, setRoleIndex] = useState(0);
+
+  useEffect(() => {
+    if (reduce) return;
+    const id = window.setInterval(
+      () => setRoleIndex((i) => (i + 1) % rotating.length),
+      2800,
+    );
+    return () => window.clearInterval(id);
+  }, [reduce]);
 
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 140]);
-  const opacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  // Kept deliberately subtle - enough to soften the edge as the hero leaves,
+  // never enough to read as a blur.
+  const blur = useTransform(scrollYProgress, [0, 0.8], [0, 1.5]);
+  const filter = useTransform(blur, (value) => `blur(${value}px)`);
 
   return (
     <section
       ref={ref}
       id="top"
-      className="relative flex min-h-[100svh] items-center pt-32 pb-20"
+      className="relative flex min-h-[100svh] items-center pt-32 pb-24"
     >
       <motion.div
-        style={reduce ? undefined : { y, opacity }}
+        style={reduce ? undefined : { y, opacity, filter }}
         className="mx-auto w-full max-w-6xl px-6"
       >
-        <div className="grid items-end gap-14 lg:grid-cols-[1.55fr_1fr]">
+        <div className="grid items-center gap-14 lg:grid-cols-[1.5fr_1fr]">
           <div>
             <Reveal direction="none" duration={0.6}>
-              <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
-                <span className="inline-flex items-center gap-2.5">
-                  <span className="animate-pulse-dot h-1.5 w-1.5 bg-accent" />
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="panel inline-flex items-center gap-2.5 rounded-lg px-4 py-2">
+                  <span className="animate-pulse-dot h-1.5 w-1.5 rounded-full bg-accent" />
                   <span className="label text-fg-dim">
                     Available for new work
                   </span>
@@ -55,141 +82,63 @@ export function Hero() {
               </span>
             </h1>
 
-            <Reveal delay={0.7} className="mt-8 max-w-xl">
+            {/* Rotating role line */}
+            <Reveal delay={0.62} className="mt-7">
+              <div className="flex h-8 items-center">
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={roleIndex}
+                    initial={reduce ? false : { y: 18, opacity: 0, filter: "blur(6px)" }}
+                    animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+                    exit={reduce ? undefined : { y: -18, opacity: 0, filter: "blur(6px)" }}
+                    transition={{ duration: 0.55, ease: EASE }}
+                    className="font-mono text-sm tracking-[0.18em] text-accent uppercase sm:text-base"
+                  >
+                    {rotating[roleIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.72} className="mt-5 max-w-xl">
               <p className="text-lg leading-relaxed text-fg-dim sm:text-xl">
-                <span className="text-fg">{profile.role}</span> building{" "}
+                I build{" "}
                 <span className="font-serif text-[1.15em] italic text-accent">
                   modern, scalable
                 </span>{" "}
-                web products — commerce, platforms and AI-assisted tooling.
+                web products - commerce, platforms and AI-assisted tooling, from
+                database schema to the last hover state.
               </p>
             </Reveal>
 
-            <Reveal delay={0.82} className="mt-10">
-              <div className="flex flex-wrap items-center gap-3">
-                <ActionLink href="#contact" variant="primary">
-                  Start a project
-                </ActionLink>
-                <ActionLink href="#work" variant="outline">
-                  View selected work
-                </ActionLink>
-                <ActionLink
-                  href={profile.links.github}
-                  variant="ghost"
-                  className="px-3"
-                >
-                  GitHub ↗
-                </ActionLink>
+            <Reveal delay={0.84} className="mt-10">
+              <div className="flex flex-wrap items-center gap-4">
+                <Magnetic strength={0.22}>
+                  <ActionLink href="#contact" variant="primary">
+                    Start a project
+                  </ActionLink>
+                </Magnetic>
+                <Magnetic strength={0.18}>
+                  <ActionLink href="#work" variant="outline">
+                    View selected work
+                  </ActionLink>
+                </Magnetic>
               </div>
             </Reveal>
           </div>
 
-          {/* Contact / availability panel */}
-          <Reveal delay={0.9} direction="left">
-            <div className="relative border border-line bg-surface/40 backdrop-blur-sm">
-              <div className="flex items-center justify-between border-b border-line px-5 py-3">
-                <span className="label">Profile</span>
-                <span className="label text-accent">001</span>
-              </div>
-
-              <dl className="divide-y divide-line">
-                <div className="flex items-start justify-between gap-6 px-5 py-4">
-                  <dt className="label pt-0.5">Based</dt>
-                  <dd className="text-right text-sm text-fg-dim">
-                    {profile.location}
-                  </dd>
-                </div>
-                <div className="flex items-start justify-between gap-6 px-5 py-4">
-                  <dt className="label pt-0.5">Email</dt>
-                  <dd className="text-right">
-                    <a
-                      href={`mailto:${profile.email}`}
-                      className="text-sm break-all text-fg-dim transition-colors hover:text-accent"
-                    >
-                      {profile.email}
-                    </a>
-                  </dd>
-                </div>
-                <div className="flex items-start justify-between gap-6 px-5 py-4">
-                  <dt className="label pt-0.5">Phone</dt>
-                  <dd className="text-right">
-                    <a
-                      href={`tel:${profile.phoneHref}`}
-                      className="text-sm text-fg-dim transition-colors hover:text-accent"
-                    >
-                      {profile.phone}
-                    </a>
-                  </dd>
-                </div>
-                <div className="px-5 py-4">
-                  <dt className="label">Open to</dt>
-                  <dd className="mt-3">
-                    <ul className="flex flex-wrap gap-1.5">
-                      {profile.availability.map((item) => (
-                        <li key={item} className="tag">
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </dd>
-                </div>
-              </dl>
-            </div>
-          </Reveal>
+          {/* Not wrapped in Reveal: the portrait runs its own curtain wipe and
+              zoom, and an invisible animated parent would hide both. */}
+          <div className="mx-auto w-full max-w-[23rem] lg:mx-0 lg:max-w-none">
+            <Portrait
+              priority
+              delay={0.35}
+              sizes="(max-width: 1024px) 72vw, 420px"
+            />
+          </div>
         </div>
 
-        {/* Stat readout */}
-        <motion.dl
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          variants={{
-            hidden: {},
-            show: { transition: { staggerChildren: 0.1, delayChildren: 0.9 } },
-          }}
-          className="mt-20 grid grid-cols-2 border-t border-line lg:grid-cols-4"
-        >
-          {profile.stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                show: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.7, ease: EASE },
-                },
-              }}
-              className={cn(
-                "border-line py-6",
-                i % 2 === 1 && "border-l pl-6 sm:pl-8",
-                i >= 2 && "border-t lg:border-t-0",
-                i > 0 && "lg:border-l lg:pl-8",
-              )}
-            >
-              <dt className="label">{stat.label}</dt>
-              <dd className="mt-3 text-3xl font-medium tracking-[-0.03em] text-fg sm:text-4xl">
-                <Counter
-                  value={stat.value}
-                  decimals={stat.decimals}
-                  suffix={stat.suffix}
-                />
-              </dd>
-            </motion.div>
-          ))}
-        </motion.dl>
       </motion.div>
-
-      <Reveal
-        direction="none"
-        delay={1.4}
-        className="absolute inset-x-0 bottom-8 hidden justify-center lg:flex"
-      >
-        <a href="#about" className="group flex flex-col items-center gap-2">
-          <span className="label">Scroll</span>
-          <span className="h-10 w-px bg-gradient-to-b from-line-2 to-transparent" />
-        </a>
-      </Reveal>
     </section>
   );
 }

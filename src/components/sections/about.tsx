@@ -1,8 +1,8 @@
 import { SpotlightCard } from "@/components/motion/magnetic";
+import { Portrait } from "@/components/motion/portrait";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
-import { TextReveal } from "@/components/motion/text-reveal";
-import { Section, SectionHeading, TagRow } from "@/components/ui/section";
-import { languages, topSkills } from "@/data/profile";
+import { Section, SectionHeading } from "@/components/ui/section";
+import { cn } from "@/lib/utils";
 
 const principles = [
   {
@@ -11,19 +11,12 @@ const principles = [
   },
   {
     title: "Performance as a feature",
-    body: "Core Web Vitals treated as a requirement, not a polish pass — image pipelines, trimmed queries, cached fragments and measured budgets.",
+    body: "Core Web Vitals treated as a requirement, not a polish pass - image pipelines, trimmed queries, cached fragments and measured budgets.",
   },
   {
     title: "Business-aligned builds",
     body: "Every screen maps back to a requirement: more qualified traffic, fewer abandoned carts, less manual admin work after launch.",
   },
-];
-
-const focus = [
-  "Full-stack web applications",
-  "E-commerce storefronts",
-  "AI-powered automation",
-  "CMS & headless platforms",
 ];
 
 export function About() {
@@ -32,10 +25,12 @@ export function About() {
       <SectionHeading
         index="01"
         kicker="About"
-        title="I build the whole path — from database schema to the last hover state."
+        title="I build the whole path - from database schema to the last hover state."
       />
 
-      <div className="grid gap-14 lg:grid-cols-[1.5fr_1fr]">
+      <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+        <Portrait sizes="(max-width: 1024px) 80vw, 460px" />
+
         <div className="space-y-6">
           <Reveal>
             <p className="text-base leading-relaxed text-fg-dim sm:text-lg">
@@ -45,6 +40,7 @@ export function About() {
               applications.
             </p>
           </Reveal>
+
           <Reveal delay={0.08}>
             <p className="text-base leading-relaxed text-fg-dim sm:text-lg">
               I work with{" "}
@@ -53,10 +49,11 @@ export function About() {
                 and REST APIs
               </span>{" "}
               across modern deployment platforms, alongside hands-on WordPress,
-              Shopify, WooCommerce and SureCart work — including SEO,
+              Shopify, WooCommerce and SureCart work - including SEO,
               performance optimization and third-party integrations.
             </p>
           </Reveal>
+
           <Reveal delay={0.16}>
             <p className="text-base leading-relaxed text-fg-dim sm:text-lg">
               I&apos;ve shipped community platforms, management systems,
@@ -66,88 +63,51 @@ export function About() {
             </p>
           </Reveal>
 
-          <Reveal delay={0.22} className="pt-4">
-            <blockquote className="border-l border-accent pl-6">
-              <p className="font-serif text-2xl leading-snug italic text-fg sm:text-3xl">
-                &ldquo;Write it once, write it clearly, and make sure it still
-                loads fast on a three-year-old phone.&rdquo;
-              </p>
-            </blockquote>
-          </Reveal>
-        </div>
-
-        <div className="space-y-10">
-          <Reveal direction="left">
-            <div>
-              <p className="label mb-4">Focus</p>
-              <ul className="divide-y divide-line border-y border-line">
-                {focus.map((item, i) => (
-                  <li
-                    key={item}
-                    className="flex items-baseline gap-4 py-3.5 text-sm text-fg-dim"
-                  >
-                    <span className="font-mono text-[0.625rem] text-accent/70">
-                      0{i + 1}
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
-
-          <Reveal direction="left" delay={0.1}>
-            <div>
-              <p className="label mb-4">Top skills</p>
-              <TagRow items={topSkills} />
-            </div>
-          </Reveal>
-
-          <Reveal direction="left" delay={0.18}>
-            <div>
-              <p className="label mb-4">Languages</p>
-              <ul className="space-y-3">
-                {languages.map((lang) => (
-                  <li
-                    key={lang.name}
-                    className="flex items-center justify-between gap-4 text-sm"
-                  >
-                    <span className="text-fg">{lang.name}</span>
-                    <span className="font-mono text-[0.6875rem] tracking-[0.1em] text-muted uppercase">
-                      {lang.level}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <Reveal delay={0.22}>
+            <p className="text-base leading-relaxed text-fg-dim sm:text-lg">
+              I&apos;m open to{" "}
+              <span className="text-fg">
+                remote full-time roles, freelance projects and contract work
+              </span>
+              .
+            </p>
           </Reveal>
         </div>
       </div>
 
-      <Stagger className="mt-20 grid gap-px border border-line bg-line sm:grid-cols-3">
+      {/* Floating principle cards - offset so they read as objects, not cells. */}
+      <Stagger className="mt-24 grid gap-6 lg:grid-cols-3 lg:gap-7">
         {principles.map((principle, i) => (
-          <StaggerItem key={principle.title} className="group bg-canvas">
-            <SpotlightCard className="h-full p-7">
-              <span className="label text-accent">0{i + 1}</span>
-              <h3 className="mt-5 text-lg font-medium tracking-[-0.01em] text-fg">
-                {principle.title}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-fg-dim">
-                {principle.body}
-              </p>
+          <StaggerItem
+            key={principle.title}
+            className={cn(
+              i === 1 && "lg:translate-y-8",
+              i === 2 && "lg:translate-y-3",
+            )}
+          >
+            <SpotlightCard
+              className="group panel h-full overflow-hidden"
+              intensity={5}
+            >
+              <div className="relative p-7">
+                <span className="sweep" />
+                <div className="flex items-baseline justify-between gap-4">
+                  <span className="font-mono text-[0.6875rem] tracking-[0.2em] text-accent">
+                    0{i + 1}
+                  </span>
+                  <span className="h-px w-10 bg-line-2 transition-all duration-700 group-hover:w-16 group-hover:bg-accent" />
+                </div>
+                <h3 className="mt-6 text-lg font-medium tracking-[-0.01em] text-fg">
+                  {principle.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-fg-dim">
+                  {principle.body}
+                </p>
+              </div>
             </SpotlightCard>
           </StaggerItem>
         ))}
       </Stagger>
-
-      <Reveal className="mt-16">
-        <p className="max-w-3xl text-xl leading-snug font-medium tracking-[-0.02em] text-fg sm:text-2xl">
-          <TextReveal
-            text="Open to remote full-time roles, freelance projects, contract work and long-term partnerships in full-stack development, e-commerce and AI-powered web solutions."
-            stagger={0.02}
-          />
-        </p>
-      </Reveal>
     </Section>
   );
 }

@@ -14,7 +14,7 @@ export const profile = {
     trail: "web products.",
   },
   subhead:
-    "Next.js, React, TypeScript, Node.js & Django — with deep e-commerce craft across WordPress, WooCommerce, Shopify and SureCart. I ship clean, maintainable code and interfaces that stay fast under real load.",
+    "Next.js, React, TypeScript, Node.js & Django - with deep e-commerce craft across WordPress, WooCommerce, Shopify and SureCart. I ship clean, maintainable code and interfaces that stay fast under real load.",
   location: "Hyderabad, Pakistan",
   locationNote: "Remote-first · Overlapping with EU & Gulf hours",
   email: "muhammadkamranyar@gmail.com",
@@ -140,13 +140,13 @@ export const experience: Engagement[] = [
   {
     company: "Freelance · Self-Employed",
     role: "Freelance Web Developer",
-    period: "December 2024 — Present",
+    period: "December 2024 - Present",
     duration: "1 yr 10 mo",
     mode: "Remote",
     summary:
       "Delivering responsive, SEO-optimized and user-focused websites and e-commerce solutions for clients across academic, retail, furniture and fashion industries. Work centres on WordPress, Shopify, WooCommerce and SureCart, with an emphasis on performance, UI/UX, integrations and business requirements.",
     highlights: [
-      "Owned delivery end to end — scoping, design handoff, build, launch and post-launch support.",
+      "Owned delivery end to end - scoping, design handoff, build, launch and post-launch support.",
       "Built and shipped four production client platforms across two continents and four verticals.",
       "Hardened storefronts for Core Web Vitals: image pipelines, query trimming, cached fragments.",
       "Set up local SEO and structured data that lifted organic discovery for regional stores.",
@@ -176,7 +176,7 @@ export const projects: Project[] = [
     category: "EdTech Platform",
     year: "2025",
     summary:
-      "An academic platform for Virtual University students — handouts, highlighted notes, past papers and LMS task management in one place.",
+      "An academic platform for Virtual University students - handouts, highlighted notes, past papers and LMS task management in one place.",
     contributions: [
       "Implemented SureCart for digital product delivery and licensing.",
       "Configured Rank Math SEO with schema, sitemaps and clean permalinks.",
@@ -196,7 +196,7 @@ export const projects: Project[] = [
     category: "Full Stack Commerce",
     year: "2026",
     summary:
-      "A production Next.js and TypeScript storefront — the reference build for cart, checkout and catalogue architecture used across client work.",
+      "A production Next.js and TypeScript storefront - the reference build for cart, checkout and catalogue architecture used across client work.",
     contributions: [
       "Typed end-to-end from database row to rendered component.",
       "Cart and checkout flows with server-side validation.",
@@ -337,21 +337,21 @@ export const education: EducationEntry[] = [
     institution: "Virtual University of Pakistan",
     qualification: "Bachelor of Computer Science",
     field: "Computer Science",
-    period: "October 2022 — September 2026",
+    period: "October 2022 - September 2026",
     status: "Final year",
   },
   {
     institution: "Punjab Group of Colleges",
     qualification: "F.Sc Pre-Engineering",
     field: "Engineering",
-    period: "September 2019 — October 2021",
+    period: "September 2019 - October 2021",
     status: "Completed",
   },
   {
     institution: "Govt Higher Secondary School Salam, Sargodha",
     qualification: "Matric",
     field: "Computer Science",
-    period: "April 2017 — July 2019",
+    period: "April 2017 - July 2019",
     status: "Completed",
   },
 ];

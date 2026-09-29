@@ -2,8 +2,8 @@ import { z } from "zod";
 
 export const budgetOptions = [
   "Under $500",
-  "$500 — $2,000",
-  "$2,000 — $5,000",
+  "$500 - $2,000",
+  "$2,000 - $5,000",
   "$5,000+",
   "Not sure yet",
 ] as const;
@@ -36,7 +36,7 @@ export const contactSchema = z.object({
   message: z
     .string()
     .trim()
-    .min(20, "A little more detail helps — 20 characters minimum.")
+    .min(20, "A little more detail helps - 20 characters minimum.")
     .max(4000, "Please keep it under 4000 characters."),
   // Honeypot: real users never fill this in. Accepted by the schema so that a
   // tripped trap can be answered with a normal success response.

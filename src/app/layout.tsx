@@ -30,11 +30,11 @@ const instrumentSerif = Instrument_Serif({
 });
 
 const description =
-  "Muhammad Kamran — Full Stack Web Developer building modern, scalable web products with Next.js, React, TypeScript, Node.js and Django, plus WordPress, Shopify, WooCommerce and SureCart e-commerce.";
+  "Muhammad Kamran - Full Stack Web Developer building modern, scalable web products with Next.js, React, TypeScript, Node.js and Django, plus WordPress, Shopify, WooCommerce and SureCart e-commerce.";
 
 export const metadata: Metadata = {
   title: {
-    default: `${profile.name} — Full Stack Web Developer`,
+    default: `${profile.name} - Full Stack Web Developer`,
     template: `%s · ${profile.name}`,
   },
   description,
@@ -59,14 +59,14 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    title: `${profile.name} — Full Stack Web Developer`,
+    title: `${profile.name} - Full Stack Web Developer`,
     description,
     siteName: profile.name,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${profile.name} — Full Stack Web Developer`,
+    title: `${profile.name} - Full Stack Web Developer`,
     description,
   },
   robots: { index: true, follow: true },

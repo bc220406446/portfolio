@@ -24,7 +24,7 @@ const word: Variants = {
 
 /**
  * Word-by-word mask reveal. Each word sits in an overflow-hidden box and slides
- * up into place — the signature effect of the animated-component registries,
+ * up into place - the signature effect of the animated-component registries,
  * implemented directly so there is no unpublished dependency.
  */
 export function TextReveal({

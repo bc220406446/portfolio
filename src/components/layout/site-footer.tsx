@@ -117,7 +117,7 @@ export function SiteFooter() {
 
         <div className="mt-14 flex flex-col gap-4 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="label">
-            © {year} {profile.name} — All rights reserved
+            © {year} {profile.name} - All rights reserved
           </p>
           <p className="label">
             Next.js 16 · TypeScript · Tailwind CSS · Framer Motion

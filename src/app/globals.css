@@ -1,29 +1,34 @@
 @import "tailwindcss";
 
 /*
-  Design system — "Editorial Engineering"
-  Dark, high-contrast, sharp geometry.
-  No pills anywhere: every label, tag and control is a rectangle.
+  Design system - "Soft Editorial"
+  Dark and high contrast, but built from rounded, floating panels with generous
+  breathing room instead of hairline grids. Chips are rounded rectangles, never
+  pills (a pill would be a radius of half the height).
 */
 
 @theme {
-  --color-canvas: #08090b;
-  --color-canvas-2: #0b0c0f;
-  --color-surface: #101216;
-  --color-surface-2: #16191f;
-  --color-line: #21252c;
-  --color-line-2: #2c313a;
-  --color-fg: #ecedef;
-  --color-fg-dim: #a2a9b3;
-  --color-muted: #6f7783;
+  --color-canvas: #07080a;
+  --color-canvas-2: #0b0d11;
+  --color-surface: #12151b;
+  --color-surface-2: #191d25;
+  --color-line: #232833;
+  --color-line-2: #333a48;
+  --color-fg: #eef0f3;
+  --color-fg-dim: #a7aeb9;
+  --color-muted: #737b88;
   --color-accent: #d3ff45;
   --color-accent-dim: #b6e02f;
   --color-accent-ink: #14180a;
   --color-ember: #ff6b3d;
+  --color-violet: #8b7cff;
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
   --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+
+  --radius-chip: 0.375rem;
+  --radius-panel: 1.25rem;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -38,7 +43,6 @@
     scroll-behavior: smooth;
   }
 
-  /* Lenis takes over scrolling; disable native smooth to avoid fighting it. */
   html.lenis,
   html.lenis body {
     height: auto;
@@ -69,8 +73,9 @@
   }
 
   :focus-visible {
-    outline: 1px solid var(--color-accent);
-    outline-offset: 2px;
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
   }
 
   ::-webkit-scrollbar {
@@ -82,6 +87,7 @@
   }
   ::-webkit-scrollbar-thumb {
     background: var(--color-line-2);
+    border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
     background: var(--color-accent-dim);
@@ -89,7 +95,7 @@
 }
 
 @layer components {
-  /* Monospace eyebrow label. Deliberately a rectangle, not a pill. */
+  /* Monospace eyebrow label. */
   .label {
     font-family: var(--font-mono);
     font-size: 0.6875rem;
@@ -99,47 +105,74 @@
     color: var(--color-muted);
   }
 
-  /* Square-cornered tag used for tech stacks. */
+  /* Rounded-rectangle chip - explicitly not a pill. */
   .tag {
     display: inline-flex;
     align-items: center;
-    border-radius: 0;
-    border: 1px solid var(--color-line);
-    background-color: color-mix(in oklab, var(--color-surface) 70%, transparent);
-    padding: 0.3125rem 0.5rem;
+    border-radius: var(--radius-chip);
+    border: 1px solid color-mix(in oklab, var(--color-line-2) 65%, transparent);
+    background-color: color-mix(in oklab, var(--color-surface-2) 60%, transparent);
+    padding: 0.375rem 0.625rem;
     font-family: var(--font-mono);
     font-size: 0.6875rem;
     line-height: 1;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
     color: var(--color-fg-dim);
     transition:
-      color 200ms var(--ease-out-expo),
-      border-color 200ms var(--ease-out-expo);
+      color 260ms var(--ease-out-expo),
+      border-color 260ms var(--ease-out-expo),
+      background-color 260ms var(--ease-out-expo),
+      transform 260ms var(--ease-out-expo);
   }
   .tag:hover {
     color: var(--color-accent);
     border-color: color-mix(in oklab, var(--color-accent) 45%, transparent);
+    background-color: color-mix(in oklab, var(--color-accent) 8%, transparent);
+    transform: translateY(-2px);
   }
 
-  /* Thin blueprint grid used behind hero / section headers. */
-  .grid-lines {
-    background-image:
-      linear-gradient(to right, var(--color-line) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
-    background-size: 72px 72px;
+  /* The workhorse surface: a soft floating panel. */
+  .panel {
+    position: relative;
+    border-radius: var(--radius-panel);
+    border: 1px solid color-mix(in oklab, var(--color-line-2) 55%, transparent);
+    background:
+      linear-gradient(
+        150deg,
+        color-mix(in oklab, var(--color-surface) 92%, transparent) 0%,
+        color-mix(in oklab, var(--color-canvas-2) 88%, transparent) 100%
+      );
+    box-shadow:
+      0 1px 0 0 color-mix(in oklab, white 4%, transparent) inset,
+      0 24px 60px -32px rgb(0 0 0 / 0.9);
+    backdrop-filter: blur(10px);
   }
 
-  .hairline-x {
+  /* Softer, inset variant for nested content. */
+  .panel-inset {
+    border-radius: calc(var(--radius-panel) - 0.5rem);
+    border: 1px solid color-mix(in oklab, var(--color-line) 80%, transparent);
+    background-color: color-mix(in oklab, var(--color-canvas-2) 70%, transparent);
+  }
+
+  /* Accent hairline that draws itself on hover. */
+  .sweep {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 1px;
+    transform-origin: left;
+    transform: scaleX(0);
     background: linear-gradient(
       to right,
       transparent,
-      var(--color-line-2),
+      var(--color-accent),
       transparent
     );
+    transition: transform 700ms var(--ease-out-expo);
   }
-
-  .text-balance-tight {
-    text-wrap: balance;
+  .group:hover .sweep {
+    transform: scaleX(1);
   }
 }
 
@@ -184,6 +217,19 @@
   }
 }
 
+@keyframes aurora-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(6%, -4%, 0) scale(1.12);
+  }
+  66% {
+    transform: translate3d(-5%, 5%, 0) scale(0.95);
+  }
+}
+
 @utility animate-marquee-left {
   animation: marquee-left var(--marquee-duration, 38s) linear infinite;
 }
@@ -198,6 +244,10 @@
 
 @utility animate-blink-caret {
   animation: blink-caret 1.1s step-end infinite;
+}
+
+@utility animate-aurora {
+  animation: aurora-drift var(--aurora-duration, 26s) ease-in-out infinite;
 }
 
 @utility mask-fade-x {

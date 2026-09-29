@@ -11,49 +11,59 @@ export function Credentials() {
         title="Formal training in computer science, applied training in the tools."
       />
 
-      <div className="grid gap-16 lg:grid-cols-[1.25fr_1fr]">
+      <div className="grid gap-14 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
         <div>
-          <p className="label mb-8">Education</p>
-          <Stagger className="relative">
-            <span
-              aria-hidden
-              className="absolute top-3 bottom-3 left-0 w-px bg-line"
-            />
-            {education.map((entry) => (
-              <StaggerItem key={entry.institution} className="relative pb-10 pl-8">
-                <span
-                  aria-hidden
-                  className="absolute top-2.5 left-[-3px] h-[7px] w-[7px] bg-accent"
-                />
-                <h3 className="text-lg font-medium tracking-[-0.015em] text-fg">
-                  {entry.qualification}
-                </h3>
-                <p className="mt-1.5 text-sm text-fg-dim">{entry.institution}</p>
-                <p className="mt-3 font-mono text-[0.6875rem] tracking-[0.14em] text-muted uppercase">
-                  {entry.field} · {entry.period}
-                </p>
-                <p className="mt-2 font-mono text-[0.625rem] tracking-[0.16em] text-accent/80 uppercase">
-                  {entry.status}
-                </p>
+          <p className="label mb-7">Education</p>
+          <Stagger className="flex flex-col gap-4">
+            {education.map((entry, i) => (
+              <StaggerItem key={entry.institution}>
+                <div className="panel group relative overflow-hidden p-6 transition-colors duration-500 hover:border-line-2">
+                  <span className="sweep" />
+                  <div className="flex items-start gap-5">
+                    <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-surface-2/70 font-mono text-[0.625rem] text-accent transition-colors duration-500 group-hover:bg-accent/15">
+                      0{i + 1}
+                    </span>
+                    <div className="min-w-0">
+                      <h3 className="text-base font-medium tracking-[-0.015em] text-fg">
+                        {entry.qualification}
+                      </h3>
+                      <p className="mt-1.5 text-sm text-fg-dim">
+                        {entry.institution}
+                      </p>
+                      <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5">
+                        <span className="font-mono text-[0.625rem] tracking-[0.12em] text-muted uppercase">
+                          {entry.field}
+                        </span>
+                        <span className="h-1 w-1 rounded-full bg-line-2" />
+                        <span className="font-mono text-[0.625rem] tracking-[0.12em] text-muted uppercase">
+                          {entry.period}
+                        </span>
+                      </div>
+                      <span className="mt-3 inline-block rounded-md bg-surface-2/70 px-2.5 py-1 font-mono text-[0.5625rem] tracking-[0.14em] text-accent/90 uppercase">
+                        {entry.status}
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </StaggerItem>
             ))}
           </Stagger>
         </div>
 
         <div>
-          <p className="label mb-8">Certifications</p>
-          <Stagger className="divide-y divide-line border-y border-line">
+          <p className="label mb-7">Certifications</p>
+          <Stagger className="flex flex-col gap-3">
             {certifications.map((cert, i) => (
               <StaggerItem key={cert.title}>
-                <div className="group flex items-start gap-5 py-5 transition-colors duration-500 hover:bg-surface/50">
-                  <span className="mt-0.5 font-mono text-[0.625rem] text-accent/70">
+                <div className="group flex items-start gap-5 rounded-2xl px-4 py-4 transition-colors duration-500 hover:bg-surface/60">
+                  <span className="mt-0.5 font-mono text-[0.625rem] tracking-[0.16em] text-accent/70">
                     0{i + 1}
                   </span>
                   <div>
                     <h3 className="text-sm leading-snug font-medium text-fg">
                       {cert.title}
                     </h3>
-                    <p className="mt-1.5 font-mono text-[0.625rem] tracking-[0.14em] text-muted uppercase">
+                    <p className="mt-1.5 font-mono text-[0.625rem] tracking-[0.12em] text-muted uppercase">
                       {cert.issuer} · {cert.focus}
                     </p>
                   </div>
@@ -62,9 +72,9 @@ export function Credentials() {
             ))}
           </Stagger>
 
-          <Reveal delay={0.1} className="mt-10">
-            <div className="border border-line bg-surface/40 p-6">
-              <p className="label mb-3">Also holds</p>
+          <Reveal delay={0.1} className="mt-9">
+            <div className="panel p-6">
+              <p className="label mb-3.5">Also holds</p>
               <p className="text-sm leading-relaxed text-fg-dim">
                 Industry certificates in WordPress site building, blog and
                 business publishing, Shopify store setup, digital product design

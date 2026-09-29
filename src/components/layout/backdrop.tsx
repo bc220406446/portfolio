@@ -1,41 +1,96 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+  useTransform,
+} from "motion/react";
+import { useEffect, type CSSProperties } from "react";
 
 /**
- * Fixed ambient backdrop: blueprint grid, a slow drifting accent bloom, and a
- * faint film grain. Purely decorative and pointer-transparent.
+ * Ambient backdrop: three slow drifting blooms plus a soft glow that follows the
+ * pointer. Purely decorative, pointer-transparent, and transform-only so it stays
+ * on the compositor. The pointer glow is skipped for touch and reduced motion.
  */
 export function Backdrop() {
   const reduce = useReducedMotion();
 
+  const px = useMotionValue(0.5);
+  const py = useMotionValue(0.2);
+  const sx = useSpring(px, { stiffness: 60, damping: 22, mass: 0.6 });
+  const sy = useSpring(py, { stiffness: 60, damping: 22, mass: 0.6 });
+
+  useEffect(() => {
+    if (reduce) return;
+    if (!window.matchMedia("(pointer: fine)").matches) return;
+
+    const onMove = (event: PointerEvent) => {
+      px.set(event.clientX / window.innerWidth);
+      py.set(event.clientY / window.innerHeight);
+    };
+
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => window.removeEventListener("pointermove", onMove);
+  }, [reduce, px, py]);
+
+  const xPct = useTransform(sx, (value) => value * 100);
+  const yPct = useTransform(sy, (value) => value * 100);
+  const pointerGlow = useMotionTemplate`radial-gradient(620px circle at ${xPct}% ${yPct}%, rgba(211,255,69,0.08), transparent 62%)`;
+
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      <div className="grid-lines absolute inset-0 opacity-[0.55]" />
-
-      <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_-10%,transparent_35%,var(--color-canvas)_100%)]" />
+    <div
+      aria-hidden
+      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
+    >
+      <div className="absolute inset-0 bg-[radial-gradient(130%_90%_at_50%_-15%,color-mix(in_oklab,var(--color-surface)_55%,transparent)_0%,transparent_55%,var(--color-canvas)_100%)]" />
 
       <motion.div
-        className="absolute -top-40 -left-40 h-[42rem] w-[42rem] rounded-full blur-[140px]"
+        className="animate-aurora absolute -top-56 -left-40 h-[46rem] w-[46rem] rounded-full blur-[150px]"
         style={{
           background:
-            "radial-gradient(circle, rgba(211,255,69,0.13) 0%, transparent 68%)",
+            "radial-gradient(circle, rgba(211,255,69,0.16) 0%, rgba(211,255,69,0.05) 42%, transparent 70%)",
         }}
-        animate={reduce ? undefined : { x: [0, 90, -30, 0], y: [0, 60, 110, 0] }}
-        transition={{ duration: 34, repeat: Infinity, ease: "easeInOut" }}
+        animate={reduce ? undefined : { x: [0, 120, -60, 0], y: [0, 80, 140, 0] }}
+        transition={{ duration: 38, repeat: Infinity, ease: "easeInOut" }}
       />
 
       <motion.div
-        className="absolute top-1/3 -right-52 h-[38rem] w-[38rem] rounded-full blur-[150px]"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(255,107,61,0.10) 0%, transparent 68%)",
-        }}
-        animate={reduce ? undefined : { x: [0, -70, 20, 0], y: [0, -40, 70, 0] }}
-        transition={{ duration: 42, repeat: Infinity, ease: "easeInOut" }}
+        className="animate-aurora absolute top-[28%] -right-52 h-[42rem] w-[42rem] rounded-full blur-[160px]"
+        style={
+          {
+            "--aurora-duration": "34s",
+            background:
+              "radial-gradient(circle, rgba(139,124,255,0.15) 0%, rgba(139,124,255,0.05) 45%, transparent 70%)",
+          } as CSSProperties
+        }
+        animate={reduce ? undefined : { x: [0, -110, 40, 0], y: [0, -60, 90, 0] }}
+        transition={{ duration: 46, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="absolute inset-0 opacity-[0.035] mix-blend-soft-light [background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%22140%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22/></filter><rect width=%22140%22 height=%22140%22 filter=%22url(%23n)%22/></svg>')]" />
+      <motion.div
+        className="animate-aurora absolute bottom-[-18%] left-[18%] h-[40rem] w-[40rem] rounded-full blur-[170px]"
+        style={
+          {
+            "--aurora-duration": "40s",
+            background:
+              "radial-gradient(circle, rgba(255,107,61,0.11) 0%, rgba(255,107,61,0.04) 45%, transparent 72%)",
+          } as CSSProperties
+        }
+        animate={reduce ? undefined : { x: [0, 90, -80, 0], y: [0, -70, 30, 0] }}
+        transition={{ duration: 52, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {reduce ? null : (
+        <motion.div
+          className="absolute inset-0 hidden lg:block"
+          style={{ backgroundImage: pointerGlow }}
+        />
+      )}
+
+      <div className="absolute inset-0 opacity-[0.04] mix-blend-soft-light [background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22/></filter><rect width=%22160%22 height=%22160%22 filter=%22url(%23n)%22/></svg>')]" />
     </div>
   );
 }

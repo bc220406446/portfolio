@@ -1,17 +1,19 @@
 "use client";
 
+import { useLenis } from "lenis/react";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 
 import { EASE } from "@/components/motion/reveal";
 import { ActionLink } from "@/components/ui/action";
 import { navigation, profile } from "@/data/profile";
-import { cn, index as pad } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("");
+  const lenis = useLenis();
 
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (latest) => setScrolled(latest > 24));
@@ -45,6 +47,15 @@ export function SiteHeader() {
     };
   }, [open]);
 
+  /** Return to the hero from the wordmark, through Lenis when it is running. */
+  const backToHero = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    setOpen(false);
+    if (lenis) lenis.scrollTo(0, { duration: 1.2 });
+    else window.scrollTo({ top: 0, behavior: "smooth" });
+    window.history.replaceState(null, "", window.location.pathname);
+  };
+
   return (
     <>
       <motion.header
@@ -58,19 +69,19 @@ export function SiteHeader() {
             : "border-b border-transparent",
         )}
       >
-        <div className="mx-auto flex h-[72px] w-full max-w-6xl items-center justify-between gap-6 px-6">
-          <a href="#top" className="group flex items-baseline gap-3">
-            <span className="text-sm font-medium tracking-[-0.01em] text-fg">
-              {profile.name}
-            </span>
-            <span className="label hidden sm:inline">
-              {profile.role.split(" ")[0]}
-              <span className="text-accent">.</span>
-            </span>
+        <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between gap-6 px-6">
+          <a
+            href="#top"
+            onClick={backToHero}
+            aria-label={`${profile.name} - back to top`}
+            className="group text-lg font-medium tracking-[-0.03em] text-fg sm:text-xl"
+          >
+            {profile.name}
+            <span className="text-accent">.</span>
           </a>
 
           <nav aria-label="Sections" className="hidden items-center gap-1 lg:flex">
-            {navigation.map((item, i) => {
+            {navigation.map((item) => {
               const isActive = active === item.href.slice(1);
               return (
                 <a
@@ -82,7 +93,6 @@ export function SiteHeader() {
                     isActive ? "text-fg" : "text-muted hover:text-fg",
                   )}
                 >
-                  <span className="mr-1.5 text-accent/70">{pad(i)}</span>
                   {item.label}
                   {isActive ? (
                     <motion.span
@@ -97,10 +107,6 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <span className="hidden items-center gap-2 xl:inline-flex">
-              <span className="animate-pulse-dot h-1.5 w-1.5 bg-accent" />
-              <span className="label text-fg-dim">Open to work</span>
-            </span>
             <ActionLink
               href="#contact"
               variant="outline"
@@ -152,9 +158,8 @@ export function SiteHeader() {
                   initial={{ opacity: 0, y: 26 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, ease: EASE, delay: 0.05 * i }}
-                  className="flex items-baseline gap-4 border-b border-line py-5 text-3xl font-medium tracking-[-0.02em] text-fg"
+                  className="border-b border-line py-5 text-3xl font-medium tracking-[-0.02em] text-fg"
                 >
-                  <span className="label text-accent">{pad(i)}</span>
                   {item.label}
                 </motion.a>
               ))}

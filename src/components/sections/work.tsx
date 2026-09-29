@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
 
+import { SpotlightCard } from "@/components/motion/magnetic";
 import { EASE } from "@/components/motion/reveal";
 import { TextLink } from "@/components/ui/action";
 import { Section, SectionHeading, TagRow } from "@/components/ui/section";
@@ -26,15 +27,14 @@ export function Work() {
       <SectionHeading
         index="04"
         kicker="Selected work"
-        title="Platforms, storefronts and tools — built, launched, still running."
+        title="Platforms, storefronts and tools - built, launched, still running."
         description="A mix of client engagements and open-source builds. Every entry below shipped with a live deployment or a working handoff."
       />
 
-      {/* Rectangular filter controls — deliberately not pills. */}
       <div
         role="tablist"
         aria-label="Filter projects"
-        className="mb-10 flex flex-wrap gap-px border border-line bg-line"
+        className="panel mb-10 inline-flex gap-1 p-1.5"
       >
         {filters.map((option) => {
           const isActive = filter === option;
@@ -51,30 +51,32 @@ export function Work() {
               type="button"
               onClick={() => setFilter(option)}
               className={cn(
-                "relative flex-1 px-5 py-3.5 font-mono text-[0.6875rem] tracking-[0.14em] uppercase transition-colors duration-300",
-                isActive
-                  ? "bg-canvas text-fg"
-                  : "bg-canvas/40 text-muted hover:text-fg",
+                "relative rounded-xl px-4 py-2.5 font-mono text-[0.6875rem] tracking-[0.14em] uppercase transition-colors duration-300",
+                isActive ? "text-accent-ink" : "text-muted hover:text-fg",
               )}
             >
               {isActive ? (
                 <motion.span
-                  layoutId="filter-underline"
-                  className="absolute inset-x-0 bottom-0 h-px bg-accent"
-                  transition={{ duration: 0.4, ease: EASE }}
+                  layoutId="filter-chip"
+                  className="absolute inset-0 rounded-xl bg-accent"
+                  transition={{ duration: 0.45, ease: EASE }}
                 />
               ) : null}
-              {option}
-              <span className="ml-2 text-accent/60">{count}</span>
+              <span className="relative z-10">
+                {option}
+                <span className={cn("ml-2", isActive ? "text-accent-ink/60" : "text-accent/50")}>
+                  {count}
+                </span>
+              </span>
             </button>
           );
         })}
       </div>
 
-      <motion.ul layout className="border-t border-line">
+      <motion.ul layout className="flex flex-col gap-5">
         <AnimatePresence initial={false} mode="popLayout">
           {visible.map((project, i) => (
-            <ProjectRow key={project.slug} project={project} index={i} />
+            <ProjectCard key={project.slug} project={project} index={i} />
           ))}
         </AnimatePresence>
       </motion.ul>
@@ -82,69 +84,69 @@ export function Work() {
   );
 }
 
-function ProjectRow({ project, index }: { project: Project; index: number }) {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <motion.li
       layout
-      initial={{ opacity: 0, y: 26 }}
+      initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -12 }}
-      transition={{ duration: 0.6, ease: EASE, delay: index * 0.04 }}
-      className="group relative border-b border-line"
+      exit={{ opacity: 0, y: -14, scale: 0.98 }}
+      transition={{ duration: 0.65, ease: EASE, delay: index * 0.05 }}
     >
-      <span
-        aria-hidden
-        className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-accent transition-transform duration-700 group-hover:scale-x-100"
-      />
+      <SpotlightCard className="group panel overflow-hidden" intensity={3.5}>
+        <span className="sweep" />
 
-      <div className="grid gap-8 py-10 lg:grid-cols-[1.05fr_1.35fr_0.85fr] lg:gap-12">
-        <div>
-          <div className="flex items-center gap-4">
-            <span className="font-mono text-[0.625rem] text-accent/70">
-              {String(index + 1).padStart(2, "0")}
-            </span>
-            <span className="label">{project.kind}</span>
-            <span className="label">{project.year}</span>
+        <div className="grid gap-8 p-7 sm:p-9 lg:grid-cols-[1.05fr_1.35fr_0.8fr] lg:gap-12">
+          <div>
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="font-mono text-[0.6875rem] tracking-[0.2em] text-accent/80">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span className="rounded-md bg-surface-2/70 px-2.5 py-1 font-mono text-[0.625rem] tracking-[0.12em] text-muted uppercase">
+                {project.kind}
+              </span>
+              <span className="label">{project.year}</span>
+            </div>
+
+            <h3 className="mt-5 text-2xl leading-tight font-medium tracking-[-0.025em] text-fg transition-colors duration-500 group-hover:text-accent sm:text-3xl">
+              {project.name}
+            </h3>
+
+            <p className="mt-3 font-mono text-[0.625rem] tracking-[0.14em] text-muted uppercase">
+              {project.category}
+            </p>
           </div>
 
-          <h3 className="mt-5 text-2xl leading-tight font-medium tracking-[-0.025em] text-fg transition-colors duration-500 group-hover:text-accent sm:text-3xl">
-            {project.name}
-          </h3>
+          <div>
+            <p className="text-base leading-relaxed text-fg-dim">
+              {project.summary}
+            </p>
 
-          <p className="mt-3 font-mono text-[0.6875rem] tracking-[0.14em] text-muted uppercase">
-            {project.category}
-          </p>
-        </div>
+            <ul className="mt-6 space-y-2.5">
+              {project.contributions.map((item) => (
+                <li
+                  key={item}
+                  className="group/li flex gap-3.5 text-sm leading-relaxed text-muted transition-colors duration-500 hover:text-fg-dim"
+                >
+                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-line-2 transition-colors duration-500 group-hover/li:bg-accent" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        <div>
-          <p className="text-base leading-relaxed text-fg-dim">
-            {project.summary}
-          </p>
-
-          <ul className="mt-5 space-y-2.5">
-            {project.contributions.map((item) => (
-              <li
-                key={item}
-                className="flex gap-3.5 text-sm leading-relaxed text-muted"
-              >
-                <span aria-hidden className="mt-2 h-px w-3 shrink-0 bg-line-2" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="flex flex-col items-start gap-6">
-          <TagRow items={project.stack} />
-          <div className="flex flex-col items-start gap-3">
-            {project.links.map((link) => (
-              <TextLink key={link.href} href={link.href}>
-                {link.label}
-              </TextLink>
-            ))}
+          <div className="flex flex-col items-start gap-7">
+            <TagRow items={project.stack} />
+            <div className="flex flex-col items-start gap-3.5">
+              {project.links.map((link) => (
+                <TextLink key={link.href} href={link.href}>
+                  {link.label}
+                </TextLink>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      </SpotlightCard>
     </motion.li>
   );
 }

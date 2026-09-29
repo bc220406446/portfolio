@@ -17,7 +17,7 @@ import {
 import { cn } from "@/lib/utils";
 
 const fieldBase =
-  "w-full rounded-none border border-line bg-surface/40 px-4 py-3.5 text-sm text-fg placeholder:text-muted transition-colors duration-300 focus:border-accent focus:outline-none";
+  "w-full rounded-xl border border-line-2/60 bg-surface/60 px-4 py-3.5 text-sm text-fg placeholder:text-muted transition-all duration-300 focus:border-accent focus:bg-surface focus:outline-none";
 
 const initial: ContactInput = {
   name: "",
@@ -98,14 +98,14 @@ export function Contact() {
 
             <Reveal delay={0.1} className="mt-8">
               <p className="max-w-md text-base leading-relaxed text-fg-dim">
-                Tell me about the project — the goal, the timeline and anything
+                Tell me about the project - the goal, the timeline and anything
                 already in progress. I reply to every serious enquiry within one
                 business day.
               </p>
             </Reveal>
 
             <Reveal delay={0.18} className="mt-12">
-              <dl className="divide-y divide-line border-y border-line">
+              <dl className="divide-y divide-line/70">
                 <div className="flex items-baseline justify-between gap-6 py-4">
                   <dt className="label">Email</dt>
                   <dd>
@@ -153,7 +153,7 @@ export function Contact() {
             <form
               onSubmit={handleSubmit(onSubmit)}
               noValidate
-              className="border border-line bg-canvas-2/60 p-6 backdrop-blur-sm sm:p-8"
+              className="panel p-6 sm:p-8"
             >
               <div className="grid gap-5 sm:grid-cols-2">
                 <Field label="Name" error={errors.name?.message} required>
@@ -226,7 +226,7 @@ export function Contact() {
                   />
                 </Field>
 
-                {/* Honeypot — hidden from users, tempting to bots. */}
+                {/* Honeypot - hidden from users, tempting to bots. */}
                 <input
                   {...register("website")}
                   type="text"
