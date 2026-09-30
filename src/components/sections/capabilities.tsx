@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Marquee } from "@/components/motion/marquee";
 import { EASE, Reveal } from "@/components/motion/reveal";
 import { Section, SectionHeading } from "@/components/ui/section";
+import { SkillTile } from "@/components/ui/skill-tile";
 import { skillGroups } from "@/data/profile";
 import { cn } from "@/lib/utils";
 
@@ -15,15 +16,22 @@ const ticker = [
   "TypeScript",
   "Node.js",
   "Django",
+  "FastAPI",
+  "PyTorch",
+  "TensorFlow",
+  "NumPy",
   "PostgreSQL",
+  "Supabase",
+  "MongoDB",
+  "Firebase",
+  "Azure",
+  "Vercel",
   "Shopify",
   "WooCommerce",
   "WordPress",
-  "SureCart",
-  "REST APIs",
-  "SEO",
-  "Performance",
-  "Framer Motion",
+  "Medusa JS",
+  "GitHub Actions",
+  "Sentry",
 ];
 
 export function Capabilities() {
@@ -36,7 +44,7 @@ export function Capabilities() {
         index="02"
         kicker="Capabilities"
         title="A stack chosen for shipping, not for résumé decoration."
-        description="Frontend, backend, data and commerce - each layer picked because it survives contact with real traffic, real clients and real deadlines. Open a row to see what it covers."
+        description="Proficient in the languages, frameworks, databases and AI tooling named below. Open any row to see the full list for that layer."
       />
 
       <div className="flex flex-col gap-3">
@@ -127,14 +135,19 @@ export function Capabilities() {
                     >
                       <div className="px-6 pb-7 sm:px-8">
                         <div className="h-px w-full bg-line" />
+                        {/* Icon wall: marks instead of names. Hover reveals the
+                            name, and sr-only text keeps it for screen readers. */}
                         <motion.ul
-                          className="mt-6 flex flex-wrap gap-2"
+                          className="mt-6 flex flex-wrap gap-2.5"
                           initial="hidden"
                           animate="show"
                           variants={{
                             hidden: {},
                             show: {
-                              transition: { staggerChildren: 0.035, delayChildren: 0.08 },
+                              transition: {
+                                staggerChildren: 0.03,
+                                delayChildren: 0.08,
+                              },
                             },
                           }}
                         >
@@ -142,7 +155,7 @@ export function Capabilities() {
                             <motion.li
                               key={skill}
                               variants={{
-                                hidden: { opacity: 0, y: 12, scale: 0.94 },
+                                hidden: { opacity: 0, y: 12, scale: 0.88 },
                                 show: {
                                   opacity: 1,
                                   y: 0,
@@ -150,9 +163,8 @@ export function Capabilities() {
                                   transition: { duration: 0.45, ease: EASE },
                                 },
                               }}
-                              className="tag"
                             >
-                              {skill}
+                              <SkillTile skill={skill} />
                             </motion.li>
                           ))}
                         </motion.ul>

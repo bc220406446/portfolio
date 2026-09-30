@@ -1,23 +1,6 @@
-import { SpotlightCard } from "@/components/motion/magnetic";
 import { Portrait } from "@/components/motion/portrait";
-import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
+import { Reveal } from "@/components/motion/reveal";
 import { Section, SectionHeading } from "@/components/ui/section";
-import { cn } from "@/lib/utils";
-
-const principles = [
-  {
-    title: "Clean, maintainable code",
-    body: "Typed where it matters, small modules, and components reused rather than duplicated. A codebase the next developer can read without a handover call.",
-  },
-  {
-    title: "Performance as a feature",
-    body: "Core Web Vitals treated as a requirement, not a polish pass - image pipelines, trimmed queries, cached fragments and measured budgets.",
-  },
-  {
-    title: "Business-aligned builds",
-    body: "Every screen maps back to a requirement: more qualified traffic, fewer abandoned carts, less manual admin work after launch.",
-  },
-];
 
 export function About() {
   return (
@@ -74,40 +57,6 @@ export function About() {
           </Reveal>
         </div>
       </div>
-
-      {/* Floating principle cards - offset so they read as objects, not cells. */}
-      <Stagger className="mt-24 grid gap-6 lg:grid-cols-3 lg:gap-7">
-        {principles.map((principle, i) => (
-          <StaggerItem
-            key={principle.title}
-            className={cn(
-              i === 1 && "lg:translate-y-8",
-              i === 2 && "lg:translate-y-3",
-            )}
-          >
-            <SpotlightCard
-              className="group panel h-full overflow-hidden"
-              intensity={5}
-            >
-              <div className="relative p-7">
-                <span className="sweep" />
-                <div className="flex items-baseline justify-between gap-4">
-                  <span className="font-mono text-[0.6875rem] tracking-[0.2em] text-accent">
-                    0{i + 1}
-                  </span>
-                  <span className="h-px w-10 bg-line-2 transition-all duration-700 group-hover:w-16 group-hover:bg-accent" />
-                </div>
-                <h3 className="mt-6 text-lg font-medium tracking-[-0.01em] text-fg">
-                  {principle.title}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-fg-dim">
-                  {principle.body}
-                </p>
-              </div>
-            </SpotlightCard>
-          </StaggerItem>
-        ))}
-      </Stagger>
     </Section>
   );
 }

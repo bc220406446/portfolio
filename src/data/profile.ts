@@ -57,8 +57,6 @@ export const skillGroups: SkillGroup[] = [
       "JavaScript (ES2023)",
       "Tailwind CSS",
       "Framer Motion",
-      "Responsive UI",
-      "Accessibility",
     ],
   },
   {
@@ -69,53 +67,52 @@ export const skillGroups: SkillGroup[] = [
       "Express",
       "Python",
       "Django",
+      "FastAPI",
       "PHP",
       "REST APIs",
-      "Authentication",
-      "Server Actions",
+      "JWT",
     ],
   },
   {
-    title: "Data & Platform",
-    caption: "Storage, deployment, integrations",
+    title: "AI & Machine Learning",
+    caption:
+      "AI Focus: AI-powered web applications • Machine Learning • NLP • Automation • Intelligent workflows",
     skills: [
-      "PostgreSQL",
-      "MySQL",
-      "Prisma-style ORMs",
-      "Vercel",
-      "Netlify",
-      "Git & GitHub",
+      "Python",
+      "NumPy",
+      "scikit-learn",
+      "PyTorch",
+      "TensorFlow",
+      "Matplotlib",
+    ],
+  },
+  {
+    title: "Database",
+    caption: "Storage, querying and persistence",
+    skills: ["PostgreSQL", "Supabase", "MySQL", "MongoDB", "Firebase"],
+  },
+  {
+    title: "Deployment",
+    caption: "Where the work runs",
+    skills: ["Azure", "Vercel", "Render", "Netlify"],
+  },
+  {
+    title: "Tools & Development",
+    caption: "The day-to-day workflow",
+    skills: [
+      "Git",
+      "GitHub",
+      "GitHub Actions",
       "Postman",
-      "Webhooks",
-    ],
-  },
-  {
-    title: "E-Commerce & CMS",
-    caption: "Storefronts that convert",
-    skills: [
-      "WordPress",
-      "WooCommerce",
-      "Shopify",
-      "SureCart",
-      "Strapi",
-      "Elementor",
-      "Product & Inventory",
-      "Payment Integration",
-    ],
-  },
-  {
-    title: "Growth & Quality",
-    caption: "Performance, SEO, maintainability",
-    skills: [
-      "Technical SEO",
-      "Rank Math",
+      "Sentry",
+      "Markdown",
       "Core Web Vitals",
-      "Performance Optimization",
-      "Code Reusability",
-      "UI/UX",
-      "Analytics",
-      "Clean Architecture",
     ],
+  },
+  {
+    title: "CMS & E-Commerce",
+    caption: "Storefronts that convert",
+    skills: ["Medusa JS", "WordPress", "Shopify", "WooCommerce", "SureCart"],
   },
 ];
 
@@ -185,7 +182,10 @@ export const projects: Project[] = [
     ],
     stack: ["WordPress", "SureCart", "Rank Math SEO", "Core Web Vitals"],
     links: [
-      { label: "Case study", href: "https://www.linkedin.com/in/dev-muhammad-kamran" },
+      {
+        label: "Case study",
+        href: "https://www.linkedin.com/in/dev-muhammad-kamran",
+      },
     ],
     featured: true,
   },
@@ -205,8 +205,14 @@ export const projects: Project[] = [
     ],
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
     links: [
-      { label: "Live site", href: "https://sovereign-e-commerce-store.vercel.app" },
-      { label: "Source", href: "https://github.com/bc220406446/sovereign-e-commerce-store" },
+      {
+        label: "Live site",
+        href: "https://sovereign-e-commerce-store.vercel.app",
+      },
+      {
+        label: "Source",
+        href: "https://github.com/bc220406446/sovereign-e-commerce-store",
+      },
     ],
     featured: true,
   },
@@ -225,7 +231,10 @@ export const projects: Project[] = [
     ],
     stack: ["TypeScript", "Next.js", "REST APIs", "PostgreSQL"],
     links: [
-      { label: "Source", href: "https://github.com/bc220406446/Smart-Query-Management" },
+      {
+        label: "Source",
+        href: "https://github.com/bc220406446/Smart-Query-Management",
+      },
     ],
     featured: true,
   },
@@ -244,7 +253,10 @@ export const projects: Project[] = [
     ],
     stack: ["TypeScript", "Next.js", "Node.js", "PostgreSQL"],
     links: [
-      { label: "Source", href: "https://github.com/bc220406446/Community-Skill-Exchange-Platform" },
+      {
+        label: "Source",
+        href: "https://github.com/bc220406446/Community-Skill-Exchange-Platform",
+      },
     ],
   },
   {
@@ -263,7 +275,10 @@ export const projects: Project[] = [
     ],
     stack: ["WooCommerce", "WordPress", "Local SEO", "Payments"],
     links: [
-      { label: "Enquire", href: "mailto:muhammadkamranyar@gmail.com?subject=KSA%20Furniture%20Store" },
+      {
+        label: "Enquire",
+        href: "mailto:muhammadkamranyar@gmail.com?subject=KSA%20Furniture%20Store",
+      },
     ],
   },
   {
@@ -282,7 +297,10 @@ export const projects: Project[] = [
     ],
     stack: ["WooCommerce", "WordPress", "SEO", "Inventory"],
     links: [
-      { label: "Enquire", href: "mailto:muhammadkamranyar@gmail.com?subject=Anas%20Shopping%20Store" },
+      {
+        label: "Enquire",
+        href: "mailto:muhammadkamranyar@gmail.com?subject=Anas%20Shopping%20Store",
+      },
     ],
   },
   {
@@ -301,7 +319,10 @@ export const projects: Project[] = [
     ],
     stack: ["Shopify", "Liquid", "SEO", "Mobile-first"],
     links: [
-      { label: "Enquire", href: "mailto:muhammadkamranyar@gmail.com?subject=House%20of%20Fashion" },
+      {
+        label: "Enquire",
+        href: "mailto:muhammadkamranyar@gmail.com?subject=House%20of%20Fashion",
+      },
     ],
   },
   {
@@ -319,7 +340,10 @@ export const projects: Project[] = [
     ],
     stack: ["PHP", "MySQL", "HTML", "CSS"],
     links: [
-      { label: "Source", href: "https://github.com/bc220406446/Student-Management-Web-Application" },
+      {
+        label: "Source",
+        href: "https://github.com/bc220406446/Student-Management-Web-Application",
+      },
     ],
   },
 ];
