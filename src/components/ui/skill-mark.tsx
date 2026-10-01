@@ -2,7 +2,7 @@
 
 import { Gauge, Layers, Network, type LucideIcon } from "lucide-react";
 
-import { brandMarks, type BrandKey } from "@/lib/brand-marks";
+import { brandMarks, type BrandKey, type BrandMark } from "@/lib/brand-marks";
 import { cn } from "@/lib/utils";
 
 /**
@@ -18,7 +18,7 @@ const glyphs = {
 
 type Visual = { brand: BrandKey } | { glyph: keyof typeof glyphs };
 
-/** Every skill currently listed in `skillGroups`, resolved to a mark. */
+/** Every skill listed in `skillGroups`, resolved to a mark. */
 const visuals: Record<string, Visual> = {
   "Next.js": { brand: "nextjs" },
   React: { brand: "react" },
@@ -87,18 +87,18 @@ function markColour(hex: string): string {
   return luminance < 0.18 ? NEUTRAL : `#${hex}`;
 }
 
-/**
- * A single skill rendered as an icon tile. The name is carried on `title` for
- * pointer users and repeated in `sr-only` text for screen readers, so dropping
- * the visible label costs no accessibility.
- */
-export function SkillTile({
-  skill,
-  className,
-}: {
-  skill: string;
-  className?: string;
-}) {
+export type SkillVisual = {
+  /** Which of the three mark shapes was resolved. */
+  kind: "glyph" | "path" | "svg";
+  mark: BrandMark | null;
+  Glyph: LucideIcon | null;
+  /** Colour the mark should be painted in, already adjusted for this canvas. */
+  colour: string;
+  viewBox: string;
+};
+
+/** Resolves a skill name to its mark, glyph, colour and artboard. */
+export function skillVisual(skill: string): SkillVisual {
   const visual = visuals[skill] ?? FALLBACK;
   const mark = "brand" in visual ? brandMarks[visual.brand] : null;
   const Glyph = "glyph" in visual ? glyphs[visual.glyph] : null;
@@ -106,38 +106,50 @@ export function SkillTile({
   // tinted with the brand hex.
   const colour = mark && mark.path ? markColour(mark.hex) : NEUTRAL;
 
+  return {
+    kind: Glyph ? "glyph" : mark?.svg ? "svg" : "path",
+    mark,
+    Glyph,
+    colour,
+    viewBox: mark?.viewBox ?? "0 0 24 24",
+  };
+}
+
+/**
+ * A technology's logo, tinted in its own brand colour, at whatever size the
+ * caller sets through `className`. Colour comes from the resolved brand hex
+ * unless the logo brings its own palette (Matplotlib).
+ */
+export function SkillMark({
+  skill,
+  className,
+  strokeWidth = 1.5,
+}: {
+  skill: string;
+  className?: string;
+  strokeWidth?: number;
+}) {
+  const { kind, mark, Glyph, colour, viewBox } = skillVisual(skill);
+
   return (
     <span
-      title={skill}
+      aria-hidden
       style={{ color: colour }}
-      className={cn(
-        "relative flex h-12 w-12 items-center justify-center rounded-lg border border-line-2/50 bg-surface/50 transition-all duration-500 hover:-translate-y-1 hover:border-line-2 hover:bg-surface hover:brightness-125 sm:h-14 sm:w-14",
-        className,
-      )}
+      className={cn("inline-flex items-center justify-center", className)}
     >
       {Glyph ? (
-        <Glyph
-          aria-hidden
-          className="h-5 w-5 sm:h-6 sm:w-6"
-          strokeWidth={1.5}
-        />
-      ) : mark?.svg ? (
+        <Glyph className="h-full w-full" strokeWidth={strokeWidth} />
+      ) : kind === "svg" ? (
         <svg
-          aria-hidden
-          viewBox={mark.viewBox ?? "0 0 24 24"}
-          className="h-6 w-6 sm:h-7 sm:w-7"
-          dangerouslySetInnerHTML={{ __html: mark.svg }}
+          viewBox={viewBox}
+          className="h-full w-full"
+          dangerouslySetInnerHTML={{ __html: mark?.svg ?? "" }}
         />
       ) : (
-        <svg
-          aria-hidden
-          viewBox={mark?.viewBox ?? "0 0 24 24"}
-          className="h-5 w-5 fill-current sm:h-6 sm:w-6"
-        >
+        <svg viewBox={viewBox} className="h-full w-full fill-current">
           <path d={mark?.path} fillRule={mark?.fillRule ?? "nonzero"} />
         </svg>
       )}
-      <span className="sr-only">{skill}</span>
     </span>
   );
 }

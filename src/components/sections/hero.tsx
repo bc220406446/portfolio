@@ -18,9 +18,13 @@ import { profile } from "@/data/profile";
 
 const rotating = [
   "Full Stack Web Developer",
-  "E-commerce Engineer",
-  "AI Automation Builder",
-  "Performance Obsessive",
+  "NLP & Machine Learning Developer",
+  "LLM Application Developer",
+  "AI Automation Engineer",
+  "Generative AI Developer",
+  "AI-Powered Product Engineer",
+  "E-commerce Solutions Engineer",
+  "Intelligent Systems Developer",
 ];
 
 export function Hero() {

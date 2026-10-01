@@ -1,9 +1,3 @@
-/**
- * Single source of truth for the portfolio.
- * Extracted from the LinkedIn profile export (Profile.pdf) and the public
- * GitHub API for user `bc220406446`.
- */
-
 export const profile = {
   name: "Muhammad Kamran",
   shortName: "Kamran",
@@ -42,14 +36,12 @@ export const profile = {
 
 export type SkillGroup = {
   title: string;
-  caption: string;
   skills: string[];
 };
 
 export const skillGroups: SkillGroup[] = [
   {
     title: "Frontend",
-    caption: "Interfaces, design systems, motion",
     skills: [
       "Next.js",
       "React",
@@ -61,7 +53,6 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     title: "Backend",
-    caption: "APIs, services, server logic",
     skills: [
       "Node.js",
       "Express",
@@ -75,8 +66,6 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     title: "AI & Machine Learning",
-    caption:
-      "AI Focus: AI-powered web applications • Machine Learning • NLP • Automation • Intelligent workflows",
     skills: [
       "Python",
       "NumPy",
@@ -88,17 +77,14 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     title: "Database",
-    caption: "Storage, querying and persistence",
     skills: ["PostgreSQL", "Supabase", "MySQL", "MongoDB", "Firebase"],
   },
   {
     title: "Deployment",
-    caption: "Where the work runs",
     skills: ["Azure", "Vercel", "Render", "Netlify"],
   },
   {
     title: "Tools & Development",
-    caption: "The day-to-day workflow",
     skills: [
       "Git",
       "GitHub",
@@ -111,7 +97,6 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     title: "CMS & E-Commerce",
-    caption: "Storefronts that convert",
     skills: ["Medusa JS", "WordPress", "Shopify", "WooCommerce", "SureCart"],
   },
 ];
@@ -181,12 +166,7 @@ export const projects: Project[] = [
       "Designed the content taxonomy so thousands of resources stay findable.",
     ],
     stack: ["WordPress", "SureCart", "Rank Math SEO", "Core Web Vitals"],
-    links: [
-      {
-        label: "Case study",
-        href: "https://www.linkedin.com/in/dev-muhammad-kamran",
-      },
-    ],
+    links: [],
     featured: true,
   },
   {
@@ -206,11 +186,11 @@ export const projects: Project[] = [
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
     links: [
       {
-        label: "Live site",
+        label: "View live",
         href: "https://sovereign-e-commerce-store.vercel.app",
       },
       {
-        label: "Source",
+        label: "GitHub",
         href: "https://github.com/bc220406446/sovereign-e-commerce-store",
       },
     ],
@@ -232,7 +212,11 @@ export const projects: Project[] = [
     stack: ["TypeScript", "Next.js", "REST APIs", "PostgreSQL"],
     links: [
       {
-        label: "Source",
+        label: "View live",
+        href: "https://smart-query-management.vercel.app/",
+      },
+      {
+        label: "GitHub",
         href: "https://github.com/bc220406446/Smart-Query-Management",
       },
     ],
@@ -254,7 +238,11 @@ export const projects: Project[] = [
     stack: ["TypeScript", "Next.js", "Node.js", "PostgreSQL"],
     links: [
       {
-        label: "Source",
+        label: "View live",
+        href: "https://community-skill-exchange-platform.vercel.app/",
+      },
+      {
+        label: "GitHub",
         href: "https://github.com/bc220406446/Community-Skill-Exchange-Platform",
       },
     ],
@@ -274,12 +262,7 @@ export const projects: Project[] = [
       "Mobile responsiveness and storefront performance optimization.",
     ],
     stack: ["WooCommerce", "WordPress", "Local SEO", "Payments"],
-    links: [
-      {
-        label: "Enquire",
-        href: "mailto:muhammadkamranyar@gmail.com?subject=KSA%20Furniture%20Store",
-      },
-    ],
+    links: [],
   },
   {
     slug: "anas-shopping-store",
@@ -296,12 +279,7 @@ export const projects: Project[] = [
       "Mobile responsiveness and page-speed tuning.",
     ],
     stack: ["WooCommerce", "WordPress", "SEO", "Inventory"],
-    links: [
-      {
-        label: "Enquire",
-        href: "mailto:muhammadkamranyar@gmail.com?subject=Anas%20Shopping%20Store",
-      },
-    ],
+    links: [],
   },
   {
     slug: "house-of-fashion",
@@ -318,12 +296,7 @@ export const projects: Project[] = [
       "Applied SEO improvements across collections and product pages.",
     ],
     stack: ["Shopify", "Liquid", "SEO", "Mobile-first"],
-    links: [
-      {
-        label: "Enquire",
-        href: "mailto:muhammadkamranyar@gmail.com?subject=House%20of%20Fashion",
-      },
-    ],
+    links: [],
   },
   {
     slug: "student-management-web-application",
@@ -341,7 +314,11 @@ export const projects: Project[] = [
     stack: ["PHP", "MySQL", "HTML", "CSS"],
     links: [
       {
-        label: "Source",
+        label: "View live",
+        href: "https://smwa.freehosting.dev/login.php",
+      },
+      {
+        label: "GitHub",
         href: "https://github.com/bc220406446/Student-Management-Web-Application",
       },
     ],
@@ -354,6 +331,9 @@ export type EducationEntry = {
   field: string;
   period: string;
   status: string;
+  grade?: string;
+  percentage?: string;
+  credentialUrl?: string;
 };
 
 export const education: EducationEntry[] = [
@@ -362,7 +342,7 @@ export const education: EducationEntry[] = [
     qualification: "Bachelor of Computer Science",
     field: "Computer Science",
     period: "October 2022 - September 2026",
-    status: "Final year",
+    status: "Completed",
   },
   {
     institution: "Punjab Group of Colleges",
@@ -384,6 +364,7 @@ export type Certification = {
   title: string;
   issuer: string;
   focus: string;
+  credentialUrl?: string;
 };
 
 export const certifications: Certification[] = [

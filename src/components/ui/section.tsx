@@ -28,39 +28,35 @@ export function Section({
 }
 
 /**
- * Editorial section header: monospace index, uppercase title, and a rule that
- * draws itself in. No pills, no badges.
+ * Editorial section header. The section's own name carries the heading, and a
+ * single short line says what the section holds underneath it.
+ *
+ * The name is the heading on purpose: a long, comma-balanced sentence ("formal
+ * training in computer science, applied training in the tools") is hard to read
+ * at display size, tells you nothing the section does not, and reads like a
+ * slogan. Two or three words sit better big and let the line below do the
+ * explaining.
  */
 export function SectionHeading({
-  index,
   title,
-  kicker,
   description,
   className,
 }: {
-  index: string;
+  /** The section's name - what it is called, not what it argues. */
   title: string;
-  kicker?: string;
+  /** One short line on what the section covers. */
   description?: string;
   className?: string;
 }) {
   return (
-    <header className={cn("mb-14 sm:mb-20", className)}>
-      <Reveal direction="none" duration={0.5}>
-        <div className="flex items-center gap-4">
-          <span className="label text-accent">{index}</span>
-          <span className="h-px flex-1 origin-left bg-line" />
-          {kicker ? <span className="label">{kicker}</span> : null}
-        </div>
-      </Reveal>
-
-      <h2 className="mt-7 max-w-4xl text-4xl leading-[1.05] font-medium tracking-[-0.03em] text-fg sm:text-5xl">
+    <header className={cn("mb-16 text-center sm:mb-20", className)}>
+      <h2 className="mx-auto max-w-4xl text-5xl leading-[1.02] font-medium tracking-[-0.04em] text-balance text-fg sm:text-6xl lg:text-7xl">
         <TextReveal text={title} />
       </h2>
 
       {description ? (
-        <Reveal delay={0.12} className="mt-6 max-w-2xl">
-          <p className="text-base leading-relaxed text-fg-dim sm:text-lg">
+        <Reveal delay={0.12} className="mx-auto mt-6 max-w-xl">
+          <p className="text-base leading-relaxed text-pretty text-fg-dim">
             {description}
           </p>
         </Reveal>

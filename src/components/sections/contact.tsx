@@ -77,12 +77,8 @@ export function Contact() {
   return (
     <section id="contact" className="relative scroll-mt-24 border-t border-line py-24 sm:py-32">
       <div className="mx-auto w-full max-w-6xl px-6">
-        <Reveal direction="none">
-          <div className="flex items-center gap-4">
-            <span className="label text-accent">06</span>
-            <span className="h-px flex-1 bg-line" />
-            <span className="label">Contact</span>
-          </div>
+        <Reveal direction="none" className="text-center">
+          <span className="label text-accent">Contact</span>
         </Reveal>
 
         <div className="mt-12 grid gap-16 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
@@ -118,10 +114,12 @@ export function Contact() {
                   </dd>
                 </div>
                 <div className="flex items-baseline justify-between gap-6 py-4">
-                  <dt className="label">Phone</dt>
+                  <dt className="label">WhatsApp</dt>
                   <dd>
                     <a
-                      href={`tel:${profile.phoneHref}`}
+                      href={`https://wa.me/${profile.phoneHref}`}
+                      target="_blank"
+                      rel="noreferrer noopener"
                       className="text-sm text-fg-dim transition-colors hover:text-accent"
                     >
                       {profile.phone}
@@ -142,6 +140,14 @@ export function Contact() {
                       className="text-sm text-fg-dim transition-colors hover:text-accent"
                     >
                       dev-muhammad-kamran ↗
+                    </a>
+                  </dd>
+                </div>
+                <div className="flex items-baseline justify-between gap-6 py-4">
+                  <dt className="label">GitHub</dt>
+                  <dd>
+                    <a href={profile.links.github} target="_blank" rel="noreferrer noopener" className="text-sm text-fg-dim transition-colors hover:text-accent">
+                      github.com/bc220406446 ↗
                     </a>
                   </dd>
                 </div>

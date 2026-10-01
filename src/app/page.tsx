@@ -4,7 +4,6 @@ import { Capabilities } from "@/components/sections/capabilities";
 import { Contact } from "@/components/sections/contact";
 import { Credentials } from "@/components/sections/credentials";
 import { Experience } from "@/components/sections/experience";
-import { GithubSignals } from "@/components/sections/github-signals";
 import { Hero } from "@/components/sections/hero";
 import { Work } from "@/components/sections/work";
 import { profile } from "@/data/profile";
@@ -53,7 +52,6 @@ export default function Home() {
       <Capabilities />
       <Experience />
       <Work />
-      <GithubSignals />
       <Credentials />
       <Contact />
       <SiteFooter />

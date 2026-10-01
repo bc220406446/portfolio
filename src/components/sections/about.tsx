@@ -6,9 +6,8 @@ export function About() {
   return (
     <Section id="about">
       <SectionHeading
-        index="01"
-        kicker="About"
-        title="I build the whole path - from database schema to the last hover state."
+        title="About"
+        description="Who I am, what I build, and the kind of work I take on."
       />
 
       <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">

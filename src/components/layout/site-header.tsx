@@ -1,6 +1,7 @@
 "use client";
 
 import { useLenis } from "lenis/react";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { useEffect, useState, type MouseEvent } from "react";
 
@@ -14,6 +15,9 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("");
   const lenis = useLenis();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const sectionHref = (href: string) => (isHome ? href : `/${href}`);
 
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (latest) => setScrolled(latest > 24));
@@ -49,6 +53,7 @@ export function SiteHeader() {
 
   /** Return to the hero from the wordmark, through Lenis when it is running. */
   const backToHero = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (!isHome) return;
     event.preventDefault();
     setOpen(false);
     if (lenis) lenis.scrollTo(0, { duration: 1.2 });
@@ -71,7 +76,7 @@ export function SiteHeader() {
       >
         <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between gap-6 px-6">
           <a
-            href="#top"
+            href={isHome ? "#top" : "/"}
             onClick={backToHero}
             aria-label={`${profile.name} - back to top`}
             className="group text-lg font-medium tracking-[-0.03em] text-fg sm:text-xl"
@@ -86,7 +91,7 @@ export function SiteHeader() {
               return (
                 <a
                   key={item.href}
-                  href={item.href}
+                  href={sectionHref(item.href)}
                   aria-current={isActive ? "true" : undefined}
                   className={cn(
                     "group relative px-3 py-2 font-mono text-[0.6875rem] tracking-[0.14em] uppercase transition-colors duration-300",
@@ -108,7 +113,7 @@ export function SiteHeader() {
 
           <div className="flex items-center gap-3">
             <ActionLink
-              href="#contact"
+              href={sectionHref("#contact")}
               variant="outline"
               className="hidden px-5 py-2.5 sm:inline-flex"
             >
@@ -153,7 +158,7 @@ export function SiteHeader() {
               {navigation.map((item, i) => (
                 <motion.a
                   key={item.href}
-                  href={item.href}
+                  href={sectionHref(item.href)}
                   onClick={() => setOpen(false)}
                   initial={{ opacity: 0, y: 26 }}
                   animate={{ opacity: 1, y: 0 }}
