@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 type Variant = "primary" | "outline" | "ghost";
 
 const base =
-  "group/action relative inline-flex items-center justify-center gap-2.5 rounded-none border px-6 py-3.5 font-mono text-[0.6875rem] tracking-[0.16em] uppercase transition-colors duration-300 disabled:pointer-events-none disabled:opacity-50";
+  "group/action relative inline-flex items-center justify-center gap-2.5 rounded-lg border px-6 py-3.5 font-mono text-[0.6875rem] tracking-[0.16em] uppercase transition-colors duration-300 disabled:pointer-events-none disabled:opacity-50";
 
 const variants: Record<Variant, string> = {
   primary:

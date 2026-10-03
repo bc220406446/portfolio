@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, useReducedMotion, type Transition } from "motion/react";
 import {
   useCallback,
@@ -289,51 +289,20 @@ export function SkillCarousel() {
             })}
           </div>
         </motion.div>
-      </div>
 
-      {/* Controls: the arrows sit either side of a miniature of every card, so
-          you can jump straight to one. */}
-      <div className="mt-9 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-        <CarouselButton label="Previous layer" onClick={() => go(active - 1)}>
-          <ArrowLeft className="h-4 w-4" strokeWidth={1.6} />
+        <CarouselButton
+          label="Previous layer"
+          onClick={() => go(active - 1)}
+          className="absolute top-1/2 left-1 z-20 -translate-y-1/2 sm:left-3"
+        >
+          <ChevronLeft className="h-5 w-5" strokeWidth={2} />
         </CarouselButton>
-
-        <div className="flex items-center gap-1.5 sm:gap-2">
-          {skillGroups.map((group, i) => (
-            <button
-              key={group.title}
-              type="button"
-              onClick={() => go(i)}
-              aria-label={`Show ${group.title}`}
-              aria-current={i === active}
-              title={group.title}
-              className={cn(
-                "flex h-8 w-9 items-center justify-center gap-0.5 rounded-md border transition-all duration-300 sm:h-10 sm:w-14 sm:gap-1",
-                i === active
-                  ? "border-accent/50 bg-surface-2"
-                  : "border-line-2/50 bg-surface/50 opacity-55 hover:opacity-100",
-              )}
-            >
-              {group.skills.slice(0, 3).map((skill, s) => (
-                <span
-                  key={skill}
-                  className={cn(
-                    "items-center justify-center",
-                    s === 2 ? "hidden sm:flex" : "flex",
-                  )}
-                >
-                  <SkillMark
-                    skill={skill}
-                    className="h-3 w-3 sm:h-3.5 sm:w-3.5"
-                  />
-                </span>
-              ))}
-            </button>
-          ))}
-        </div>
-
-        <CarouselButton label="Next layer" onClick={() => go(active + 1)}>
-          <ArrowRight className="h-4 w-4" strokeWidth={1.6} />
+        <CarouselButton
+          label="Next layer"
+          onClick={() => go(active + 1)}
+          className="absolute top-1/2 right-1 z-20 -translate-y-1/2 sm:right-3"
+        >
+          <ChevronRight className="h-5 w-5" strokeWidth={2} />
         </CarouselButton>
       </div>
     </div>
@@ -344,17 +313,19 @@ function CarouselButton({
   label,
   onClick,
   children,
+  className,
 }: {
   label: string;
   onClick: () => void;
   children: React.ReactNode;
+  className?: string;
 }) {
   return (
     <button
       type="button"
       aria-label={label}
       onClick={onClick}
-      className="flex h-10 w-10 items-center justify-center rounded-lg border border-line-2/60 bg-surface/60 text-fg-dim transition-colors duration-300 hover:border-line-2 hover:text-fg"
+      className={cn("flex h-10 w-10 items-center justify-center rounded-lg border border-line-2/60 bg-surface/90 text-fg-dim shadow-lg shadow-black/30 backdrop-blur-sm transition-colors duration-300 hover:border-accent hover:text-accent", className)}
     >
       {children}
     </button>

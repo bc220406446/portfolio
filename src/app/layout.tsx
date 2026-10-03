@@ -39,10 +39,6 @@ export const metadata: Metadata = {
   },
   description,
   applicationName: `${profile.name} Portfolio`,
-  icons: {
-    icon: [{ url: "/favicon.ico?v=2", type: "image/x-icon" }],
-    shortcut: "/favicon.ico?v=2",
-  },
   authors: [{ name: profile.name, url: profile.links.github }],
   creator: profile.name,
   keywords: [
