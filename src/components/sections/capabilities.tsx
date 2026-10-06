@@ -10,8 +10,8 @@ export function Capabilities() {
   return (
     <Section id="capabilities" className="border-t border-line">
       <SectionHeading
-        title="Capabilities"
-        description="The languages, frameworks, databases and AI tooling I work with - one card per layer."
+        title="What I build with"
+        description="The technologies, frameworks, and AI tools I use to turn ideas into reliable, production-ready products."
       />
 
       <SkillCarousel />

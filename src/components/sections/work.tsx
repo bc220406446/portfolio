@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
 import { ProjectPreview } from "@/components/projects/project-preview";
 import { EASE } from "@/components/motion/reveal";
-import { Section } from "@/components/ui/section";
+import { Section, SectionHeading } from "@/components/ui/section";
 import { projects, type Project } from "@/data/profile";
 import { cn } from "@/lib/utils";
 
@@ -17,7 +17,7 @@ export function Work() {
   const [filter, setFilter] = useState<Filter>("All");
   const visible = useMemo(() => filter === "All" ? projects : projects.filter((project) => project.kind === filter), [filter]);
   return <Section id="work" className="border-t border-line" containerClassName="max-w-7xl">
-    <header className="mb-10 flex flex-col justify-between gap-7 border-b border-line pb-7 sm:flex-row sm:items-end"><div><p className="label text-accent">Selected work / {String(projects.length).padStart(2, "0")} projects</p><h2 className="mt-4 text-4xl font-medium tracking-[-.055em] text-fg sm:text-6xl">Project index</h2></div><p className="max-w-sm text-sm leading-relaxed text-fg-dim sm:text-right">A selection of client launches and open-source products. Open a project to see the brief, build decisions and stack.</p></header>
+    <SectionHeading title="Things I've built" description="A collection of products, experiments, and client work — built around real problems, practical solutions, and a lot of curiosity." />
     <div role="tablist" aria-label="Filter projects" className="mb-9 flex flex-wrap gap-2">{filters.map((option) => { const active = option === filter; const count = option === "All" ? projects.length : projects.filter((project) => project.kind === option).length; return <button key={option} role="tab" aria-selected={active} type="button" onClick={() => setFilter(option)} className={cn("rounded-lg border px-3 py-2 font-mono text-[.625rem] tracking-[.14em] uppercase transition-colors", active ? "border-accent bg-accent text-accent-ink" : "border-line-2 text-muted hover:border-accent hover:text-accent")}>{option} <span className="ml-1 opacity-65">{String(count).padStart(2, "0")}</span></button>; })}</div>
     <motion.ul layout className="grid gap-x-5 gap-y-10 sm:grid-cols-2 xl:grid-cols-3"><AnimatePresence initial={false} mode="popLayout">{visible.map((project) => <ProjectCard key={project.slug} project={project} index={projects.indexOf(project)} />)}</AnimatePresence></motion.ul>
   </Section>;

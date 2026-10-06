@@ -1,6 +1,7 @@
 "use client";
 
 import { useLenis } from "lenis/react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
 import { useEffect, useState, type MouseEvent } from "react";
@@ -13,36 +14,12 @@ import { cn } from "@/lib/utils";
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<string>("");
-  const lenis = useLenis();
   const pathname = usePathname();
+  const lenis = useLenis();
   const isHome = pathname === "/";
-  const sectionHref = (href: string) => (isHome ? href : `/${href}`);
 
   const { scrollY } = useScroll();
   useMotionValueEvent(scrollY, "change", (latest) => setScrolled(latest > 24));
-
-  // Track the section currently in the middle band of the viewport.
-  useEffect(() => {
-    const ids = navigation.map((item) => item.href.slice(1));
-    const sections = ids
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => Boolean(el));
-    if (!sections.length) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) setActive(visible.target.id);
-      },
-      { rootMargin: "-45% 0px -45% 0px", threshold: [0, 0.25, 0.5, 1] },
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -75,24 +52,24 @@ export function SiteHeader() {
         )}
       >
         <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between gap-6 px-6">
-          <a
-            href={isHome ? "#top" : "/"}
+          <Link
+            href="/"
             onClick={backToHero}
             aria-label={`${profile.name} - back to top`}
             className="group text-lg font-medium tracking-[-0.03em] text-fg sm:text-xl"
           >
             {profile.name}
             <span className="text-accent">.</span>
-          </a>
+          </Link>
 
           <nav aria-label="Sections" className="hidden items-center gap-1 lg:flex">
             {navigation.map((item) => {
-              const isActive = active === item.href.slice(1);
+              const isActive = pathname.startsWith(item.href);
               return (
-                <a
+                <Link
                   key={item.href}
-                  href={sectionHref(item.href)}
-                  aria-current={isActive ? "true" : undefined}
+                  href={item.href}
+                  aria-current={isActive ? "page" : undefined}
                   className={cn(
                     "group relative px-3 py-2 font-mono text-[0.6875rem] tracking-[0.14em] uppercase transition-colors duration-300",
                     isActive ? "text-fg" : "text-muted hover:text-fg",
@@ -106,14 +83,14 @@ export function SiteHeader() {
                       transition={{ duration: 0.4, ease: EASE }}
                     />
                   ) : null}
-                </a>
+                </Link>
               );
             })}
           </nav>
 
           <div className="flex items-center gap-3">
             <ActionLink
-              href={sectionHref("#contact")}
+              href="/contact"
               variant="outline"
               className="hidden px-5 py-2.5 sm:inline-flex"
             >
@@ -156,17 +133,20 @@ export function SiteHeader() {
           >
             <nav className="flex h-full flex-col justify-center gap-1 px-8 pt-20">
               {navigation.map((item, i) => (
-                <motion.a
+                <Link
                   key={item.href}
-                  href={sectionHref(item.href)}
+                  href={item.href}
                   onClick={() => setOpen(false)}
-                  initial={{ opacity: 0, y: 26 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: EASE, delay: 0.05 * i }}
-                  className="border-b border-line py-5 text-3xl font-medium tracking-[-0.02em] text-fg"
+                  className="border-b border-line py-5 text-3xl font-medium tracking-[-0.02em] text-fg block"
                 >
-                  {item.label}
-                </motion.a>
+                  <motion.span
+                    initial={{ opacity: 0, y: 26 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: EASE, delay: 0.05 * i }}
+                  >
+                    {item.label}
+                  </motion.span>
+                </Link>
               ))}
               <motion.div
                 initial={{ opacity: 0, y: 26 }}

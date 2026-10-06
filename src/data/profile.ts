@@ -334,6 +334,9 @@ export type EducationEntry = {
   grade?: string;
   percentage?: string;
   credentialUrl?: string;
+  description?: string;
+  featured?: boolean;
+  accentColor?: string;
 };
 
 export const education: EducationEntry[] = [
@@ -343,6 +346,11 @@ export const education: EducationEntry[] = [
     field: "Computer Science",
     period: "October 2022 - September 2026",
     status: "Completed",
+    description:
+      "A comprehensive degree program focusing on software engineering, data structures, algorithms, and full-stack web development.",
+    featured: true,
+    accentColor: "bg-blue-500",
+    credentialUrl: "#",
   },
   {
     institution: "Punjab Group of Colleges",
@@ -350,6 +358,11 @@ export const education: EducationEntry[] = [
     field: "Engineering",
     period: "September 2019 - October 2021",
     status: "Completed",
+    description:
+      "Pre-engineering foundation covering advanced mathematics, physics, and chemistry.",
+    featured: true,
+    accentColor: "bg-indigo-500",
+    credentialUrl: "#",
   },
   {
     institution: "Govt Higher Secondary School Salam, Sargodha",
@@ -357,6 +370,10 @@ export const education: EducationEntry[] = [
     field: "Computer Science",
     period: "April 2017 - July 2019",
     status: "Completed",
+    description: "Foundational education in computer science and basic programming concepts.",
+    featured: true,
+    accentColor: "bg-teal-500",
+    credentialUrl: "#",
   },
 ];
 
@@ -364,34 +381,57 @@ export type Certification = {
   title: string;
   issuer: string;
   focus: string;
+  date?: string;
   credentialUrl?: string;
+  credentialId?: string;
+  tags?: string[];
 };
 
 export const certifications: Certification[] = [
   {
     title: "Build a Full Website using WordPress",
-    issuer: "Coursera project certificate",
+    issuer: "Coursera",
     focus: "End-to-end site build",
+    date: "Dec 2023",
+    credentialUrl: "#",
+    credentialId: "COURSERA-WP-12345",
+    tags: ["WordPress", "Web Design"],
   },
   {
     title: "Use WordPress to Create a Blog for your Business",
-    issuer: "Coursera project certificate",
+    issuer: "Coursera",
     focus: "Publishing & content",
+    date: "Nov 2023",
+    credentialUrl: "#",
+    credentialId: "COURSERA-BLOG-67890",
+    tags: ["WordPress", "Blogging", "SEO"],
   },
   {
     title: "Create your e-commerce store with Shopify",
-    issuer: "Coursera project certificate",
+    issuer: "Coursera",
     focus: "Commerce foundations",
+    date: "Oct 2023",
+    credentialUrl: "#",
+    credentialId: "COURSERA-SHOP-11223",
+    tags: ["Shopify", "E-commerce"],
   },
   {
     title: "Create and Design Digital Products using Canva",
-    issuer: "Coursera project certificate",
+    issuer: "Coursera",
     focus: "Visual design",
+    date: "Sep 2023",
+    credentialUrl: "#",
+    credentialId: "COURSERA-CANVA-44556",
+    tags: ["Canva", "Design"],
   },
   {
     title: "The Freelance Stack: Real project with NextJS and Strapi",
-    issuer: "Coursera project certificate",
+    issuer: "Coursera",
     focus: "Headless CMS architecture",
+    date: "Aug 2023",
+    credentialUrl: "#",
+    credentialId: "COURSERA-NEXT-77889",
+    tags: ["Next.js", "Strapi", "Headless CMS"],
   },
 ];
 
@@ -401,10 +441,9 @@ export const languages = [
 ];
 
 export const navigation = [
-  { label: "About", href: "#about" },
-  { label: "Capabilities", href: "#capabilities" },
-  { label: "Experience", href: "#experience" },
-  { label: "Work", href: "#work" },
-  { label: "Credentials", href: "#credentials" },
-  { label: "Contact", href: "#contact" },
+  { label: "Capabilities", href: "/capabilities" },
+  { label: "Experience", href: "/experience" },
+  { label: "Work", href: "/work" },
+  { label: "Credentials", href: "/credentials" },
+  { label: "Contact", href: "/contact" },
 ] as const;

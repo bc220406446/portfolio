@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 
 import { EASE, Reveal } from "@/components/motion/reveal";
 import { ActionButton } from "@/components/ui/action";
+import { Section, SectionHeading } from "@/components/ui/section";
 import { profile } from "@/data/profile";
 import {
   budgetOptions,
@@ -75,33 +76,16 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="relative scroll-mt-24 border-t border-line py-24 sm:py-32">
-      <div className="mx-auto w-full max-w-6xl px-6">
-        <Reveal direction="none" className="text-center">
-          <span className="label text-accent">Contact</span>
-        </Reveal>
+    <Section id="contact" className="border-t border-line">
+      <SectionHeading
+        title="Let's build something"
+        description="Have a product idea, a project in mind, or an interesting problem to solve? Let's talk."
+      />
 
-        <div className="mt-12 grid gap-16 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
-          <div>
-            <Reveal>
-              <h2 className="text-4xl leading-[1.03] font-medium tracking-[-0.035em] text-fg sm:text-5xl">
-                Let&apos;s build something
-                <span className="block font-serif italic text-accent">
-                  worth shipping.
-                </span>
-              </h2>
-            </Reveal>
-
-            <Reveal delay={0.1} className="mt-8">
-              <p className="max-w-md text-base leading-relaxed text-fg-dim">
-                Tell me about the project - the goal, the timeline and anything
-                already in progress. I reply to every serious enquiry within one
-                business day.
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.18} className="mt-12">
-              <dl className="divide-y divide-line/70">
+      <div className="grid gap-16 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
+        <div>
+          <Reveal delay={0.18}>
+            <dl className="divide-y divide-line/70">
                 <div className="flex items-baseline justify-between gap-6 py-4">
                   <dt className="label">Email</dt>
                   <dd>
@@ -276,8 +260,7 @@ export function Contact() {
             </form>
           </Reveal>
         </div>
-      </div>
-    </section>
+    </Section>
   );
 }
 
