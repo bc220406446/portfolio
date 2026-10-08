@@ -108,11 +108,9 @@ export const topSkills = [
 ];
 
 export type Engagement = {
-  company: string;
   role: string;
   period: string;
   duration: string;
-  mode: string;
   summary: string;
   highlights: string[];
   stack: string[];
@@ -120,20 +118,22 @@ export type Engagement = {
 
 export const experience: Engagement[] = [
   {
-    company: "Freelance · Self-Employed",
     role: "Freelance Web Developer",
     period: "December 2024 - Present",
     duration: "1 yr 10 mo",
-    mode: "Remote",
     summary:
-      "Delivering responsive, SEO-optimized and user-focused websites and e-commerce solutions for clients across academic, retail, furniture and fashion industries. Work centres on WordPress, Shopify, WooCommerce and SureCart, with an emphasis on performance, UI/UX, integrations and business requirements.",
-    highlights: [
-      "Owned delivery end to end - scoping, design handoff, build, launch and post-launch support.",
-      "Built and shipped four production client platforms across two continents and four verticals.",
-      "Hardened storefronts for Core Web Vitals: image pipelines, query trimming, cached fragments.",
-      "Set up local SEO and structured data that lifted organic discovery for regional stores.",
+      "Delivering end-to-end responsive, SEO-optimized, and performance-tuned web applications and e-commerce solutions for global clients across EdTech, retail, furniture, and fashion. I own the full project lifecycle — from initial scoping and architecture mapping to component-driven UI execution, custom backend integrations (WordPress, Shopify, WooCommerce, SureCart, Next.js), Core Web Vitals optimization, structured data schema setup, and post-launch support.",
+    highlights: [],
+    stack: [
+      "WordPress",
+      "Shopify",
+      "WooCommerce",
+      "SureCart",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "PostgreSQL",
     ],
-    stack: ["WordPress", "Shopify", "WooCommerce", "SureCart", "Next.js"],
   },
 ];
 
@@ -144,39 +144,50 @@ export type Project = {
   category: string;
   year: string;
   summary: string;
+  brief: string;
   contributions: string[];
   stack: string[];
   links: { label: string; href: string }[];
   featured?: boolean;
+  /** WordPress/Shopify client projects grouped separately in the Work section */
+  group?: "wordpress-clients";
 };
 
 export const projects: Project[] = [
+  /* ── Primary builds ── */
   {
-    slug: "vu-scholar-guide",
-    name: "VU Scholar Guide",
-    kind: "Client Work",
-    category: "EdTech Platform",
-    year: "2025",
+    slug: "smart-query-management",
+    name: "Smart Query Routing & Email Automation System",
+    kind: "Open Source",
+    category: "Internal Tooling",
+    year: "2026",
     summary:
-      "An academic platform for Virtual University students - handouts, highlighted notes, past papers and LMS task management in one place.",
+      "A full-stack TypeScript system for triaging and routing incoming queries, automating email notifications, and tracking resolution status with a full audit trail.",
+    brief:
+      "The Smart Query Routing & Email Automation System is an open-source internal tooling platform designed for triaging, assigning, and resolving high-volume inbound user inquiries. Built using TypeScript, Next.js, and PostgreSQL, the system models explicit query lifecycles with status state machines, automated email alerts upon status transitions, and audit logging. Real-time dashboard views track query resolution throughput and operational queue health.",
     contributions: [
-      "Implemented SureCart for digital product delivery and licensing.",
-      "Configured Rank Math SEO with schema, sitemaps and clean permalinks.",
-      "Built the responsive study interface and tuned performance for low-bandwidth users.",
-      "Designed the content taxonomy so thousands of resources stay findable.",
+      "Modelled the query lifecycle and status transitions.",
+      "Typed API contracts shared between client and server.",
+      "Dashboard views for queue health and resolution throughput.",
+      "Automated email notifications on status changes.",
     ],
-    stack: ["WordPress", "SureCart", "Rank Math SEO", "Core Web Vitals"],
-    links: [],
+    stack: ["TypeScript", "Next.js", "REST APIs", "PostgreSQL"],
+    links: [
+      { label: "View live", href: "https://smart-query-management.vercel.app/" },
+      { label: "GitHub", href: "https://github.com/bc220406446/Smart-Query-Management" },
+    ],
     featured: true,
   },
   {
     slug: "sovereign-e-commerce-store",
-    name: "Sovereign E-Commerce Store",
+    name: "Sovereign - Luxury Watch E-Commerce",
     kind: "Open Source",
     category: "Full Stack Commerce",
     year: "2026",
     summary:
-      "A production Next.js and TypeScript storefront - the reference build for cart, checkout and catalogue architecture used across client work.",
+      "A production-grade Next.js storefront for a luxury watch brand - end-to-end typed, with cart, checkout, catalogue, and Vercel preview deployments.",
+    brief:
+      "Sovereign is a production-grade full-stack e-commerce storefront for a luxury timepiece brand. Built with Next.js App Router, TypeScript, and Tailwind CSS, the codebase serves as a reference architecture for end-to-end typed commerce builds. Key features include dynamic catalogue filtering, server-side validated shopping cart state, seamless checkout flow, and automated Vercel CI/CD preview deployments.",
     contributions: [
       "Typed end-to-end from database row to rendered component.",
       "Cart and checkout flows with server-side validation.",
@@ -185,40 +196,8 @@ export const projects: Project[] = [
     ],
     stack: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
     links: [
-      {
-        label: "View live",
-        href: "https://sovereign-e-commerce-store.vercel.app",
-      },
-      {
-        label: "GitHub",
-        href: "https://github.com/bc220406446/sovereign-e-commerce-store",
-      },
-    ],
-    featured: true,
-  },
-  {
-    slug: "smart-query-management",
-    name: "Smart Query Management",
-    kind: "Open Source",
-    category: "Internal Tooling",
-    year: "2026",
-    summary:
-      "A TypeScript system for triaging, routing and resolving incoming queries with ownership, status and audit history.",
-    contributions: [
-      "Modelled the query lifecycle and status transitions.",
-      "Typed API contracts shared between client and server.",
-      "Dashboard views for queue health and resolution throughput.",
-    ],
-    stack: ["TypeScript", "Next.js", "REST APIs", "PostgreSQL"],
-    links: [
-      {
-        label: "View live",
-        href: "https://smart-query-management.vercel.app/",
-      },
-      {
-        label: "GitHub",
-        href: "https://github.com/bc220406446/Smart-Query-Management",
-      },
+      { label: "View live", href: "https://sovereign-e-commerce-store.vercel.app" },
+      { label: "GitHub", href: "https://github.com/bc220406446/sovereign-e-commerce-store" },
     ],
     featured: true,
   },
@@ -229,7 +208,9 @@ export const projects: Project[] = [
     category: "Community Platform",
     year: "2026",
     summary:
-      "A platform where members list skills they can teach and skills they want to learn, then match into exchanges.",
+      "A platform where members list skills they can teach and skills they want to learn, then match into peer-to-peer exchanges.",
+    brief:
+      "The Community Skill Exchange Platform connects community members to share knowledge through peer-to-peer skill swapping. Developed using TypeScript, Next.js, Node.js, and PostgreSQL, the platform allows members to register profiles detailing skills they offer and skills they wish to learn. Built-in search, availability filtering, and matching algorithms facilitate seamless exchange requests.",
     contributions: [
       "Member profiles, skill listings and matching logic.",
       "Search and filtering across skills and availability.",
@@ -237,66 +218,9 @@ export const projects: Project[] = [
     ],
     stack: ["TypeScript", "Next.js", "Node.js", "PostgreSQL"],
     links: [
-      {
-        label: "View live",
-        href: "https://community-skill-exchange-platform.vercel.app/",
-      },
-      {
-        label: "GitHub",
-        href: "https://github.com/bc220406446/Community-Skill-Exchange-Platform",
-      },
+      { label: "View live", href: "https://community-skill-exchange-platform.vercel.app/" },
+      { label: "GitHub", href: "https://github.com/bc220406446/Community-Skill-Exchange-Platform" },
     ],
-  },
-  {
-    slug: "ksa-furniture-store",
-    name: "KSA Furniture Store",
-    kind: "Client Work",
-    category: "WooCommerce Store",
-    year: "2025",
-    summary:
-      "A WooCommerce e-commerce website built for the Saudi market with local SEO, payments and inventory management.",
-    contributions: [
-      "Localized the storefront for the Gulf market and Arabic-first browsing.",
-      "Integrated payment and shipping for regional providers.",
-      "Inventory management wired to catalogue and stock alerts.",
-      "Mobile responsiveness and storefront performance optimization.",
-    ],
-    stack: ["WooCommerce", "WordPress", "Local SEO", "Payments"],
-    links: [],
-  },
-  {
-    slug: "anas-shopping-store",
-    name: "Anas Shopping Store",
-    kind: "Client Work",
-    category: "WooCommerce Store",
-    year: "2025",
-    summary:
-      "A WooCommerce store for garments and cultural products, focused on product management and a frictionless checkout.",
-    contributions: [
-      "Structured product management across garment and cultural categories.",
-      "Streamlined checkout with reduced steps and clearer validation.",
-      "Inventory tracking and storefront SEO improvements.",
-      "Mobile responsiveness and page-speed tuning.",
-    ],
-    stack: ["WooCommerce", "WordPress", "SEO", "Inventory"],
-    links: [],
-  },
-  {
-    slug: "house-of-fashion",
-    name: "House of Fashion",
-    kind: "Client Work",
-    category: "Shopify Store",
-    year: "2025",
-    summary:
-      "Designed and developed a Shopify fashion store with optimized collections and a mobile-first buying journey.",
-    contributions: [
-      "Designed the visual identity and mobile-first storefront.",
-      "Organized product collections and navigation for discovery.",
-      "Optimized checkout flow to reduce drop-off.",
-      "Applied SEO improvements across collections and product pages.",
-    ],
-    stack: ["Shopify", "Liquid", "SEO", "Mobile-first"],
-    links: [],
   },
   {
     slug: "student-management-web-application",
@@ -305,23 +229,101 @@ export const projects: Project[] = [
     category: "Management System",
     year: "2025",
     summary:
-      "A PHP and MySQL management system handling student records, enrolment and reporting for an academic institution.",
+      "A PHP and MySQL management system handling student records, enrolment, grades, and reporting for an academic institution.",
+    brief:
+      "The Student Management Web Application is a web-based administration system engineered with PHP and MySQL. Designed for educational institutions, it manages complete student lifecycles including profile records, course enrolments, grade submissions, and academic reporting. It features role-based access control for administrative staff and teachers, along with printable transcript generation.",
     contributions: [
       "Relational schema for students, courses, enrolment and grades.",
       "Role-based access for administration and staff.",
       "Server-rendered reports and printable records.",
     ],
-    stack: ["PHP", "MySQL", "HTML", "CSS"],
+    stack: ["PHP", "MySQL"],
     links: [
-      {
-        label: "View live",
-        href: "https://smwa.freehosting.dev/login.php",
-      },
-      {
-        label: "GitHub",
-        href: "https://github.com/bc220406446/Student-Management-Web-Application",
-      },
+      { label: "View live", href: "https://smwa.freehosting.dev/login.php" },
+      { label: "GitHub", href: "https://github.com/bc220406446/Student-Management-Web-Application" },
     ],
+  },
+  /* ── WordPress / Shopify client work ── */
+  {
+    slug: "vu-scholar-guide",
+    name: "VU Scholar Guide",
+    kind: "Client Work",
+    category: "EdTech Platform",
+    year: "2025",
+    summary:
+      "An academic resource platform for Virtual University students - handouts, past papers, highlighted notes and LMS task management in one place.",
+    brief:
+      "VU Scholar Guide is a specialized EdTech platform designed for Virtual University students. Powered by WordPress and SureCart, it aggregates academic handouts, past paper archives, highlighted study guides, and LMS task trackers into a unified dashboard. The build incorporates Rank Math SEO schemas, clean permalinks, and asset optimizations tailored for low-bandwidth users.",
+    contributions: [
+      "Implemented SureCart for digital product delivery and licensing.",
+      "Configured Rank Math SEO with schema, sitemaps and clean permalinks.",
+      "Built the responsive study interface and tuned performance for low-bandwidth users.",
+      "Designed the content taxonomy so thousands of resources stay findable.",
+    ],
+    stack: ["WordPress", "SureCart", "Core Web Vitals"],
+    links: [],
+    featured: true,
+    group: "wordpress-clients",
+  },
+  {
+    slug: "ksa-furniture-store",
+    name: "KSA Furniture Store",
+    kind: "Client Work",
+    category: "WooCommerce Store",
+    year: "2025",
+    summary:
+      "A WooCommerce storefront built for the Saudi market - localised browsing, regional payments, inventory management, and mobile-first performance.",
+    brief:
+      "KSA Furniture Store is a localized WooCommerce e-commerce site engineered for the Saudi Arabian retail market. Built with an Arabic-first user experience and responsive Gulf layout design, it integrates regional payment gateways and shipping providers. Catalogue management features real-time inventory tracking, low-stock notifications, and local SEO tuning.",
+    contributions: [
+      "Localized the storefront for the Gulf market and Arabic-first browsing.",
+      "Integrated payment and shipping for regional providers.",
+      "Inventory management wired to catalogue and stock alerts.",
+      "Mobile responsiveness and storefront performance optimization.",
+    ],
+    stack: ["WooCommerce", "WordPress", "Core Web Vitals"],
+    links: [],
+    group: "wordpress-clients",
+  },
+  {
+    slug: "anas-shopping-store",
+    name: "Anas Shopping Store",
+    kind: "Client Work",
+    category: "WooCommerce Store",
+    year: "2025",
+    summary:
+      "A WooCommerce store for garments and cultural products - structured product management, streamlined checkout, and SEO improvements.",
+    brief:
+      "Anas Shopping Store is a WooCommerce storefront focused on garments and traditional cultural apparel. The project structured complex product variation taxonomies (sizes, fabrics, colorways) while introducing a simplified checkout process that minimizes cart abandonment. Page speed and mobile responsiveness optimizations were applied throughout.",
+    contributions: [
+      "Structured product management across garment and cultural categories.",
+      "Streamlined checkout with reduced steps and clearer validation.",
+      "Inventory tracking and storefront SEO improvements.",
+      "Mobile responsiveness and page-speed tuning.",
+    ],
+    stack: ["WooCommerce", "WordPress"],
+    links: [],
+    group: "wordpress-clients",
+  },
+  {
+    slug: "house-of-fashion",
+    name: "House of Fashion",
+    kind: "Client Work",
+    category: "Shopify Store",
+    year: "2025",
+    summary:
+      "A Shopify fashion store with a mobile-first visual identity, optimised collections, and a checkout flow tuned to reduce drop-off.",
+    brief:
+      "House of Fashion is a Shopify fashion store crafted for mobile-first shoppers. Built using custom Shopify Liquid templates, the site features curated product collection grids, swift slide-out cart drawers, mobile-optimized navigation, and structured product metadata to elevate search engine visibility.",
+    contributions: [
+      "Designed the visual identity and mobile-first storefront.",
+      "Organized product collections and navigation for discovery.",
+      "Optimized checkout flow to reduce drop-off.",
+      "Applied SEO improvements across collections and product pages.",
+    ],
+    stack: ["Shopify"],
+    links: [],
+    group: "wordpress-clients",
   },
 ];
 
@@ -350,6 +352,8 @@ export const education: EducationEntry[] = [
       "A comprehensive degree program focusing on software engineering, data structures, algorithms, and full-stack web development.",
     featured: true,
     accentColor: "bg-blue-500",
+    grade: "A-",
+    percentage: "83.06%",
     credentialUrl: "#",
   },
   {
@@ -362,6 +366,8 @@ export const education: EducationEntry[] = [
       "Pre-engineering foundation covering advanced mathematics, physics, and chemistry.",
     featured: true,
     accentColor: "bg-indigo-500",
+    grade: "A+",
+    percentage: "98%",
     credentialUrl: "#",
   },
   {
@@ -373,6 +379,8 @@ export const education: EducationEntry[] = [
     description: "Foundational education in computer science and basic programming concepts.",
     featured: true,
     accentColor: "bg-teal-500",
+    grade: "A+",
+    percentage: "93.15%",
     credentialUrl: "#",
   },
 ];
@@ -389,55 +397,40 @@ export type Certification = {
 
 export const certifications: Certification[] = [
   {
+    title: "The Freelance Stack: Real project with NextJS and Strapi",
+    issuer: "Coursera",
+    focus: "Headless CMS architecture",
+    credentialUrl: "#",
+    credentialId: "COURSERA-NEXT-77889",
+  },
+  {
     title: "Build a Full Website using WordPress",
     issuer: "Coursera",
     focus: "End-to-end site build",
-    date: "Dec 2023",
     credentialUrl: "#",
     credentialId: "COURSERA-WP-12345",
-    tags: ["WordPress", "Web Design"],
   },
   {
     title: "Use WordPress to Create a Blog for your Business",
     issuer: "Coursera",
     focus: "Publishing & content",
-    date: "Nov 2023",
     credentialUrl: "#",
     credentialId: "COURSERA-BLOG-67890",
-    tags: ["WordPress", "Blogging", "SEO"],
   },
   {
     title: "Create your e-commerce store with Shopify",
     issuer: "Coursera",
     focus: "Commerce foundations",
-    date: "Oct 2023",
     credentialUrl: "#",
     credentialId: "COURSERA-SHOP-11223",
-    tags: ["Shopify", "E-commerce"],
   },
   {
     title: "Create and Design Digital Products using Canva",
     issuer: "Coursera",
     focus: "Visual design",
-    date: "Sep 2023",
     credentialUrl: "#",
     credentialId: "COURSERA-CANVA-44556",
-    tags: ["Canva", "Design"],
   },
-  {
-    title: "The Freelance Stack: Real project with NextJS and Strapi",
-    issuer: "Coursera",
-    focus: "Headless CMS architecture",
-    date: "Aug 2023",
-    credentialUrl: "#",
-    credentialId: "COURSERA-NEXT-77889",
-    tags: ["Next.js", "Strapi", "Headless CMS"],
-  },
-];
-
-export const languages = [
-  { name: "English", level: "Professional working" },
-  { name: "Urdu", level: "Full professional" },
 ];
 
 export const navigation = [

@@ -1,33 +1,172 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useState } from "react";
-import { EASE, Stagger, StaggerItem } from "@/components/motion/reveal";
+import { Stagger, StaggerItem } from "@/components/motion/reveal";
+import { TechMarquee } from "@/components/projects/tech-marquee";
 import { Section, SectionHeading } from "@/components/ui/section";
-import { SkillMark } from "@/components/ui/skill-mark";
 import { experience } from "@/data/profile";
+import { cn } from "@/lib/utils";
 
 const workflow = [
-  { step: "Scope", body: "Clarify the requirement, the constraints and what success looks like before a line of code is written." },
-  { step: "Design", body: "Map the flows and the interface so structure is agreed while changes are still cheap." },
-  { step: "Build", body: "Ship in reviewable increments with typed contracts and reusable components." },
-  { step: "Launch", body: "Deploy, measure Core Web Vitals and SEO, then hand over documentation and support." },
+  {
+    step: "Scope",
+    body: "Clarify the requirement, the constraints and what success looks like before a line of code is written.",
+  },
+  {
+    step: "Design",
+    body: "Map the flows and the interface so structure is agreed while changes are still cheap.",
+  },
+  {
+    step: "Build",
+    body: "Ship in reviewable increments with typed contracts and reusable components.",
+  },
+  {
+    step: "Launch",
+    body: "Deploy, measure Core Web Vitals and SEO, then hand over documentation and support.",
+  },
 ];
 
 export function Experience() {
-  const reduce = useReducedMotion();
-  return <Section id="experience" className="border-t border-line">
-    <SectionHeading title="How I work" description="From the first idea to the final deployment, I focus on understanding the problem, building the right solution, and making sure it works in the real world." />
-    {experience.map((role) => <Stagger key={role.company} className="flex flex-col gap-6"><StaggerItem><div className="panel group relative overflow-hidden p-7 sm:p-9"><span className="sweep" /><div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3"><h3 className="text-2xl font-medium tracking-[-0.025em] text-fg sm:text-3xl">{role.role}</h3><p className="font-mono text-[0.6875rem] tracking-[0.14em] text-muted uppercase">{role.period} · {role.duration}</p></div><p className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2"><span className="font-mono text-[0.6875rem] tracking-[0.14em] text-accent uppercase">{role.company}</span><span className="h-1 w-1 rounded-full bg-line-2" /><span className="font-mono text-[0.6875rem] tracking-[0.14em] text-muted uppercase">{role.mode}</span></p><p className="mt-7 max-w-3xl text-base leading-relaxed text-fg-dim">{role.summary}</p><div className="mt-8 grid gap-3 sm:grid-cols-2">{role.highlights.map((highlight, i) => <motion.div key={highlight} initial={reduce ? undefined : { opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.6, ease: EASE, delay: i * 0.07 }} className="group/hl panel-inset flex gap-4 p-5 transition-colors duration-500 hover:border-line-2"><span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-line-2 transition-colors duration-500 group-hover/hl:bg-accent" /><span className="text-sm leading-relaxed text-fg-dim">{highlight}</span></motion.div>)}</div><div className="mt-9 border-t border-line pt-6"><p className="label mb-5">Tools used</p><ul className="flex flex-wrap gap-3">{role.stack.map((skill) => <li key={skill} className="flex items-center gap-2 rounded-lg border border-line-2 bg-surface/50 px-3 py-2"><SkillMark skill={skill} className="h-4 w-4" /><span className="font-mono text-[.625rem] tracking-[.08em] text-fg-dim uppercase">{skill}</span></li>)}</ul></div></div></StaggerItem></Stagger>)}
-    <div className="mt-24"><div className="mb-8 flex items-center gap-4"><p className="label">How an engagement runs</p><span className="h-px flex-1 bg-line" /></div><WorkflowCarousel /></div>
-  </Section>;
+  return (
+    <Section id="experience" className="border-t border-line">
+      <SectionHeading
+        title="How I work"
+        description="From the first idea to the final deployment, I focus on understanding the problem, building the right solution, and making sure it works in the real world."
+      />
+
+      {/* Experience Roles */}
+      <Stagger>
+        {experience.map((role) => (
+          <StaggerItem key={role.role}>
+            <div className="panel group relative overflow-hidden p-7 sm:p-9">
+              <span className="sweep" />
+
+              <p className="label">Role</p>
+              <div className="mt-2 flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3">
+                <h3 className="text-2xl font-medium tracking-[-0.025em] text-fg sm:text-3xl">
+                  {role.role}
+                </h3>
+                <p className="font-mono text-[0.6875rem] tracking-[0.14em] text-muted uppercase">
+                  {role.period} · {role.duration}
+                </p>
+              </div>
+
+              {/* Full Comprehensive Summary */}
+              <p className="mt-6 text-base leading-relaxed text-fg-dim">
+                {role.summary}
+              </p>
+
+              {/* Tech Stack Marquee Moving Addition */}
+              <div className="mt-8 border-t border-line pt-6">
+                <p className="label mb-4">Tools &amp; Tech Stack</p>
+                <TechMarquee stack={role.stack} />
+              </div>
+            </div>
+          </StaggerItem>
+        ))}
+      </Stagger>
+
+      {/* How an engagement runs — Character Filmstrip UI */}
+      <div className="mt-20">
+        <div className="mb-8 flex items-center gap-4">
+          <p className="label">How an engagement runs</p>
+          <span className="h-px flex-1 bg-line" />
+        </div>
+
+        <FilmstripWorkflow />
+      </div>
+    </Section>
+  );
 }
 
-function WorkflowCarousel() {
-  const [active, setActive] = useState(0); const move = (direction: number) => setActive((current) => (current + direction + workflow.length) % workflow.length);
-  const nearby = (direction: number) => workflow[(active + direction + workflow.length) % workflow.length];
-  return <div className="relative overflow-hidden py-6 sm:py-10"><div className="grid grid-cols-[minmax(12rem,1fr)_minmax(20rem,1.7fr)_minmax(12rem,1fr)] items-center gap-4 sm:gap-7"><PhasePreview phase={nearby(-1)} direction="left" onClick={() => move(-1)} /><AnimatePresence mode="wait"><motion.article key={workflow[active].step} initial={{ opacity: 0, y: 16, scale: .97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -16, scale: .97 }} transition={{ duration: .48, ease: EASE }} className="relative z-10 min-h-65 rounded-panel border border-line-2 bg-surface px-7 py-10 shadow-[0_30px_80px_-42px_rgba(0,0,0,.95)] sm:px-12"><span className="font-mono text-xs tracking-[.18em] text-accent">0{active + 1}</span><p className="mt-8 label">Engagement phase</p><h4 className="mt-5 text-4xl font-medium tracking-[-.05em] text-fg sm:text-5xl">{workflow[active].step}</h4><p className="mt-6 max-w-xl text-base leading-relaxed text-fg-dim">{workflow[active].body}</p></motion.article></AnimatePresence><PhasePreview phase={nearby(1)} direction="right" onClick={() => move(1)} /></div><CarouselButton label="Previous phase" onClick={() => move(-1)} className="absolute top-1/2 left-1 z-20 -translate-y-1/2 sm:left-4"><ChevronLeft className="h-6 w-6" /></CarouselButton><CarouselButton label="Next phase" onClick={() => move(1)} className="absolute top-1/2 right-1 z-20 -translate-y-1/2 sm:right-4"><ChevronRight className="h-6 w-6" /></CarouselButton></div>;
+/* ─── Character Filmstrip Workflow ───────────────────────────────────── */
+function FilmstripWorkflow() {
+  const [active, setActive] = useState(0);
+
+  return (
+    <div className="relative rounded-2xl border border-line-2/80 bg-canvas-2/90 p-5 sm:p-7 shadow-2xl overflow-hidden">
+      {/* Top Filmstrip Perforation Holes */}
+      <div aria-hidden className="mb-5 flex justify-between gap-1.5 opacity-60">
+        {Array.from({ length: 20 }).map((_, i) => (
+          <span
+            key={i}
+            className="h-2.5 w-3.5 rounded-xs border border-line-2/70 bg-surface/90 shrink-0"
+          />
+        ))}
+      </div>
+
+      {/* Filmstrip Track / Frames */}
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {workflow.map((item, index) => {
+          const isActive = index === active;
+          return (
+            <button
+              key={item.step}
+              type="button"
+              onClick={() => setActive(index)}
+              className={cn(
+                "group relative cursor-pointer text-left flex flex-col justify-between rounded-xl border p-5 transition-all duration-300",
+                isActive
+                  ? "border-accent bg-surface/95 shadow-[0_0_30px_rgba(211,255,69,0.14)] -translate-y-1"
+                  : "border-line-2/60 bg-surface/40 hover:border-line-2 hover:bg-surface/70",
+              )}
+            >
+              {/* Active Top Glow Line */}
+              {isActive && (
+                <span className="absolute inset-x-0 top-0 h-0.5 rounded-t-xl bg-accent" />
+              )}
+
+              <div>
+                {/* Step Header */}
+                <div className="flex items-center justify-between font-mono text-xs mb-3">
+                  <span
+                    className={cn(
+                      "font-semibold tracking-[0.14em]",
+                      isActive ? "text-accent" : "text-muted",
+                    )}
+                  >
+                    0{index + 1}
+                  </span>
+                  <span className="text-[0.5625rem] tracking-[0.18em] uppercase text-muted">
+                    FRAME 0{index + 1}
+                  </span>
+                </div>
+
+                {/* Step Title */}
+                <h4 className="text-xl font-medium tracking-[-0.03em] text-fg transition-colors group-hover:text-accent">
+                  {item.step}
+                </h4>
+
+                {/* Step Body */}
+                <p className="mt-3 text-xs leading-relaxed text-fg-dim">
+                  {item.body}
+                </p>
+              </div>
+
+              {/* Bottom Frame Status */}
+              <div className="mt-6 flex items-center justify-between border-t border-line/60 pt-3 font-mono text-[0.5625rem] tracking-[0.14em] text-muted uppercase">
+                <span>PHASE {index + 1}</span>
+                <span
+                  className={cn(
+                    "h-1.5 w-1.5 rounded-full transition-colors",
+                    isActive ? "bg-accent animate-pulse" : "bg-line-2",
+                  )}
+                />
+              </div>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Bottom Filmstrip Perforation Holes */}
+      <div aria-hidden className="mt-5 flex justify-between gap-1.5 opacity-60">
+        {Array.from({ length: 20 }).map((_, i) => (
+          <span
+            key={i}
+            className="h-2.5 w-3.5 rounded-xs border border-line-2/70 bg-surface/90 shrink-0"
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
-function PhasePreview({ phase, direction, onClick }: { phase: (typeof workflow)[number]; direction: "left" | "right"; onClick: () => void }) { return <button type="button" aria-label={`Show ${phase.step}`} onClick={onClick} className={`hidden min-h-48 rounded-xl border border-line bg-canvas-2 p-6 ${direction === "left" ? "text-right" : "text-left"} opacity-40 blur-[2px] transition-all hover:opacity-70 hover:blur-0 sm:block`}><p className="label">Next phase</p><p className="mt-6 text-2xl font-medium tracking-[-.04em] text-fg">{phase.step}</p></button>; }
-function CarouselButton({ label, onClick, children, className }: { label: string; onClick: () => void; children: React.ReactNode; className?: string }) { return <button type="button" aria-label={label} onClick={onClick} className={`flex h-11 w-11 items-center justify-center border border-line-2 bg-surface/90 text-fg-dim shadow-lg shadow-black/30 backdrop-blur-sm transition-colors hover:border-accent hover:text-accent ${className ?? ""}`}>{children}</button>; }

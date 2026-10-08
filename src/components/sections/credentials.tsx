@@ -12,12 +12,12 @@ export function Credentials() {
     <Section id="credentials" className="border-t border-line">
       <SectionHeading
         title="The foundation"
-        description="My academic background and certifications are part of the journey — but the real learning has always happened while building."
+        description="My academic background and certifications are part of the journey - but the real learning has always happened while building."
       />
 
       {/* ── Featured education cards ─────────────────────────────── */}
       {featured.length > 0 && (
-        <Stagger className="mb-16 grid gap-6 sm:grid-cols-2">
+        <Stagger className="mb-16 grid gap-6 sm:grid-cols-3">
           {featured.map((entry) => (
             <StaggerItem key={entry.institution}>
               <div
@@ -30,16 +30,6 @@ export function Credentials() {
                 )}
               >
                 <span className="sweep" />
-
-                {/* Icon + badge */}
-                <div className="mb-5 flex items-start justify-between">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-surface-2 text-accent">
-                    <GraduationCap className="h-6 w-6" />
-                  </div>
-                  <span className="inline-block rounded-md bg-accent/10 px-2.5 py-1 font-mono text-[0.5625rem] tracking-[0.14em] text-accent uppercase">
-                    {entry.status}
-                  </span>
-                </div>
 
                 {/* Title */}
                 <h3 className="text-lg font-medium leading-snug tracking-[-0.015em] text-fg">
@@ -84,7 +74,7 @@ export function Credentials() {
                     rel="noreferrer noopener"
                     className="mt-5 inline-flex items-center gap-2 font-mono text-[0.625rem] tracking-[0.14em] text-accent uppercase transition-colors hover:text-fg"
                   >
-                    Learn more
+                    View Credential
                     <ExternalLink className="h-3 w-3" />
                   </a>
                 )}

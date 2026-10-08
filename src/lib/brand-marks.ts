@@ -1,7 +1,7 @@
 /**
  * Brand marks for the technology wall in the Capabilities section.
  *
- * GENERATED — do not hand-edit. Path data comes from the `simple-icons` set
+ * GENERATED - do not hand-edit. Path data comes from the `simple-icons` set
  * (https://simpleicons.org, CC0-1.0); only the marks actually used are vendored
  * here, so the multi-megabyte upstream package stays out of the client build.
  *
