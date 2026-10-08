@@ -6,6 +6,7 @@ import { TechMarquee } from "@/components/projects/tech-marquee";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { experience } from "@/data/profile";
 import { cn } from "@/lib/utils";
+import { CharacterCarousel } from "@/shaders/character-carousel/CharacterCarousel";
 
 const workflow = [
   {
@@ -71,6 +72,19 @@ export function Experience() {
         <div className="mb-8 flex items-center gap-4">
           <p className="label">How an engagement runs</p>
           <span className="h-px flex-1 bg-line" />
+        </div>
+
+        {/* 3D Character Carousel — Filmstrip Scene */}
+        <div className="relative mb-8 h-[460px] sm:h-[540px] w-full overflow-hidden rounded-2xl border border-line-2/80 bg-canvas-2 shadow-2xl">
+          <CharacterCarousel
+            variant="filmstrip"
+            speed={1.0}
+            scale={1.0}
+            opacity={1.0}
+            hue={0}
+            saturation={1.0}
+            brightness={1.0}
+          />
         </div>
 
         <FilmstripWorkflow />
