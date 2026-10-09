@@ -333,10 +333,10 @@ export function HowItWorksTimeline() {
                 key={p.id}
                 href={`#${p.id}`}
                 className={cn(
-                  "group inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 font-mono text-xs tracking-wide transition-all duration-300",
+                  "rounded-lg border px-3 py-2 font-mono text-[.625rem] tracking-[.14em] uppercase transition-colors",
                   isActive
-                    ? "border border-accent bg-accent/15 text-accent shadow-[0_0_20px_rgba(211,255,69,0.18)] font-medium -translate-y-0.5"
-                    : "border border-line-2/70 bg-surface/70 text-muted hover:text-fg hover:border-line-2 hover:bg-surface-2",
+                    ? "border-accent bg-accent text-accent-ink"
+                    : "border-line-2 text-muted hover:border-accent hover:text-accent",
                 )}
               >
                 <span>{p.title}</span>

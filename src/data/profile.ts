@@ -192,7 +192,6 @@ export type Project = {
   year: string;
   summary: string;
   brief: string;
-  contributions: string[];
   stack: string[];
   links: { label: string; href: string }[];
   featured?: boolean;
@@ -209,16 +208,22 @@ export const projects: Project[] = [
     category: "Internal Tooling",
     year: "2026",
     summary:
-      "A full-stack TypeScript system for triaging and routing incoming queries, automating email notifications, and tracking resolution status with a full audit trail.",
+      "A university query-management platform that centralizes student requests from web forms, email, and WhatsApp, with automated classification, department routing, escalation, and AI-assisted reply drafting.",
     brief:
-      "The Smart Query Routing & Email Automation System is an open-source internal tooling platform designed for triaging, assigning, and resolving high-volume inbound user inquiries. Built using TypeScript, Next.js, and PostgreSQL, the system models explicit query lifecycles with status state machines, automated email alerts upon status transitions, and audit logging. Real-time dashboard views track query resolution throughput and operational queue health.",
-    contributions: [
-      "Modelled the query lifecycle and status transitions.",
-      "Typed API contracts shared between client and server.",
-      "Dashboard views for queue health and resolution throughput.",
-      "Automated email notifications on status changes.",
+      "Smart Query Hub is a full-stack university query-management platform designed to streamline how educational institutions receive, classify, assign, and resolve student inquiries. It brings queries from multiple channels, including web forms, email, and WhatsApp, into a centralized workflow where staff can track requests, manage ownership, monitor progress, and escalate unresolved cases. The platform provides dedicated role-based portals for students, instructors, department heads, and administrators, with dashboards for monitoring query activity and resolution progress. Its Next.js frontend communicates with a FastAPI backend responsible for query processing, classification, routing, escalation, and AI-assisted reply drafting. Supabase and PostgreSQL provide the data layer, while webhook integrations coordinate communication between services. Additional capabilities include automated email notifications, query status tracking, audit logging, reporting, and PDF/Excel exports, helping institutions improve response consistency, accountability, and operational visibility.",
+    stack: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "FastAPI",
+      "Python",
+      "Prisma",
+      "Supabase",
+      "PostgreSQL",
+      "Vercel",
+      "Azure",
     ],
-    stack: ["TypeScript", "Next.js", "REST APIs", "PostgreSQL"],
     links: [
       { label: "View live", href: "https://smart-query-management.vercel.app/" },
       { label: "GitHub", href: "https://github.com/bc220406446/Smart-Query-Management" },
@@ -232,16 +237,20 @@ export const projects: Project[] = [
     category: "Full Stack Commerce",
     year: "2026",
     summary:
-      "A production-grade Next.js storefront for a luxury watch brand - end-to-end typed, with cart, checkout, catalogue, and Vercel preview deployments.",
+      "A custom luxury watch e-commerce platform with product discovery, shopping cart, checkout, customer accounts, order tracking, and a dedicated store-management portal.",
     brief:
-      "Sovereign is a production-grade full-stack e-commerce storefront for a luxury timepiece brand. Built with Next.js App Router, TypeScript, and Tailwind CSS, the codebase serves as a reference architecture for end-to-end typed commerce builds. Key features include dynamic catalogue filtering, server-side validated shopping cart state, seamless checkout flow, and automated Vercel CI/CD preview deployments.",
-    contributions: [
-      "Typed end-to-end from database row to rendered component.",
-      "Cart and checkout flows with server-side validation.",
-      "Component-driven catalogue with reusable product primitives.",
-      "Deployed on Vercel with preview environments per change.",
+      "Sovereign Watches is a full-stack luxury watch e-commerce platform designed to deliver a refined shopping experience alongside comprehensive store-management capabilities. Built with Next.js, TypeScript, and Tailwind CSS, the storefront supports product discovery, catalogue browsing, product details, shopping carts, checkout, wishlists, customer accounts, and order tracking. The application also includes a dedicated, access-controlled administration portal for managing products, categories, inventory, customer orders, shipping and courier tracking, returns, refund coupons, customer reviews, promotional discounts, newsletters, and store settings. Supabase provides authentication, PostgreSQL-backed data storage, and media storage, while PayFast integration supports the payment workflow. The application is structured around reusable components, typed data models, and clear separation between customer-facing shopping experiences and administrative operations. Deployed through Vercel, the project demonstrates the development of an end-to-end commerce solution that combines premium storefront presentation with practical business operations.",
+    stack: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Supabase",
+      "PostgreSQL",
+      "PayFast",
+      "Vercel",
+      "Framer Motion",
     ],
-    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
     links: [
       { label: "View live", href: "https://sovereign-e-commerce-store.vercel.app" },
       { label: "GitHub", href: "https://github.com/bc220406446/sovereign-e-commerce-store" },
@@ -255,15 +264,23 @@ export const projects: Project[] = [
     category: "Community Platform",
     year: "2026",
     summary:
-      "A platform where members list skills they can teach and skills they want to learn, then match into peer-to-peer exchanges.",
+      "A peer-to-peer platform for exchanging skills without money, featuring skill listings, exchange requests, two-sided completion confirmation, reviews, and admin moderation.",
     brief:
-      "The Community Skill Exchange Platform connects community members to share knowledge through peer-to-peer skill swapping. Developed using TypeScript, Next.js, Node.js, and PostgreSQL, the platform allows members to register profiles detailing skills they offer and skills they wish to learn. Built-in search, availability filtering, and matching algorithms facilitate seamless exchange requests.",
-    contributions: [
-      "Member profiles, skill listings and matching logic.",
-      "Search and filtering across skills and availability.",
-      "Responsive, accessible UI built with reusable primitives.",
+      "The Community Skill Exchange Platform is a full-stack application that enables people to exchange knowledge and practical skills without monetary transactions. Members can create profiles, publish skills they are willing to teach, identify skills they want to learn, browse relevant opportunities, and initiate peer-to-peer exchange requests. The platform manages the exchange lifecycle, allowing participants to coordinate their commitments and independently confirm when a skill has been delivered and received. Mutual reviews become available after an exchange is completed, helping users build credibility through actual participation. Reporting and administrator moderation provide mechanisms for handling inappropriate content and maintaining community standards. The application uses a Next.js and TypeScript frontend connected to a Strapi headless CMS backend through REST APIs, with Supabase PostgreSQL supporting relational data and Cloudinary handling media assets. Email-based OTP verification strengthens account onboarding, while JWT-based authentication supports protected application functionality. Deployment across Vercel and Azure App Service separates the frontend experience from backend services. The project demonstrates full-stack integration, workflow management, role-based functionality, and the design of a trust-oriented community platform.",
+    stack: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Strapi",
+      "REST APIs",
+      "Supabase",
+      "PostgreSQL",
+      "Cloudinary",
+      "JWT",
+      "Vercel",
+      "Azure",
     ],
-    stack: ["TypeScript", "Next.js", "Node.js", "PostgreSQL"],
     links: [
       { label: "View live", href: "https://community-skill-exchange-platform.vercel.app/" },
       { label: "GitHub", href: "https://github.com/bc220406446/Community-Skill-Exchange-Platform" },
@@ -276,15 +293,18 @@ export const projects: Project[] = [
     category: "Management System",
     year: "2025",
     summary:
-      "A PHP and MySQL management system handling student records, enrolment, grades, and reporting for an academic institution.",
+      "A PHP and MySQL student-management system with separate student and administrator portals, registration approval, record management, and role-based access.",
     brief:
-      "The Student Management Web Application is a web-based administration system engineered with PHP and MySQL. Designed for educational institutions, it manages complete student lifecycles including profile records, course enrolments, grade submissions, and academic reporting. It features role-based access control for administrative staff and teachers, along with printable transcript generation.",
-    contributions: [
-      "Relational schema for students, courses, enrolment and grades.",
-      "Role-based access for administration and staff.",
-      "Server-rendered reports and printable records.",
-    ],
-    stack: ["PHP", "MySQL"],
+      "The Student Management Web Application is a web-based academic administration system built with PHP and MySQL to centralize student registration and record management. It provides separate student and administrator interfaces with permissions tailored to each role. Students can register for an account, access the application after administrator approval, view their available records, update permitted profile information, and recover access through a password-reset workflow. Administrators can review pending registrations, approve or reject account requests, search and filter student records, manage student profiles, and monitor registration activity through administrative summaries. The application uses PHP with PDO for database connectivity and server-side data operations, while MySQL stores student information and account records. Session-based authentication and role checks protect restricted pages, and server-side validation helps maintain data integrity. Its interface is built using standard HTML, CSS, and JavaScript, making the application suitable for a lightweight PHP hosting environment. The project demonstrates practical CRUD operations, relational database integration, access control, authentication workflows, and the core requirements of a student-record management system.",
+      stack: [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "PHP",
+        "MySQL",
+        "Apache",
+        "XAMPP",
+      ],
     links: [
       { label: "View live", href: "https://smwa.freehosting.dev/login.php" },
       { label: "GitHub", href: "https://github.com/bc220406446/Student-Management-Web-Application" },
@@ -301,13 +321,7 @@ export const projects: Project[] = [
       "An academic resource platform for Virtual University students - handouts, past papers, highlighted notes and LMS task management in one place.",
     brief:
       "VU Scholar Guide is a specialized EdTech platform designed for Virtual University students. Powered by WordPress and SureCart, it aggregates academic handouts, past paper archives, highlighted study guides, and LMS task trackers into a unified dashboard. The build incorporates Rank Math SEO schemas, clean permalinks, and asset optimizations tailored for low-bandwidth users.",
-    contributions: [
-      "Implemented SureCart for digital product delivery and licensing.",
-      "Configured Rank Math SEO with schema, sitemaps and clean permalinks.",
-      "Built the responsive study interface and tuned performance for low-bandwidth users.",
-      "Designed the content taxonomy so thousands of resources stay findable.",
-    ],
-    stack: ["WordPress", "SureCart", "Core Web Vitals"],
+    stack: ["HTML", "CSS", "JavaScript", "WordPress", "SureCart", "Core Web Vitals"],
     links: [],
     featured: true,
     group: "wordpress-clients",
@@ -322,13 +336,7 @@ export const projects: Project[] = [
       "A WooCommerce storefront built for the Saudi market - localised browsing, regional payments, inventory management, and mobile-first performance.",
     brief:
       "KSA Furniture Store is a localized WooCommerce e-commerce site engineered for the Saudi Arabian retail market. Built with an Arabic-first user experience and responsive Gulf layout design, it integrates regional payment gateways and shipping providers. Catalogue management features real-time inventory tracking, low-stock notifications, and local SEO tuning.",
-    contributions: [
-      "Localized the storefront for the Gulf market and Arabic-first browsing.",
-      "Integrated payment and shipping for regional providers.",
-      "Inventory management wired to catalogue and stock alerts.",
-      "Mobile responsiveness and storefront performance optimization.",
-    ],
-    stack: ["WooCommerce", "WordPress", "Core Web Vitals"],
+    stack: ["HTML", "CSS", "JavaScript", "WooCommerce", "WordPress", "Core Web Vitals"],
     links: [],
     group: "wordpress-clients",
   },
@@ -342,13 +350,7 @@ export const projects: Project[] = [
       "A WooCommerce store for garments and cultural products - structured product management, streamlined checkout, and SEO improvements.",
     brief:
       "Anas Shopping Store is a WooCommerce storefront focused on garments and traditional cultural apparel. The project structured complex product variation taxonomies (sizes, fabrics, colorways) while introducing a simplified checkout process that minimizes cart abandonment. Page speed and mobile responsiveness optimizations were applied throughout.",
-    contributions: [
-      "Structured product management across garment and cultural categories.",
-      "Streamlined checkout with reduced steps and clearer validation.",
-      "Inventory tracking and storefront SEO improvements.",
-      "Mobile responsiveness and page-speed tuning.",
-    ],
-    stack: ["WooCommerce", "WordPress"],
+    stack: ["HTML", "CSS", "JavaScript", "WooCommerce", "WordPress"],
     links: [],
     group: "wordpress-clients",
   },
@@ -362,13 +364,7 @@ export const projects: Project[] = [
       "A Shopify fashion store with a mobile-first visual identity, optimised collections, and a checkout flow tuned to reduce drop-off.",
     brief:
       "House of Fashion is a Shopify fashion store crafted for mobile-first shoppers. Built using custom Shopify Liquid templates, the site features curated product collection grids, swift slide-out cart drawers, mobile-optimized navigation, and structured product metadata to elevate search engine visibility.",
-    contributions: [
-      "Designed the visual identity and mobile-first storefront.",
-      "Organized product collections and navigation for discovery.",
-      "Optimized checkout flow to reduce drop-off.",
-      "Applied SEO improvements across collections and product pages.",
-    ],
-    stack: ["Shopify"],
+    stack: ["CSS", "Liquid", "Shopify"],
     links: [],
     group: "wordpress-clients",
   },
