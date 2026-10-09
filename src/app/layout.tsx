@@ -85,9 +85,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-canvas text-fg">
+      <body className="min-h-full bg-canvas text-fg" suppressHydrationWarning>
         <a
           href="#work"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[70] focus:border focus:border-accent focus:bg-canvas focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:tracking-[0.14em] focus:text-accent focus:uppercase"

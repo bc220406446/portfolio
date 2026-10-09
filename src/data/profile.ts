@@ -107,32 +107,79 @@ export const topSkills = [
   "Code Reusability",
 ];
 
+export type TechCategory = {
+  category: string;
+  items: string[];
+};
+
 export type Engagement = {
   role: string;
   period: string;
-  duration: string;
+  duration?: string;
   summary: string;
+  focus: string[];
+  techGroups: TechCategory[];
   highlights: string[];
   stack: string[];
 };
 
 export const experience: Engagement[] = [
   {
-    role: "Freelance Web Developer",
-    period: "December 2024 - Present",
-    duration: "1 yr 10 mo",
+    role: "Full-Stack & AI Product Developer",
+    period: "December 2024 — Present",
+    duration: "Present",
     summary:
-      "Delivering end-to-end responsive, SEO-optimized, and performance-tuned web applications and e-commerce solutions for global clients across EdTech, retail, furniture, and fashion. I own the full project lifecycle — from initial scoping and architecture mapping to component-driven UI execution, custom backend integrations (WordPress, Shopify, WooCommerce, SureCart, Next.js), Core Web Vitals optimization, structured data schema setup, and post-launch support.",
+      "I design and build production-ready web applications, e-commerce platforms, and AI-powered products for businesses, startups, and independent teams. I work across the full product lifecycle — from requirements and system architecture to responsive interfaces, backend integrations, deployment, optimization, and post-launch support.\n\nMy work spans modern JavaScript/TypeScript stacks, Python-based applications, CMS and commerce platforms, with a growing focus on AI, NLP, LLM applications, and intelligent automation.",
+    focus: [
+      "Full-Stack Web",
+      "AI Applications",
+      "E-Commerce",
+      "Automation",
+      "Performance & SEO",
+    ],
+    techGroups: [
+      {
+        category: "Frontend",
+        items: ["Next.js", "React", "TypeScript", "JavaScript", "Tailwind CSS"],
+      },
+      {
+        category: "Backend",
+        items: ["Node.js", "Express", "Django", "REST APIs"],
+      },
+      {
+        category: "Data",
+        items: ["PostgreSQL", "MongoDB", "Supabase"],
+      },
+      {
+        category: "AI & ML",
+        items: ["Python", "NLP", "Machine Learning", "LLMs", "AI Automation"],
+      },
+      {
+        category: "CMS & Commerce",
+        items: ["WordPress", "WooCommerce", "Shopify", "SureCart"],
+      },
+      {
+        category: "Infrastructure",
+        items: ["Git", "GitHub", "Vercel", "Cloudinary", "CI/CD"],
+      },
+    ],
     highlights: [],
     stack: [
-      "WordPress",
-      "Shopify",
-      "WooCommerce",
-      "SureCart",
       "Next.js",
+      "React",
       "TypeScript",
       "Tailwind CSS",
+      "Node.js",
+      "Python",
+      "Django",
       "PostgreSQL",
+      "MongoDB",
+      "Supabase",
+      "LLMs",
+      "WordPress",
+      "WooCommerce",
+      "Shopify",
+      "Vercel",
     ],
   },
 ];

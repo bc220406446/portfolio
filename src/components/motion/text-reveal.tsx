@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "motion/react";
+import { motion, type Variants } from "motion/react";
 import type { ElementType } from "react";
 
 import { EASE } from "@/components/motion/reveal";
@@ -24,8 +24,7 @@ const word: Variants = {
 
 /**
  * Word-by-word mask reveal. Each word sits in an overflow-hidden box and slides
- * up into place - the signature effect of the animated-component registries,
- * implemented directly so there is no unpublished dependency.
+ * up into place.
  */
 export function TextReveal({
   text,
@@ -42,13 +41,8 @@ export function TextReveal({
   delay?: number;
   once?: boolean;
 }) {
-  const reduce = useReducedMotion();
   const words = text.split(" ");
   const MotionTag = motion[Tag as "span"];
-
-  if (reduce) {
-    return <Tag className={cn(className)}>{text}</Tag>;
-  }
 
   return (
     <MotionTag
@@ -88,9 +82,6 @@ export function CharReveal({
   className?: string;
   delay?: number;
 }) {
-  const reduce = useReducedMotion();
-  if (reduce) return <span className={cn(className)}>{text}</span>;
-
   return (
     <span className={cn("inline-flex overflow-hidden", className)} aria-label={text}>
       {text.split("").map((c, i) => (
