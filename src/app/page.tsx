@@ -1,3 +1,4 @@
+import { SiteFooter } from "@/components/layout/site-footer";
 import { About } from "@/components/sections/about";
 import { Hero } from "@/components/sections/hero";
 import { profile } from "@/data/profile";
@@ -43,6 +44,7 @@ export default function Home() {
 
       <Hero />
       <About />
+      <SiteFooter />
     </>
   );
 }

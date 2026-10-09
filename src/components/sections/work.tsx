@@ -111,7 +111,6 @@ function ProjectRow({
   index: number;
 }) {
   const isEven = index % 2 === 0;
-  const liveLink = project.links.find((l) => l.label === "View live");
 
   return (
     <motion.div
@@ -154,32 +153,34 @@ function ProjectRow({
           {project.summary}
         </p>
 
-        {/* Tech icons */}
-        <div className="mt-6 flex flex-wrap items-center gap-3">
+        {/* Tech stack (Reference style: icon on top, uppercase label centered below) */}
+        <div className="mt-8 flex flex-wrap items-start gap-6 sm:gap-7">
           {project.stack.map((tech) => (
-            <span
+            <div
               key={tech}
-              className="flex items-center gap-1.5 rounded-md border border-line-2 bg-surface px-2.5 py-1.5"
+              className="group/tech flex flex-col items-center gap-2"
               title={tech}
             >
-              <SkillMark skill={tech} className="h-3.5 w-3.5" />
-              <span className="font-mono text-[0.5625rem] tracking-[0.1em] text-muted uppercase">
+              <div className="flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center transition-transform duration-300 group-hover/tech:scale-110">
+                <SkillMark skill={tech} className="h-7 w-7 sm:h-8 sm:w-8" />
+              </div>
+              <span className="max-w-[4.5rem] font-mono text-[0.625rem] tracking-[0.08em] text-muted uppercase text-center leading-tight transition-colors group-hover/tech:text-fg">
                 {tech}
               </span>
-            </span>
+            </div>
           ))}
         </div>
 
         {/* CTA */}
-        <Link
-          href={liveLink ? liveLink.href : `/projects/${project.slug}`}
-          target={liveLink ? "_blank" : undefined}
-          rel={liveLink ? "noreferrer noopener" : undefined}
-          className="mt-7 inline-flex items-center gap-1.5 font-mono text-[0.6875rem] tracking-[0.12em] text-accent uppercase transition-opacity hover:opacity-70"
-        >
-          {liveLink ? "View live" : "Read more"}
-          <ArrowRight className="h-3 w-3" />
-        </Link>
+        <div className="mt-8">
+          <Link
+            href={`/projects/${project.slug}`}
+            className="group/btn inline-flex items-center gap-2.5 rounded-lg border border-line-2 bg-surface/80 px-5 py-2.5 font-mono text-[0.6875rem] tracking-[0.14em] text-fg uppercase transition-all duration-300 hover:border-accent hover:bg-accent/10 hover:text-accent hover:shadow-[0_0_20px_rgba(211,255,69,0.15)]"
+          >
+            <span>Learn More</span>
+            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/btn:translate-x-1 text-accent" />
+          </Link>
+        </div>
       </div>
     </motion.div>
   );

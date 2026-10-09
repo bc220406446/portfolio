@@ -8,6 +8,7 @@ import { ScrollProgress } from "@/components/motion/parallax";
 import { profile } from "@/data/profile";
 
 import "./globals.css";
+import { SiteFooter } from "@/components/layout/site-footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

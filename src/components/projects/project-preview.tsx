@@ -28,7 +28,7 @@ export function ProjectPreview({
   return (
     <div
       className={cn(
-        "group/preview relative isolate aspect-[16/10] w-full rounded-xl border border-white/10 bg-surface",
+        "group/preview relative isolate aspect-[16/10] w-full overflow-hidden rounded-xl border border-line-2/80 bg-surface shadow-xl",
         className,
       )}
     >
@@ -38,10 +38,10 @@ export function ProjectPreview({
         fill
         sizes="(min-width: 1280px) 50vw, (min-width: 640px) 50vw, 100vw"
         priority={priority}
-        className="object-contain object-top transition-transform duration-700 group-hover/preview:scale-[1.03]"
+        className="object-cover object-top transition-transform duration-700 ease-out group-hover/preview:scale-105"
       />
       {/* Subtle bottom fade so content below reads cleanly */}
-      <div className="absolute inset-0 bg-linear-to-t from-canvas/40 via-transparent to-transparent pointer-events-none rounded-xl" />
+      <div className="absolute inset-0 bg-gradient-to-t from-canvas/40 via-transparent to-transparent pointer-events-none" />
     </div>
   );
 }
