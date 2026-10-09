@@ -3,13 +3,6 @@ import Image from "next/image";
 import type { Project } from "@/data/profile";
 import { cn } from "@/lib/utils";
 
-const projectImages: Partial<Record<Project["slug"], string>> = {
-  "sovereign-e-commerce-store": "/sovereign-e-commerce-store.vercel.app.webp",
-  "student-management-web-application": "/smwa.freehosting.dev.webp",
-  "smart-query-management": "/smart-query-management.vercel.app.webp",
-  "community-skill-exchange": "/community-skill-exchange-platform.vercel.app.webp",
-};
-
 // Fallback for client projects that don't have a dedicated screenshot yet.
 const clientSampleImage = "/sovereign-e-commerce-store.vercel.app.webp";
 
@@ -23,7 +16,7 @@ export function ProjectPreview({
   className?: string;
   priority?: boolean;
 }) {
-  const image = projectImages[project.slug] ?? clientSampleImage;
+  const image = project.image || clientSampleImage;
 
   return (
     <div

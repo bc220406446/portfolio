@@ -1,6 +1,17 @@
 "use client";
 
-import { Gauge, Layers, Network, type LucideIcon } from "lucide-react";
+import {
+  Gauge,
+  Layers,
+  Network,
+  CreditCard,
+  Droplets,
+  Workflow,
+  Brain,
+  Sparkles,
+  Bot,
+  type LucideIcon,
+} from "lucide-react";
 
 import { brandMarks, type BrandKey, type BrandMark } from "@/lib/brand-marks";
 import { cn } from "@/lib/utils";
@@ -12,6 +23,12 @@ import { cn } from "@/lib/utils";
 const glyphs = {
   network: Network,
   performance: Gauge,
+  payment: CreditCard,
+  liquid: Droplets,
+  workflow: Workflow,
+  brain: Brain,
+  sparkles: Sparkles,
+  bot: Bot,
   // Used for anything newly added to `skillGroups` before it gets a real mark.
   fallback: Layers,
 } satisfies Record<string, LucideIcon>;
@@ -23,7 +40,12 @@ const visuals: Record<string, Visual> = {
   "Next.js": { brand: "nextjs" },
   React: { brand: "react" },
   TypeScript: { brand: "typescript" },
+  JavaScript: { brand: "javascript" },
   "JavaScript (ES2023)": { brand: "javascript" },
+  HTML: { brand: "html5" },
+  HTML5: { brand: "html5" },
+  CSS: { brand: "css3" },
+  CSS3: { brand: "css3" },
   "Tailwind CSS": { brand: "tailwindcss" },
   "Framer Motion": { brand: "framer" },
 
@@ -35,12 +57,20 @@ const visuals: Record<string, Visual> = {
   PHP: { brand: "php" },
   "REST APIs": { glyph: "network" },
   JWT: { brand: "jsonwebtokens" },
+  Prisma: { brand: "prisma" },
+  Strapi: { brand: "strapi" },
+  Apache: { brand: "apache" },
+  XAMPP: { brand: "xampp" },
 
   NumPy: { brand: "numpy" },
   "scikit-learn": { brand: "scikitlearn" },
   PyTorch: { brand: "pytorch" },
   TensorFlow: { brand: "tensorflow" },
   Matplotlib: { brand: "matplotlib" },
+  LLMs: { brand: "openai" },
+  NLP: { glyph: "brain" },
+  "Machine Learning": { glyph: "brain" },
+  "AI Automation": { glyph: "sparkles" },
 
   PostgreSQL: { brand: "postgresql" },
   Supabase: { brand: "supabase" },
@@ -52,10 +82,12 @@ const visuals: Record<string, Visual> = {
   Vercel: { brand: "vercel" },
   Render: { brand: "render" },
   Netlify: { brand: "netlify" },
+  Cloudinary: { brand: "cloudinary" },
 
   Git: { brand: "git" },
   GitHub: { brand: "github" },
   "GitHub Actions": { brand: "githubactions" },
+  "CI/CD": { glyph: "workflow" },
   Postman: { brand: "postman" },
   Sentry: { brand: "sentry" },
   Markdown: { brand: "markdown" },
@@ -66,6 +98,8 @@ const visuals: Record<string, Visual> = {
   Shopify: { brand: "shopify" },
   WooCommerce: { brand: "woocommerce" },
   SureCart: { brand: "surecart" },
+  PayFast: { glyph: "payment" },
+  Liquid: { glyph: "liquid" },
 };
 
 const FALLBACK: Visual = { glyph: "fallback" };

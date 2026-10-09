@@ -45,10 +45,6 @@ export function Work() {
       >
         {filters.map((option) => {
           const active = option === filter;
-          const count =
-            option === "All"
-              ? projects.length
-              : projects.filter((p) => p.kind === option).length;
           return (
             <button
               key={option}
@@ -60,16 +56,13 @@ export function Work() {
                 setShowAll(false);
               }}
               className={cn(
-                "rounded-lg border px-3 py-2 font-mono text-[.625rem] tracking-[.14em] uppercase transition-colors",
+                "rounded-lg border px-4 py-2 font-mono text-[.625rem] tracking-[.14em] uppercase transition-colors",
                 active
                   ? "border-accent bg-accent text-accent-ink"
                   : "border-line-2 text-muted hover:border-accent hover:text-accent",
               )}
             >
-              {option}{" "}
-              <span className="ml-1 opacity-65">
-                {String(count).padStart(2, "0")}
-              </span>
+              {option}
             </button>
           );
         })}
