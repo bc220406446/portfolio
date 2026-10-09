@@ -64,18 +64,6 @@ export function Hero() {
       >
         <div className="grid items-center gap-14 lg:grid-cols-[1.5fr_1fr]">
           <div>
-            <Reveal direction="none" duration={0.6}>
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="panel inline-flex items-center gap-2.5 rounded-lg px-4 py-2">
-                  <span className="animate-pulse-dot h-1.5 w-1.5 rounded-full bg-accent" />
-                  <span className="label text-fg-dim">
-                    Available for new work
-                  </span>
-                </span>
-                <span className="label">{profile.location}</span>
-              </div>
-            </Reveal>
-
             <h1 className="mt-9 text-[clamp(3rem,9vw,6.5rem)] leading-[0.94] font-medium tracking-[-0.045em]">
               <span className="block text-fg">
                 <CharReveal text="Muhammad" delay={0.25} />
@@ -110,20 +98,19 @@ export function Hero() {
                 <span className="font-serif text-[1.15em] italic text-accent">
                   modern, scalable
                 </span>{" "}
-                web products - commerce, platforms and AI-assisted tooling, from
-                database schema to the last hover state.
+                web products - from e-commerce and business platforms to AI-powered applications, from database architecture to the final interaction.
               </p>
             </Reveal>
 
             <Reveal delay={0.84} className="mt-10">
               <div className="flex flex-wrap items-center gap-4">
                 <Magnetic strength={0.22}>
-                  <ActionLink href="#contact" variant="primary">
+                  <ActionLink href="/contact" variant="primary">
                     Start a project
                   </ActionLink>
                 </Magnetic>
                 <Magnetic strength={0.18}>
-                  <ActionLink href="#work" variant="outline">
+                  <ActionLink href="/work" variant="outline">
                     View selected work
                   </ActionLink>
                 </Magnetic>

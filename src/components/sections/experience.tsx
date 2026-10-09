@@ -25,7 +25,6 @@ export function Experience() {
               {/* Role & Period Header */}
               <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
                 <div>
-                  <p className="label">Current Role &amp; Specialization</p>
                   <h3 className="mt-2 text-2xl font-medium tracking-[-0.025em] text-fg sm:text-3xl">
                     {role.role}
                   </h3>
@@ -42,16 +41,15 @@ export function Experience() {
                 ))}
               </div>
 
-              {/* Compact Focus Row */}
-              <div className="mt-6 border-t border-line/60 pt-5">
-                <p className="label mb-3">Core Focus</p>
-                <div className="flex flex-wrap gap-2">
+              {/* Redesigned Premium Core Focus Row (Calm, Spacious, No Dots) */}
+              <div className="mt-8 border-t border-line/60 pt-6">
+                <p className="label mb-3.5">Core Focus</p>
+                <div className="flex flex-wrap gap-2.5 sm:gap-3">
                   {role.focus.map((item) => (
                     <span
                       key={item}
-                      className="inline-flex items-center gap-1.5 rounded-md border border-accent/25 bg-accent/5 px-2.5 py-1 font-mono text-[0.6875rem] tracking-wide text-fg transition-colors hover:border-accent/40 hover:bg-accent/10"
+                      className="inline-flex items-center rounded-lg border border-line-2/70 bg-surface/85 px-4 py-2 font-mono text-xs tracking-wide text-fg transition-all duration-200 hover:border-accent/50 hover:bg-surface-2 hover:text-accent shadow-xs"
                     >
-                      <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                       {item}
                     </span>
                   ))}
@@ -62,7 +60,7 @@ export function Experience() {
         ))}
       </Stagger>
 
-      {/* 3. FIVE-PHASE PROCESS & WHAT YOU GET */}
+      {/* 3. WORK PROCESS TIMELINE */}
       <HowItWorksTimeline />
     </Section>
   );

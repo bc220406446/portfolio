@@ -1,12 +1,8 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import Image from "next/image";
 import { motion, useScroll, useSpring } from "motion/react";
-import {
-  ArrowDown,
-  ArrowRight,
-  Check,
-} from "lucide-react";
 import { ActionLink } from "@/components/ui/action";
 import { cn } from "@/lib/utils";
 
@@ -15,73 +11,66 @@ import { cn } from "@/lib/utils";
 export interface WaterfallPhase {
   id: string;
   number: string;
-  phaseLabel: string;
   title: string;
   description: string;
-  artifactTitle: string;
   outputName: string;
+  imageSrc: string;
 }
 
 export const waterfallPhases: WaterfallPhase[] = [
   {
     id: "phase-01",
     number: "01",
-    phaseLabel: "PHASE 01",
     title: "Requirements Analysis",
     description:
       "Gather and document the functional and non-functional requirements, understand user needs, define project scope, and establish the expected system behavior before development begins.",
-    artifactTitle: "PROJECT REQUIREMENTS",
-    outputName: "Software Requirements Specification (SRS)",
+    outputName: "Finalized Requirements",
+    imageSrc: "/sdlc-01-requirements.jpg",
   },
   {
     id: "phase-02",
     number: "02",
-    phaseLabel: "PHASE 02",
     title: "System Design",
     description:
       "Translate the approved requirements into a technical blueprint by defining the system architecture, database structure, interfaces, modules, and technologies.",
-    artifactTitle: "SYSTEM DESIGN",
-    outputName: "System Design Document (SDD)",
+    outputName: "Approved System Design",
+    imageSrc: "/sdlc-02-system-design.jpg",
   },
   {
     id: "phase-03",
     number: "03",
-    phaseLabel: "PHASE 03",
     title: "Implementation",
     description:
       "Develop the system according to the approved design. Build the individual modules, integrate components, and write the code required to implement the defined functionality.",
-    artifactTitle: "IMPLEMENTATION",
-    outputName: "Working Software",
+    outputName: "Working Product",
+    imageSrc: "/sdlc-03-implementation.jpg",
   },
   {
     id: "phase-04",
     number: "04",
-    phaseLabel: "PHASE 04",
     title: "Testing",
     description:
       "Verify that the implemented system works as expected by identifying defects, validating functionality, testing integrations, and ensuring the software meets the defined requirements.",
-    artifactTitle: "TESTING",
-    outputName: "Verified Software",
+    outputName: "Tested & Verified Product",
+    imageSrc: "/sdlc-04-testing.jpg",
   },
   {
     id: "phase-05",
     number: "05",
-    phaseLabel: "PHASE 05",
     title: "Deployment",
     description:
       "Release the tested software into the production environment, configure the required infrastructure, and make the system available to its intended users.",
-    artifactTitle: "DEPLOYMENT",
     outputName: "Live Production System",
+    imageSrc: "/sdlc-05-deployment.jpg",
   },
   {
     id: "phase-06",
     number: "06",
-    phaseLabel: "PHASE 06",
-    title: "Maintenance",
+    title: "Post-Launch Support",
     description:
-      "Monitor system performance, address bug fixes and updates, optimize ongoing operations, and support the application as user needs evolve.",
-    artifactTitle: "MAINTENANCE",
-    outputName: "Stable & Optimized System",
+      "Provide ongoing technical assistance, monitor system stability and performance, address updates and optimizations, and ensure smooth continuous operations as user needs evolve.",
+    outputName: "Supported & Maintained System",
+    imageSrc: "/sdlc-06-maintenance.jpg",
   },
 ];
 
@@ -108,218 +97,46 @@ const deliverablesOverview = [
   },
 ];
 
-/* ─── Workflow Visual Artifacts (Input → Work → Output) ─────────────────── */
+/* ─── Premium Visual Image Card Component (No Dots, Calm & High-End) ──── */
 
-function WorkflowVisual({ phase }: { phase: WaterfallPhase }) {
+function PulsingImageCard({ phase }: { phase: WaterfallPhase }) {
   return (
-    <div className="relative overflow-hidden rounded-xl border border-line-2/70 bg-gradient-to-b from-surface/90 to-canvas-2/95 p-4.5 sm:p-5 shadow-xl transition-all duration-300 group-hover:border-accent/40">
-      <span className="sweep" />
+    <div className="group relative w-full overflow-hidden rounded-2xl border border-line-2/80 bg-canvas-2 shadow-2xl transition-all duration-500 hover:border-accent/60 hover:shadow-[0_0_35px_rgba(211,255,69,0.14)] hover:-translate-y-1">
+      {/* Ambient Glow behind card */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-2 rounded-3xl bg-gradient-to-r from-accent/15 via-transparent to-accent/10 opacity-30 blur-2xl transition-all duration-700 group-hover:opacity-70 group-hover:scale-105"
+      />
 
-      {/* Artifact Title */}
-      <div className="flex items-center justify-between border-b border-line/60 pb-3 mb-3.5">
-        <span className="font-mono text-[0.6875rem] font-semibold tracking-wider text-accent uppercase">
-          {phase.artifactTitle}
-        </span>
-        <span className="font-mono text-[0.5625rem] text-muted uppercase tracking-wider">
-          WORKFLOW
-        </span>
-      </div>
+      {/* Hairline sweep on hover */}
+      <span className="sweep z-20" />
 
-      {/* Workflow Diagram Body */}
-      <div className="min-h-[175px] flex flex-col justify-center">
-        {/* Phase 01: Requirements Analysis */}
-        {phase.number === "01" && (
-          <div className="space-y-1 font-mono text-[0.6875rem]">
-            <div className="rounded border border-line/60 bg-canvas/70 px-3 py-1.5 text-fg-dim">
-              Business Goals
-            </div>
-            <div className="h-px w-full bg-line/40 my-1" />
-            <div className="rounded border border-line/60 bg-canvas/70 px-3 py-1.5 text-fg-dim">
-              User Requirements
-            </div>
-            <div className="h-px w-full bg-line/40 my-1" />
-            <div className="rounded border border-line/60 bg-canvas/70 px-3 py-1.5 text-fg-dim">
-              Functional Requirements
-            </div>
-            <div className="h-px w-full bg-line/40 my-1" />
-            <div className="rounded border border-line/60 bg-canvas/70 px-3 py-1.5 text-fg-dim">
-              Non-Functional Requirements
-            </div>
-            <div className="h-px w-full bg-line/40 my-1" />
-            <div className="rounded border border-line/60 bg-canvas/70 px-3 py-1.5 text-fg-dim">
-              Project Scope
-            </div>
+      {/* 3D Image Canvas */}
+      <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-canvas">
+        <Image
+          src={phase.imageSrc}
+          alt={`${phase.title} — ${phase.outputName}`}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+          priority={phase.number === "01"}
+        />
+
+        {/* Scrim Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-canvas/95 via-canvas/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-canvas/60 via-transparent to-transparent" />
+
+        {/* Bottom Waterfall Output Artifact Plaque (Clean, No Technical Acronyms) */}
+        <div className="absolute inset-x-0 bottom-0 p-3.5 sm:p-4.5 z-10">
+          <div className="flex items-center justify-between gap-2 rounded-xl border border-line-2/80 bg-surface/90 backdrop-blur-md px-4 py-2.5 shadow-xl transition-colors group-hover:border-accent/40">
+            <span className="font-mono text-[0.625rem] tracking-[0.16em] uppercase text-muted font-medium">
+              OUTPUT
+            </span>
+            <span className="font-mono text-xs sm:text-[0.8125rem] font-medium text-accent tracking-tight">
+              {phase.outputName}
+            </span>
           </div>
-        )}
-
-        {/* Phase 02: System Design */}
-        {phase.number === "02" && (
-          <div className="space-y-1.5">
-            <div className="space-y-1 text-center font-mono text-[0.6875rem]">
-              <div className="rounded border border-line/60 bg-canvas/70 py-1 px-2 text-fg-dim">
-                User Interface
-              </div>
-              <div className="flex justify-center text-accent/80">
-                <ArrowDown className="h-3 w-3 stroke-[2.5]" />
-              </div>
-              <div className="rounded border border-line/60 bg-canvas/70 py-1 px-2 text-fg-dim">
-                Application Logic
-              </div>
-              <div className="flex justify-center text-accent/80">
-                <ArrowDown className="h-3 w-3 stroke-[2.5]" />
-              </div>
-              <div className="rounded border border-line/60 bg-canvas/70 py-1 px-2 text-fg-dim">
-                API / Services
-              </div>
-              <div className="flex justify-center text-accent/80">
-                <ArrowDown className="h-3 w-3 stroke-[2.5]" />
-              </div>
-              <div className="rounded border border-line/60 bg-canvas/70 py-1 px-2 text-fg-dim">
-                Database
-              </div>
-            </div>
-
-            <div className="mt-2.5 pt-2 border-t border-line/50 grid grid-cols-4 gap-1 text-center font-mono text-[0.5625rem] text-muted uppercase">
-              <span>Architecture</span>
-              <span>Database</span>
-              <span>Components</span>
-              <span>Interfaces</span>
-            </div>
-          </div>
-        )}
-
-        {/* Phase 03: Implementation */}
-        {phase.number === "03" && (
-          <div className="space-y-2">
-            <div className="grid grid-cols-4 gap-1 text-center font-mono text-[0.5625rem] text-muted uppercase pb-1 border-b border-line/50">
-              <span className="text-fg-dim">UI Comp.</span>
-              <span>→</span>
-              <span className="text-fg-dim">Logic</span>
-              <span>→ APIs</span>
-            </div>
-
-            <div className="rounded-md border border-line/60 bg-canvas/80 p-2.5 font-mono text-[0.6875rem] leading-relaxed">
-              <span className="text-muted">interface</span>{" "}
-              <span className="text-fg font-medium">UserSession</span> &#123;
-              <br />
-              <span className="text-muted pl-3">id:</span>{" "}
-              <span className="text-accent">string</span>;
-              <br />
-              <span className="text-muted pl-3">role:</span>{" "}
-              <span className="text-emerald-400">&quot;admin&quot; | &quot;user&quot;</span>;
-              <br />
-              &#125;
-              <br />
-              <span className="text-muted">export async function</span>{" "}
-              <span className="text-fg">execute</span>() &#123; ... &#125;
-            </div>
-          </div>
-        )}
-
-        {/* Phase 04: Testing */}
-        {phase.number === "04" && (
-          <div className="space-y-1.5 font-mono text-[0.6875rem]">
-            <div className="flex items-center justify-between rounded border border-line/60 bg-canvas/70 px-3 py-1.5">
-              <span className="text-fg-dim">Unit Tests</span>
-              <span className="text-accent flex items-center gap-1 font-semibold">
-                <Check className="h-3.5 w-3.5 stroke-[2.5]" /> Passed
-              </span>
-            </div>
-            <div className="flex justify-center text-accent/80">
-              <ArrowDown className="h-3 w-3 stroke-[2.5]" />
-            </div>
-            <div className="flex items-center justify-between rounded border border-line/60 bg-canvas/70 px-3 py-1.5">
-              <span className="text-fg-dim">Integration Tests</span>
-              <span className="text-accent flex items-center gap-1 font-semibold">
-                <Check className="h-3.5 w-3.5 stroke-[2.5]" /> Passed
-              </span>
-            </div>
-            <div className="flex justify-center text-accent/80">
-              <ArrowDown className="h-3 w-3 stroke-[2.5]" />
-            </div>
-            <div className="flex items-center justify-between rounded border border-line/60 bg-canvas/70 px-3 py-1.5">
-              <span className="text-fg-dim">System Tests</span>
-              <span className="text-accent flex items-center gap-1 font-semibold">
-                <Check className="h-3.5 w-3.5 stroke-[2.5]" /> Passed
-              </span>
-            </div>
-            <div className="flex justify-center text-accent/80">
-              <ArrowDown className="h-3 w-3 stroke-[2.5]" />
-            </div>
-            <div className="flex items-center justify-between rounded border border-line/60 bg-canvas/70 px-3 py-1.5">
-              <span className="text-fg-dim">User Acceptance (UAT)</span>
-              <span className="text-accent flex items-center gap-1 font-semibold">
-                <Check className="h-3.5 w-3.5 stroke-[2.5]" /> Passed
-              </span>
-            </div>
-          </div>
-        )}
-
-        {/* Phase 05: Deployment */}
-        {phase.number === "05" && (
-          <div className="space-y-2.5">
-            <div className="flex items-center justify-between rounded border border-line/60 bg-canvas/70 px-2 py-1.5 font-mono text-[0.625rem] text-center">
-              <span className="text-muted">Build</span>
-              <ArrowRight className="h-3 w-3 text-accent" />
-              <span className="text-muted">Test</span>
-              <ArrowRight className="h-3 w-3 text-accent" />
-              <span className="text-accent font-semibold">Production</span>
-              <ArrowRight className="h-3 w-3 text-accent" />
-              <span className="text-fg font-medium">Users</span>
-            </div>
-
-            <div className="rounded border border-line/50 bg-canvas/60 p-2 space-y-1 font-mono text-[0.625rem]">
-              <div className="flex justify-between text-fg-dim">
-                <span>Application Server</span>
-                <span className="text-accent">Active</span>
-              </div>
-              <div className="flex justify-between text-fg-dim">
-                <span>API Gateway</span>
-                <span className="text-accent">Connected</span>
-              </div>
-              <div className="flex justify-between text-fg-dim">
-                <span>Database Cluster</span>
-                <span className="text-accent">Synchronized</span>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Phase 06: Maintenance */}
-        {phase.number === "06" && (
-          <div className="space-y-1.5 font-mono text-[0.6875rem]">
-            <div className="rounded border border-line/60 bg-canvas/70 px-3 py-1.5 text-fg-dim text-center">
-              Telemetry &amp; Monitoring
-            </div>
-            <div className="flex justify-center text-accent/80">
-              <ArrowDown className="h-3 w-3 stroke-[2.5]" />
-            </div>
-            <div className="rounded border border-line/60 bg-canvas/70 px-3 py-1.5 text-fg-dim text-center">
-              Security Patches &amp; Updates
-            </div>
-            <div className="flex justify-center text-accent/80">
-              <ArrowDown className="h-3 w-3 stroke-[2.5]" />
-            </div>
-            <div className="rounded border border-line/60 bg-canvas/70 px-3 py-1.5 text-fg-dim text-center">
-              Performance Tuning
-            </div>
-            <div className="flex justify-center text-accent/80">
-              <ArrowDown className="h-3 w-3 stroke-[2.5]" />
-            </div>
-            <div className="rounded border border-line/60 bg-canvas/70 px-3 py-1.5 text-fg-dim text-center">
-              Iterative Enhancements
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Downward Transition to Output */}
-      <div className="mt-3.5 pt-2.5 border-t border-line/60 flex items-center justify-between font-mono text-[0.625rem]">
-        <span className="text-muted uppercase tracking-wider">OUTPUT</span>
-        <span className="text-fg font-medium flex items-center gap-1.5">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-          {phase.outputName}
-        </span>
+        </div>
       </div>
     </div>
   );
@@ -344,12 +161,12 @@ function WaterfallRow({
       className="relative mb-14 last:mb-0 sm:mb-18 lg:mb-22 scroll-mt-28"
     >
       {/* ─── Desktop Centered Milestone Node ─── */}
-      <div className="hidden lg:flex absolute left-1/2 top-6 -translate-x-1/2 -translate-y-1/2 z-20 items-center justify-center">
+      <div className="hidden lg:flex absolute left-1/2 top-8 -translate-x-1/2 -translate-y-1/2 z-20 items-center justify-center">
         <div
           className={cn(
-            "relative flex h-9 w-9 items-center justify-center rounded-full border bg-surface transition-all duration-300",
+            "relative flex h-10 w-10 items-center justify-center rounded-full border bg-surface transition-all duration-300",
             isActive
-              ? "border-accent shadow-[0_0_16px_rgba(211,255,69,0.35)] scale-105"
+              ? "border-accent shadow-[0_0_18px_rgba(211,255,69,0.35)] scale-110"
               : "border-line-2 hover:border-line-2/90",
           )}
         >
@@ -365,7 +182,7 @@ function WaterfallRow({
       </div>
 
       {/* ─── Mobile Left Milestone Node ─── */}
-      <div className="lg:hidden absolute left-4 sm:left-5 top-5 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center">
+      <div className="lg:hidden absolute left-4 sm:left-5 top-6 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center">
         <div
           className={cn(
             "relative flex h-8 w-8 items-center justify-center rounded-full border bg-surface transition-all duration-300",
@@ -401,30 +218,18 @@ function WaterfallRow({
             isEven ? "lg:order-2 lg:pl-8" : "lg:order-1 lg:pr-8 lg:text-right",
           )}
         >
-          {/* Phase Number Label */}
-          <div
-            className={cn(
-              "flex items-center gap-2 mb-1.5",
-              isEven ? "justify-start" : "justify-start lg:justify-end",
-            )}
-          >
-            <span className="font-mono text-xs font-semibold tracking-wider text-accent">
-              {phase.phaseLabel}
-            </span>
-          </div>
-
           {/* Phase Title */}
           <h3 className="text-2xl sm:text-3xl font-medium tracking-[-0.03em] text-fg">
             {phase.title}
           </h3>
 
-          {/* Simple Concise Description */}
+          {/* Concise Description */}
           <p className="mt-3 text-sm sm:text-base leading-relaxed text-fg-dim max-w-xl">
             {phase.description}
           </p>
         </motion.div>
 
-        {/* Workflow Visual Side (Input → Work → Output) */}
+        {/* Visual Image Card Side */}
         <motion.div
           initial={{ opacity: 0, scale: 0.97, y: 16 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -435,18 +240,13 @@ function WaterfallRow({
             ease: [0.16, 1, 0.3, 1],
           }}
           className={cn(
-            "group relative max-w-lg w-full",
+            "w-full max-w-lg",
             isEven
               ? "lg:order-1 lg:mr-auto lg:pr-8"
               : "lg:order-2 lg:ml-auto lg:pl-8",
           )}
         >
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -inset-1 rounded-2xl bg-gradient-to-r from-accent/10 via-transparent to-accent/5 opacity-20 blur-lg transition-opacity duration-500 group-hover:opacity-60"
-          />
-
-          <WorkflowVisual phase={phase} />
+          <PulsingImageCard phase={phase} />
         </motion.div>
       </div>
     </div>
@@ -457,6 +257,7 @@ function WaterfallRow({
 
 export function HowItWorksTimeline() {
   const containerRef = useRef<HTMLDivElement>(null);
+  // Default initially to index 0 (01 Requirements Analysis)
   const [activePhaseIndex, setActivePhaseIndex] = useState(0);
 
   // Progressive Waterfall scroll line
@@ -471,42 +272,60 @@ export function HowItWorksTimeline() {
     restDelta: 0.001,
   });
 
+  // Accurate active phase tracking using getBoundingClientRect
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight * 0.4;
+    const updateActivePhase = () => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      const containerRect = container.getBoundingClientRect();
+      const triggerLine = window.innerHeight * 0.45;
+
+      // If the timeline hasn't reached the trigger line yet, always keep index 0 active
+      if (containerRect.top > triggerLine) {
+        setActivePhaseIndex(0);
+        return;
+      }
+
+      // Find the latest phase that has scrolled past the trigger line
+      let bestIndex = 0;
       waterfallPhases.forEach((phase, index) => {
         const el = document.getElementById(phase.id);
         if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActivePhaseIndex(index);
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= triggerLine) {
+            bestIndex = index;
           }
         }
       });
+
+      setActivePhaseIndex(bestIndex);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Initialize immediately on mount
+    updateActivePhase();
+
+    window.addEventListener("scroll", updateActivePhase, { passive: true });
+    window.addEventListener("resize", updateActivePhase, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", updateActivePhase);
+      window.removeEventListener("resize", updateActivePhase);
+    };
   }, []);
 
   return (
     <div className="mt-14 sm:mt-18" suppressHydrationWarning>
-      {/* ─── Section Intro ─── */}
-      <div className="mb-12 sm:mb-16">
-        <div className="flex items-center gap-3">
-          <p className="label">Software Development Life Cycle</p>
-          <span className="h-px flex-1 bg-line" />
-        </div>
-        <h3 className="mt-3 text-2xl font-medium tracking-[-0.03em] text-fg sm:text-3xl">
+      {/* ─── Section Intro (Center Aligned) ─── */}
+      <div className="mx-auto max-w-4xl text-center mb-14 sm:mb-18">
+        <h3 className="mt-3 text-3xl font-medium tracking-[-0.03em] text-fg sm:text-4xl">
           My Work Process
         </h3>
-        <p className="mt-2 text-sm sm:text-base text-fg-dim max-w-2xl leading-relaxed">
+        <p className="mx-auto mt-3 max-w-xl text-base leading-relaxed text-fg-dim text-pretty">
           A structured process keeps requirements clear, decisions deliberate, and delivery predictable.
         </p>
 
-        {/* Desktop Quick Indicator Line */}
-        <div className="mt-6 hidden lg:flex items-center gap-2 border-b border-line/60 pb-3">
+        {/* Center-Aligned Premium Process Navigation Pills */}
+        <div className="mt-8 flex items-center justify-center gap-2 sm:gap-2.5">
           {waterfallPhases.map((p, idx) => {
             const isActive = idx === activePhaseIndex;
             return (
@@ -514,20 +333,12 @@ export function HowItWorksTimeline() {
                 key={p.id}
                 href={`#${p.id}`}
                 className={cn(
-                  "flex items-center gap-2 rounded-md px-3 py-1.5 font-mono text-xs tracking-wider transition-colors duration-200",
+                  "group inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 font-mono text-xs tracking-wide transition-all duration-300",
                   isActive
-                    ? "bg-surface-2 text-accent border border-accent/40 font-medium"
-                    : "text-muted hover:text-fg hover:bg-surface/50 border border-transparent",
+                    ? "border border-accent bg-accent/15 text-accent shadow-[0_0_20px_rgba(211,255,69,0.18)] font-medium -translate-y-0.5"
+                    : "border border-line-2/70 bg-surface/70 text-muted hover:text-fg hover:border-line-2 hover:bg-surface-2",
                 )}
               >
-                <span
-                  className={cn(
-                    "text-[0.625rem]",
-                    isActive ? "text-accent" : "text-muted",
-                  )}
-                >
-                  {p.number}
-                </span>
                 <span>{p.title}</span>
               </a>
             );
@@ -568,40 +379,6 @@ export function HowItWorksTimeline() {
               index={index}
               isActive={index === activePhaseIndex}
             />
-          ))}
-        </div>
-      </div>
-
-      {/* ─── "What you get" Section ─── */}
-      <div className="mt-20 sm:mt-24 border-t border-line pt-12 sm:pt-16">
-        <div className="max-w-xl">
-          <p className="label">Deliverables &amp; Outcomes</p>
-          <h3 className="mt-2 text-2xl font-medium tracking-[-0.03em] text-fg sm:text-3xl">
-            What you get
-          </h3>
-          <p className="mt-2 text-sm sm:text-base leading-relaxed text-fg-dim">
-            Beyond the finished interface, you get a product that&apos;s
-            structured, tested, documented, and ready to grow.
-          </p>
-        </div>
-
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {deliverablesOverview.map((item) => (
-            <div
-              key={item.number}
-              className="panel relative overflow-hidden p-5 sm:p-6 transition-all duration-300 hover:border-line-2 hover:-translate-y-0.5"
-            >
-              <span className="sweep" />
-              <div className="font-mono text-xs font-semibold text-accent mb-3">
-                {item.number}
-              </div>
-              <h4 className="text-base font-medium tracking-tight text-fg">
-                {item.title}
-              </h4>
-              <p className="mt-2 text-xs leading-relaxed text-fg-dim">
-                {item.body}
-              </p>
-            </div>
           ))}
         </div>
       </div>

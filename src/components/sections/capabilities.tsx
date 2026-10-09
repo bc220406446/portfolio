@@ -11,7 +11,7 @@ export function Capabilities() {
     <Section id="capabilities" className="border-t border-line">
       <SectionHeading
         title="What I build with"
-        description="The technologies, frameworks, and AI tools I use to turn ideas into reliable, production-ready products."
+        description="The core technologies I work with across frontend, backend, data, AI, e-commerce, and infrastructure, backed by hands-on development experience."
       />
 
       <SkillCarousel />

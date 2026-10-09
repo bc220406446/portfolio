@@ -16,10 +16,7 @@ export function About() {
         <div className="space-y-6">
           <Reveal>
             <p className="text-base leading-relaxed text-fg-dim sm:text-lg">
-              I&apos;m a full stack web developer focused on building modern,
-              scalable and user-focused web solutions. My experience spans
-              full-stack development, e-commerce, CMS platforms and AI-powered
-              applications.
+              I&apos;m a full-stack web developer focused on building modern, scalable, and user-focused digital products. My work spans full-stack applications, e-commerce, CMS platforms, and AI-powered solutions.
             </p>
           </Reveal>
 
@@ -30,9 +27,7 @@ export function About() {
                 Next.js, React, TypeScript, Node.js, Python, Django, PostgreSQL
                 and REST APIs
               </span>{" "}
-              across modern deployment platforms, alongside hands-on WordPress,
-              Shopify, WooCommerce and SureCart work - including SEO,
-              performance optimization and third-party integrations.
+                            , alongside WordPress, Shopify, WooCommerce, and SureCart. I also work across SEO, performance optimization, third-party integrations, and production deployment.
             </p>
           </Reveal>
 

@@ -125,16 +125,16 @@ export type Engagement = {
 
 export const experience: Engagement[] = [
   {
-    role: "Full-Stack & AI Product Developer",
-    period: "December 2024 — Present",
-    duration: "Present",
+    role: "Full-Stack & AI-Powered Product Developer",
+    period: "December 2024 - Present",
     summary:
-      "I design and build production-ready web applications, e-commerce platforms, and AI-powered products for businesses, startups, and independent teams. I work across the full product lifecycle — from requirements and system architecture to responsive interfaces, backend integrations, deployment, optimization, and post-launch support.\n\nMy work spans modern JavaScript/TypeScript stacks, Python-based applications, CMS and commerce platforms, with a growing focus on AI, NLP, LLM applications, and intelligent automation.",
+      "I design and build production-ready web applications, e-commerce platforms, and AI-powered products for businesses, startups, and independent teams. I work across the full product lifecycle - from requirements and system architecture to responsive interfaces, backend integrations, deployment, optimization, and post-launch support.\n\nMy work spans modern JavaScript/TypeScript stacks, Python-based applications, CMS and commerce platforms, with a growing focus on AI, NLP, LLM applications, and intelligent automation.",
     focus: [
       "Full-Stack Web",
       "AI Applications",
       "E-Commerce",
-      "Automation",
+      "AI-Powered Solutions",
+      "Intelligent Automation",
       "Performance & SEO",
     ],
     techGroups: [
