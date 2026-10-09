@@ -47,10 +47,6 @@ export function Hero() {
   });
   const y = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  // Kept deliberately subtle - enough to soften the edge as the hero leaves,
-  // never enough to read as a blur.
-  const blur = useTransform(scrollYProgress, [0, 0.8], [0, 1.5]);
-  const filter = useTransform(blur, (value) => `blur(${value}px)`);
 
   return (
     <section
@@ -59,7 +55,7 @@ export function Hero() {
       className="relative flex min-h-[100svh] items-center pt-32 pb-24"
     >
       <motion.div
-        style={reduce ? undefined : { y, opacity, filter }}
+        style={reduce ? undefined : { y, opacity }}
         className="mx-auto w-full max-w-6xl px-6"
       >
         <div className="grid items-center gap-14 lg:grid-cols-[1.5fr_1fr]">
@@ -111,7 +107,7 @@ export function Hero() {
                 </Magnetic>
                 <Magnetic strength={0.18}>
                   <ActionLink href="/work" variant="secondary">
-                    View selected work
+                    Download CV
                   </ActionLink>
                 </Magnetic>
               </div>

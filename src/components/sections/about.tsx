@@ -11,7 +11,7 @@ export function About() {
       />
 
       <div className="grid items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-        <Portrait sizes="(max-width: 1024px) 80vw, 460px" />
+        <Portrait sizes="(max-width: 1024px) 80vw, 460px" className="hidden lg:block" />
 
         <div className="space-y-6">
           <Reveal>

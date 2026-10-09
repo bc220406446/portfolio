@@ -71,6 +71,11 @@ export const metadata: Metadata = {
     description,
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
 };
 
 export const viewport: Viewport = {

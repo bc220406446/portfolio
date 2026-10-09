@@ -122,9 +122,9 @@ function PulsingImageCard({ phase }: { phase: WaterfallPhase }) {
           priority={phase.number === "01"}
         />
 
-        {/* Scrim Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-canvas/95 via-canvas/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-b from-canvas/60 via-transparent to-transparent" />
+        {/* Scrim Gradient Overlays - subtle edge vignette so the diagrams and UI remain crisp */}
+        <div className="absolute inset-0 bg-gradient-to-t from-canvas/60 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-canvas/30 via-transparent to-transparent pointer-events-none" />
 
         {/* Bottom Waterfall Output Artifact Plaque (Clean, No Technical Acronyms) */}
         <div className="absolute inset-x-0 bottom-0 p-3.5 sm:p-4.5 z-10">
@@ -324,8 +324,8 @@ export function HowItWorksTimeline() {
           A structured process keeps requirements clear, decisions deliberate, and delivery predictable.
         </p>
 
-        {/* Center-Aligned Premium Process Navigation Pills */}
-        <div className="mt-8 flex items-center justify-center gap-2 sm:gap-2.5">
+        {/* Center-Aligned Premium Process Navigation Pills (Fully Responsive & Wrapping on Mobile) */}
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 px-2">
           {waterfallPhases.map((p, idx) => {
             const isActive = idx === activePhaseIndex;
             return (
@@ -333,10 +333,10 @@ export function HowItWorksTimeline() {
                 key={p.id}
                 href={`#${p.id}`}
                 className={cn(
-                  "rounded-lg border px-3 py-2 font-mono text-[.625rem] tracking-[.14em] uppercase transition-colors",
+                  "rounded-lg border px-3 py-1.5 sm:px-3.5 sm:py-2 font-mono text-[0.625rem] tracking-[0.1em] sm:tracking-[0.14em] uppercase transition-all duration-200 text-center select-none",
                   isActive
-                    ? "border-accent bg-accent text-accent-ink"
-                    : "border-line-2 text-muted hover:border-accent hover:text-accent",
+                    ? "border-accent bg-accent text-accent-ink font-semibold shadow-[0_0_16px_rgba(211,255,69,0.25)]"
+                    : "border-line-2 bg-surface/50 text-muted hover:border-accent hover:text-accent hover:bg-surface",
                 )}
               >
                 <span>{p.title}</span>
@@ -384,7 +384,7 @@ export function HowItWorksTimeline() {
       </div>
 
       {/* ─── Final CTA ─── */}
-      <div className="mt-14 sm:mt-18 rounded-2xl border border-line-2/70 bg-gradient-to-br from-surface/80 via-surface/40 to-canvas-2/90 p-8 sm:p-10 text-center relative overflow-hidden">
+      <div className="mt-14 sm:mt-18 rounded-2xl border border-line-2/70 bg-gradient-to-br from-surface/80 via-surface/40 to-canvas-2/90 p-6 sm:p-10 text-center relative overflow-hidden">
         <span className="sweep" />
         <div className="mx-auto max-w-xl">
           <p className="label text-accent">Ready To Build?</p>
