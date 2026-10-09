@@ -38,7 +38,7 @@ export function ProjectPreview({
         fill
         sizes="(min-width: 1280px) 50vw, (min-width: 640px) 50vw, 100vw"
         priority={priority}
-        className="object-cover object-top transition-transform duration-700 ease-out group-hover/preview:scale-105"
+        className="object-fit object-top transition-transform duration-700 ease-out group-hover/preview:scale-105"
       />
       {/* Subtle bottom fade so content below reads cleanly */}
       <div className="absolute inset-0 bg-gradient-to-t from-canvas/40 via-transparent to-transparent pointer-events-none" />
