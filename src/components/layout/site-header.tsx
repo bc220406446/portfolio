@@ -91,7 +91,7 @@ export function SiteHeader() {
           <div className="flex items-center gap-3">
             <ActionLink
               href="/contact"
-              variant="outline"
+              variant="primary"
               className="hidden px-5 py-2.5 sm:inline-flex"
             >
               Start a project

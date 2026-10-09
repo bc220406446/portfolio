@@ -1,15 +1,18 @@
+import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
-type Variant = "primary" | "outline" | "ghost";
+export type Variant = "primary" | "secondary" | "outline" | "ghost";
 
-const base =
-  "group/action relative inline-flex items-center justify-center gap-2.5 rounded-lg border px-6 py-3.5 font-mono text-[0.6875rem] tracking-[0.16em] uppercase transition-colors duration-300 disabled:pointer-events-none disabled:opacity-50";
+export const actionBase =
+  "group/action relative inline-flex items-center justify-center gap-2.5 rounded-lg border px-6 py-3.5 font-mono text-[0.6875rem] tracking-[0.14em] uppercase transition-all duration-300 disabled:pointer-events-none disabled:opacity-50 select-none cursor-pointer";
 
-const variants: Record<Variant, string> = {
+export const actionVariants: Record<Variant, string> = {
   primary:
-    "border-accent bg-accent text-accent-ink hover:bg-accent-dim hover:border-accent-dim",
+    "border-accent bg-accent text-accent-ink font-semibold hover:bg-accent-dim hover:border-accent-dim shadow-sm hover:shadow-[0_0_24px_rgba(211,255,69,0.28)]",
+  secondary:
+    "border-line-2 bg-surface/80 text-fg hover:border-accent hover:text-accent hover:bg-accent/10 hover:shadow-[0_0_20px_rgba(211,255,69,0.15)]",
   outline:
     "border-line-2 bg-transparent text-fg hover:border-accent hover:text-accent",
   ghost:
@@ -19,8 +22,9 @@ const variants: Record<Variant, string> = {
 export function ActionLink({
   children,
   className,
-  variant = "outline",
+  variant = "secondary",
   external,
+  href = "#",
   ...props
 }: ComponentProps<"a"> & {
   variant?: Variant;
@@ -29,16 +33,33 @@ export function ActionLink({
   external?: boolean;
 }) {
   const isExternal =
-    external ?? (typeof props.href === "string" && /^https?:/.test(props.href));
+    external ??
+    (typeof href === "string" &&
+      (/^https?:\/\//.test(href) || href.startsWith("mailto:") || href.startsWith("tel:")));
+
+  if (isExternal) {
+    const isNewTab =
+      external ?? (typeof href === "string" && /^https?:\/\//.test(href));
+    return (
+      <a
+        href={href}
+        className={cn(actionBase, actionVariants[variant], className)}
+        {...(isNewTab ? { target: "_blank", rel: "noreferrer noopener" } : {})}
+        {...props}
+      >
+        {children}
+      </a>
+    );
+  }
 
   return (
-    <a
+    <Link
+      href={href}
+      className={cn(actionBase, actionVariants[variant], className)}
       {...props}
-      className={cn(base, variants[variant], className)}
-      {...(isExternal ? { target: "_blank", rel: "noreferrer noopener" } : {})}
     >
       {children}
-    </a>
+    </Link>
   );
 }
 
@@ -49,7 +70,10 @@ export function ActionButton({
   ...props
 }: ComponentProps<"button"> & { variant?: Variant; children: ReactNode }) {
   return (
-    <button {...props} className={cn(base, variants[variant], className)}>
+    <button
+      {...props}
+      className={cn(actionBase, actionVariants[variant], className)}
+    >
       {children}
     </button>
   );

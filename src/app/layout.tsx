@@ -102,6 +102,7 @@ export default function RootLayout({
         <SmoothScroll>
           <SiteHeader />
           <main id="content">{children}</main>
+          <SiteFooter />
         </SmoothScroll>
       </body>
     </html>

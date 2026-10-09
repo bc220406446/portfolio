@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
 import { ProjectPreview } from "@/components/projects/project-preview";
 import { Reveal } from "@/components/motion/reveal";
+import { ActionButton, ActionLink } from "@/components/ui/action";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { SkillMark } from "@/components/ui/skill-mark";
 import { projects, type Project } from "@/data/profile";
@@ -82,13 +83,14 @@ export function Work() {
       {/* Load More Button */}
       {hasMore && (
         <Reveal className="mt-16 flex justify-center">
-          <button
+          <ActionButton
             type="button"
             onClick={() => setShowAll(true)}
-            className="rounded-lg border border-line-2 px-8 py-3 font-mono text-[0.6875rem] tracking-[0.14em] text-muted uppercase transition-colors hover:border-accent hover:text-accent"
+            variant="secondary"
+            className="px-8"
           >
             Load more work
-          </button>
+          </ActionButton>
         </Reveal>
       )}
     </Section>
@@ -166,13 +168,14 @@ function ProjectRow({
 
         {/* CTA */}
         <div className="mt-8">
-          <Link
+          <ActionLink
             href={`/projects/${project.slug}`}
-            className="group/btn inline-flex items-center gap-2.5 rounded-lg border border-line-2 bg-surface/80 px-5 py-2.5 font-mono text-[0.6875rem] tracking-[0.14em] text-fg uppercase transition-all duration-300 hover:border-accent hover:bg-accent/10 hover:text-accent hover:shadow-[0_0_20px_rgba(211,255,69,0.15)]"
+            variant="secondary"
+            className="px-5 py-2.5"
           >
             <span>Learn More</span>
-            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/btn:translate-x-1 text-accent" />
-          </Link>
+            <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/action:translate-x-1 text-accent" />
+          </ActionLink>
         </div>
       </div>
     </motion.div>

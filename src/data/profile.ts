@@ -406,7 +406,8 @@ export const education: EducationEntry[] = [
     accentColor: "bg-blue-500",
     grade: "A-",
     percentage: "83.06%",
-    credentialUrl: "#",
+    credentialUrl:
+      "https://www.vu.edu.pk/verify/OnlineTranscriptVerification.aspx?StudentID=bc220406446&VerificationKey=d5jgeynpq",
   },
   {
     institution: "Punjab Group of Colleges",
@@ -420,7 +421,8 @@ export const education: EducationEntry[] = [
     accentColor: "bg-indigo-500",
     grade: "A+",
     percentage: "98%",
-    credentialUrl: "#",
+    credentialUrl:
+      "https://centralized.bisesargodha.edu.pk/RecordBr/VerificationLetterForQRCode.aspx?MatOrInt=1&AppID=427176",
   },
   {
     institution: "Govt Higher Secondary School Salam, Sargodha",
@@ -433,7 +435,8 @@ export const education: EducationEntry[] = [
     accentColor: "bg-teal-500",
     grade: "A+",
     percentage: "93.15%",
-    credentialUrl: "#",
+    credentialUrl:
+      "https://centralized.bisesargodha.edu.pk/RecordBr/VerificationLetterForQRCode.aspx?MatOrInt=1&AppID=427176",
   },
 ];
 
@@ -452,36 +455,36 @@ export const certifications: Certification[] = [
     title: "The Freelance Stack: Real project with NextJS and Strapi",
     issuer: "Coursera",
     focus: "Headless CMS architecture",
-    credentialUrl: "#",
-    credentialId: "COURSERA-NEXT-77889",
+    credentialUrl: "https://www.coursera.org/account/accomplishments/certificate/V88SNL5B7IKL",
+    credentialId: "V88SNL5B7IKL",
   },
   {
     title: "Build a Full Website using WordPress",
     issuer: "Coursera",
     focus: "End-to-end site build",
-    credentialUrl: "#",
-    credentialId: "COURSERA-WP-12345",
+    credentialUrl: "https://www.coursera.org/account/accomplishments/certificate/NOT13D4BARED",
+    credentialId: "NOT13D4BARED",
   },
   {
     title: "Use WordPress to Create a Blog for your Business",
     issuer: "Coursera",
     focus: "Publishing & content",
-    credentialUrl: "#",
-    credentialId: "COURSERA-BLOG-67890",
+    credentialUrl: "https://www.coursera.org/account/accomplishments/certificate/B6QDF0L6OF90",
+    credentialId: "B6QDF0L6OF90",
   },
   {
     title: "Create your e-commerce store with Shopify",
     issuer: "Coursera",
     focus: "Commerce foundations",
-    credentialUrl: "#",
-    credentialId: "COURSERA-SHOP-11223",
+    credentialUrl: "https://www.coursera.org/account/accomplishments/certificate/4S5D0ATHC175",
+    credentialId: "4S5D0ATHC175",
   },
   {
     title: "Create and Design Digital Products using Canva",
     issuer: "Coursera",
     focus: "Visual design",
-    credentialUrl: "#",
-    credentialId: "COURSERA-CANVA-44556",
+    credentialUrl: "https://www.coursera.org/account/accomplishments/certificate/R42V3GH794SE",
+    credentialId: "R42V3GH794SE",
   },
 ];
 

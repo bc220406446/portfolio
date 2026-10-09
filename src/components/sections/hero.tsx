@@ -110,7 +110,7 @@ export function Hero() {
                   </ActionLink>
                 </Magnetic>
                 <Magnetic strength={0.18}>
-                  <ActionLink href="/work" variant="outline">
+                  <ActionLink href="/work" variant="secondary">
                     View selected work
                   </ActionLink>
                 </Magnetic>

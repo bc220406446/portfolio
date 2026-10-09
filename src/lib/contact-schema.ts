@@ -22,7 +22,12 @@ export const contactSchema = z.object({
     .trim()
     .min(2, "Please enter your name.")
     .max(80, "That name is a little too long."),
-  email: z.email("Enter a valid email address."),
+  email: z
+    .string()
+    .trim()
+    .min(1, "Email is required.")
+    .email("Enter a valid email address.")
+    .max(254, "Email address is too long."),
   company: z.string().trim().max(120).optional().or(z.literal("")),
   // Empty selects submit "" rather than being omitted, so allow it explicitly.
   projectType: z

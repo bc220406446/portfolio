@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowUpRight, GitFork } from "lucide-react";
 import { notFound } from "next/navigation";
 import { ProjectPreview } from "@/components/projects/project-preview";
 import { TechMarquee } from "@/components/projects/tech-marquee";
-import { SiteFooter } from "@/components/layout/site-footer";
+import { ActionLink } from "@/components/ui/action";
 import { projects } from "@/data/profile";
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -54,10 +54,16 @@ export default async function ProjectPage({ params }: PageProps) {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               {primaryLink ? (
-                <ProjectAction href={primaryLink.href} label={primaryLink.label} />
+                <ActionLink href={primaryLink.href} variant="primary" external>
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                  {primaryLink.label}
+                </ActionLink>
               ) : null}
               {sourceLink ? (
-                <ProjectAction href={sourceLink.href} label="GitHub" source />
+                <ActionLink href={sourceLink.href} variant="secondary" external>
+                  <GitFork className="h-3.5 w-3.5" />
+                  GitHub
+                </ActionLink>
               ) : null}
             </div>
           </div>
@@ -90,33 +96,6 @@ export default async function ProjectPage({ params }: PageProps) {
           <TechMarquee stack={project.stack} />
         </section>
       </article>
-      <SiteFooter />
     </>
-  );
-}
-
-function ProjectAction({
-  href,
-  label,
-  source = false,
-}: {
-  href: string;
-  label: string;
-  source?: boolean;
-}) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noreferrer noopener"
-      className="inline-flex items-center gap-2 rounded-lg border border-line-2 px-5 py-3 font-mono text-[.6875rem] tracking-[.13em] text-fg uppercase transition-colors hover:border-accent hover:text-accent"
-    >
-      {source ? (
-        <GitFork className="h-3.5 w-3.5" />
-      ) : (
-        <ArrowUpRight className="h-3.5 w-3.5" />
-      )}
-      {label}
-    </a>
   );
 }
