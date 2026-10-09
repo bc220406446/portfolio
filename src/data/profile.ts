@@ -212,7 +212,7 @@ export const projects: Project[] = [
       "A university query-management platform that centralizes student requests from web forms, email, and WhatsApp, with automated classification, department routing, escalation, and AI-assisted reply drafting.",
     brief:
       "Smart Query Hub is a full-stack university query-management platform designed to streamline how educational institutions receive, classify, assign, and resolve student inquiries. It brings queries from multiple channels, including web forms, email, and WhatsApp, into a centralized workflow where staff can track requests, manage ownership, monitor progress, and escalate unresolved cases. The platform provides dedicated role-based portals for students, instructors, department heads, and administrators, with dashboards for monitoring query activity and resolution progress. Its Next.js frontend communicates with a FastAPI backend responsible for query processing, classification, routing, escalation, and AI-assisted reply drafting. Supabase and PostgreSQL provide the data layer, while webhook integrations coordinate communication between services. Additional capabilities include automated email notifications, query status tracking, audit logging, reporting, and PDF/Excel exports, helping institutions improve response consistency, accountability, and operational visibility.",
-    image: "/smart-query-management.vercel.app.webp",
+    image: "/smart-query-management.webp",
     stack: [
       "Next.js",
       "React",
@@ -242,7 +242,7 @@ export const projects: Project[] = [
       "A custom luxury watch e-commerce platform with product discovery, shopping cart, checkout, customer accounts, order tracking, and a dedicated store-management portal.",
     brief:
       "Sovereign Watches is a full-stack luxury watch e-commerce platform designed to deliver a refined shopping experience alongside comprehensive store-management capabilities. Built with Next.js, TypeScript, and Tailwind CSS, the storefront supports product discovery, catalogue browsing, product details, shopping carts, checkout, wishlists, customer accounts, and order tracking. The application also includes a dedicated, access-controlled administration portal for managing products, categories, inventory, customer orders, shipping and courier tracking, returns, refund coupons, customer reviews, promotional discounts, newsletters, and store settings. Supabase provides authentication, PostgreSQL-backed data storage, and media storage, while PayFast integration supports the payment workflow. The application is structured around reusable components, typed data models, and clear separation between customer-facing shopping experiences and administrative operations. Deployed through Vercel, the project demonstrates the development of an end-to-end commerce solution that combines premium storefront presentation with practical business operations.",
-    image: "/sovereign-e-commerce-store.vercel.app.webp",
+    image: "/sovereign-e-commerce-store.webp",
     stack: [
       "Next.js",
       "React",
@@ -270,7 +270,7 @@ export const projects: Project[] = [
       "A peer-to-peer platform for exchanging skills without money, featuring skill listings, exchange requests, two-sided completion confirmation, reviews, and admin moderation.",
     brief:
       "The Community Skill Exchange Platform is a full-stack application that enables people to exchange knowledge and practical skills without monetary transactions. Members can create profiles, publish skills they are willing to teach, identify skills they want to learn, browse relevant opportunities, and initiate peer-to-peer exchange requests. The platform manages the exchange lifecycle, allowing participants to coordinate their commitments and independently confirm when a skill has been delivered and received. Mutual reviews become available after an exchange is completed, helping users build credibility through actual participation. Reporting and administrator moderation provide mechanisms for handling inappropriate content and maintaining community standards. The application uses a Next.js and TypeScript frontend connected to a Strapi headless CMS backend through REST APIs, with Supabase PostgreSQL supporting relational data and Cloudinary handling media assets. Email-based OTP verification strengthens account onboarding, while JWT-based authentication supports protected application functionality. Deployment across Vercel and Azure App Service separates the frontend experience from backend services. The project demonstrates full-stack integration, workflow management, role-based functionality, and the design of a trust-oriented community platform.",
-    image: "/community-skill-exchange-platform.vercel.app.webp",
+    image: "/community-skill-exchange-plateform.webp",
     stack: [
       "Next.js",
       "React",
@@ -300,7 +300,7 @@ export const projects: Project[] = [
       "A PHP and MySQL student-management system with separate student and administrator portals, registration approval, record management, and role-based access.",
     brief:
       "The Student Management Web Application is a web-based academic administration system built with PHP and MySQL to centralize student registration and record management. It provides separate student and administrator interfaces with permissions tailored to each role. Students can register for an account, access the application after administrator approval, view their available records, update permitted profile information, and recover access through a password-reset workflow. Administrators can review pending registrations, approve or reject account requests, search and filter student records, manage student profiles, and monitor registration activity through administrative summaries. The application uses PHP with PDO for database connectivity and server-side data operations, while MySQL stores student information and account records. Session-based authentication and role checks protect restricted pages, and server-side validation helps maintain data integrity. Its interface is built using standard HTML, CSS, and JavaScript, making the application suitable for a lightweight PHP hosting environment. The project demonstrates practical CRUD operations, relational database integration, access control, authentication workflows, and the core requirements of a student-record management system.",
-    image: "/smwa.freehosting.dev.webp",
+    image: "/student-management-web-app.webp",
     stack: [
       "HTML",
       "CSS",
@@ -326,7 +326,7 @@ export const projects: Project[] = [
       "An academic resource platform for Virtual University students - handouts, past papers, highlighted notes and LMS task management in one place.",
     brief:
       "VU Scholar Guide is a specialized EdTech platform designed for Virtual University students. Powered by WordPress and SureCart, it aggregates academic handouts, past paper archives, highlighted study guides, and LMS task trackers into a unified dashboard. The build incorporates Rank Math SEO schemas, clean permalinks, and asset optimizations tailored for low-bandwidth users.",
-    image: "/sovereign-e-commerce-store.vercel.app.webp",
+    image: "/sovereign-e-commerce-store.webp",
     stack: ["HTML", "CSS", "JavaScript", "WordPress", "SureCart", "Core Web Vitals"],
     links: [],
     featured: true,
@@ -342,7 +342,7 @@ export const projects: Project[] = [
       "A WooCommerce storefront built for the Saudi market - localised browsing, regional payments, inventory management, and mobile-first performance.",
     brief:
       "KSA Furniture Store is a localized WooCommerce e-commerce site engineered for the Saudi Arabian retail market. Built with an Arabic-first user experience and responsive Gulf layout design, it integrates regional payment gateways and shipping providers. Catalogue management features real-time inventory tracking, low-stock notifications, and local SEO tuning.",
-    image: "/sovereign-e-commerce-store.vercel.app.webp",
+    image: "/sovereign-e-commerce-store.webp",
     stack: ["HTML", "CSS", "JavaScript", "WooCommerce", "WordPress", "Core Web Vitals"],
     links: [],
     group: "wordpress-clients",
@@ -357,7 +357,7 @@ export const projects: Project[] = [
       "A WooCommerce store for garments and cultural products - structured product management, streamlined checkout, and SEO improvements.",
     brief:
       "Anas Shopping Store is a WooCommerce storefront focused on garments and traditional cultural apparel. The project structured complex product variation taxonomies (sizes, fabrics, colorways) while introducing a simplified checkout process that minimizes cart abandonment. Page speed and mobile responsiveness optimizations were applied throughout.",
-    image: "/sovereign-e-commerce-store.vercel.app.webp",
+    image: "/sovereign-e-commerce-store.webp",
     stack: ["HTML", "CSS", "JavaScript", "WooCommerce", "WordPress"],
     links: [],
     group: "wordpress-clients",
@@ -372,7 +372,7 @@ export const projects: Project[] = [
       "A Shopify fashion store with a mobile-first visual identity, optimised collections, and a checkout flow tuned to reduce drop-off.",
     brief:
       "House of Fashion is a Shopify fashion store crafted for mobile-first shoppers. Built using custom Shopify Liquid templates, the site features curated product collection grids, swift slide-out cart drawers, mobile-optimized navigation, and structured product metadata to elevate search engine visibility.",
-    image: "/sovereign-e-commerce-store.vercel.app.webp",
+    image: "/sovereign-e-commerce-store.webp",
     stack: ["CSS", "Liquid", "Shopify"],
     links: [],
     group: "wordpress-clients",
