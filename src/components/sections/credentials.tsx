@@ -163,9 +163,10 @@ export function Credentials() {
                           href={cert.credentialUrl}
                           target="_blank"
                           rel="noreferrer noopener"
-                          className="mt-0.5 shrink-0 font-mono text-[0.625rem] tracking-[0.14em] text-accent uppercase transition-colors hover:text-fg"
+                          className="mt-3 inline-flex items-center gap-1.5 font-mono text-[0.625rem] tracking-[0.14em] text-accent uppercase transition-colors hover:text-fg"
                         >
-                          verify ↗
+                          verify
+                          <ExternalLink className="h-3 w-3" />
                         </a>
                       )}
                     </div>
