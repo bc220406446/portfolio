@@ -15,12 +15,11 @@ import { Magnetic } from "@/components/motion/magnetic";
 import { cn } from "@/lib/utils";
 
 const TIMELINE = [
-  { at: 300, beat: 1 },
-  { at: 1800, beat: 2 },
-  { at: 2600, beat: 3 },
-  { at: 3300, beat: 4 },
-  { at: 4100, beat: 5 },
-  { at: 4800, beat: 6 },
+  { at: 300, beat: 2 }, // Name reveal
+  { at: 1200, beat: 3 }, // Role reveal
+  { at: 2000, beat: 4 }, // Portrait reveal (shifts text up)
+  { at: 2800, beat: 5 }, // Ambient settle
+  { at: 3500, beat: 6 }, // Play / Enter button
 ];
 
 export function OpeningSequence({ onDone }: { onDone: () => void }) {
@@ -85,37 +84,6 @@ export function OpeningSequence({ onDone }: { onDone: () => void }) {
         animate={{ opacity: beat >= 2 ? [0, 0.9, 0.5, 1] : 0 }}
         transition={{ duration: 1.4 }}
       />
-
-      <AnimatePresence>
-        {beat === 1 && (
-          <motion.div
-            key="studio"
-            className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, filter: "blur(8px)" }}
-            transition={{ duration: 0.6 }}
-          >
-            <motion.h2
-              className="font-medium tracking-[-0.035em] text-fg drop-shadow-[0_8px_40px_rgba(0,0,0,0.9)]"
-              style={{ fontSize: "clamp(2.4rem, 6.5vw, 5.5rem)" }}
-              initial={{ opacity: 0, scale: 0.95, filter: "blur(12px)" }}
-              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-              transition={{ duration: 1.2, ease: EASE }}
-            >
-              Muhammad Kamran
-            </motion.h2>
-            <motion.p
-              className="mt-4 font-mono text-xs sm:text-sm font-semibold tracking-[0.28em] sm:tracking-[0.35em] text-accent uppercase [text-shadow:0_2px_20px_rgba(211,255,69,0.35)]"
-              initial={{ opacity: 0, letterSpacing: "0.15em" }}
-              animate={{ opacity: 1, letterSpacing: "0.32em" }}
-              transition={{ duration: 1.2, delay: 0.15, ease: EASE }}
-            >
-              Full Stack Web Developer
-            </motion.p>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       <motion.div
         className="pointer-events-none absolute inset-x-0 bottom-[4.5vh] sm:bottom-[6vh] z-0 mx-auto flex h-[62vh] sm:h-[66vh] max-w-[840px] items-end justify-center"

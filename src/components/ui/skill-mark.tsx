@@ -41,7 +41,6 @@ const visuals: Record<string, Visual> = {
   React: { brand: "react" },
   TypeScript: { brand: "typescript" },
   JavaScript: { brand: "javascript" },
-  "JavaScript (ES2023)": { brand: "javascript" },
   HTML: { brand: "html5" },
   HTML5: { brand: "html5" },
   CSS: { brand: "css3" },

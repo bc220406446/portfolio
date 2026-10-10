@@ -6,37 +6,15 @@
 
 export const profile = {
   name: "Muhammad Kamran",
-  shortName: "Kamran",
   role: "Full Stack Web Developer",
-  headline: {
-    lead: "Full Stack Web Developer building",
-    emphasis: "modern, scalable",
-    trail: "web products.",
-  },
-  subhead:
-    "Next.js, React, TypeScript, Node.js & Django - with deep e-commerce craft across WordPress, WooCommerce, Shopify and SureCart. I ship clean, maintainable code and interfaces that stay fast under real load.",
   location: "Hyderabad, Pakistan",
-  locationNote: "Remote-first · Overlapping with EU & Gulf hours",
   email: "muhammadkamranyar@gmail.com",
   phone: "+92 332 8322488",
   phoneHref: "+923328322488",
   links: {
     linkedin: "https://www.linkedin.com/in/dev-muhammad-kamran",
     github: "https://github.com/bc220406446",
-    liveStore: "https://sovereign-e-commerce-store.vercel.app",
   },
-  availability: [
-    "Remote full-time",
-    "Freelance projects",
-    "Contract work",
-    "Long-term partnerships",
-  ],
-  stats: [
-    { value: 1.8, suffix: "+", label: "Years freelancing", decimals: 1 },
-    { value: 8, suffix: "", label: "Shipped products", decimals: 0 },
-    { value: 4, suffix: "", label: "Industries served", decimals: 0 },
-    { value: 5, suffix: "", label: "Certifications", decimals: 0 },
-  ],
 } as const;
 
 export type SkillGroup = {
@@ -51,7 +29,7 @@ export const skillGroups: SkillGroup[] = [
       "Next.js",
       "React",
       "TypeScript",
-      "JavaScript (ES2023)",
+      "JavaScript",
       "Tailwind CSS",
       "Framer Motion",
     ],
@@ -82,11 +60,22 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     title: "Database",
-    skills: ["PostgreSQL", "Supabase", "MySQL", "MongoDB", "Firebase"],
+    skills: [
+      "PostgreSQL",
+      "Supabase",
+      "MySQL",
+      "MongoDB",
+      "Firebase"
+    ],
   },
   {
     title: "Deployment",
-    skills: ["Azure", "Vercel", "Render", "Netlify"],
+    skills: [
+      "Azure",
+      "Vercel",
+      "Render",
+      "Netlify"
+    ],
   },
   {
     title: "Tools & Development",
@@ -102,14 +91,14 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     title: "CMS & E-Commerce",
-    skills: ["Medusa JS", "WordPress", "Shopify", "WooCommerce", "SureCart"],
+    skills: [
+      "Medusa JS", 
+      "WordPress", 
+      "Shopify", 
+      "WooCommerce",
+       "SureCart"
+      ],
   },
-];
-
-export const topSkills = [
-  "E-Commerce",
-  "SureCart Store Development",
-  "Code Reusability",
 ];
 
 export type TechCategory = {
