@@ -122,8 +122,8 @@ export function OpeningSequence({ onDone }: { onDone: () => void }) {
 
       {/* Beat 4+: Portrait Reveal */}
       <motion.div
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-0 mx-auto flex h-[70vh] max-w-[850px] items-end justify-center"
-        initial={{ opacity: 0, scale: 1.1, filter: "blur(18px) brightness(0.25)" }}
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-0 mx-auto flex h-[58vh] sm:h-[62vh] max-w-[800px] items-end justify-center"
+        initial={{ opacity: 0, scale: 1.08, filter: "blur(18px) brightness(0.25)" }}
         animate={
           beat >= 4
             ? { opacity: 1, scale: 1, filter: "blur(0px) brightness(1)" }
@@ -131,14 +131,14 @@ export function OpeningSequence({ onDone }: { onDone: () => void }) {
         }
         transition={{ duration: 1.6, ease: EASE }}
       >
-        <div className="relative h-full w-full max-w-[620px]">
+        <div className="relative h-full w-full max-w-[540px]">
           <Image
             src="/sequence-portrait.webp"
             alt={profile.name}
             fill
             priority
-            sizes="(max-width: 768px) 100vw, 850px"
-            className="object-contain object-bottom [mask-image:linear-gradient(to_bottom,black_50%,transparent_98%)]"
+            sizes="(max-width: 768px) 100vw, 800px"
+            className="object-contain object-bottom [mask-image:linear-gradient(to_bottom,black_45%,transparent_98%)]"
           />
         </div>
       </motion.div>
@@ -152,13 +152,13 @@ export function OpeningSequence({ onDone }: { onDone: () => void }) {
       {/* Beat 2 & 3: Large Title + Subtitle Tag */}
       <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center px-4 text-center">
         <motion.h1
-          className="font-medium leading-[0.84] tracking-[-0.04em] text-fg drop-shadow-[0_8px_40px_rgba(0,0,0,0.9)]"
-          style={{ fontSize: "clamp(4.2rem, 16vw, 12rem)" }}
+          className="font-medium leading-[0.92] tracking-[-0.035em] text-fg drop-shadow-[0_8px_40px_rgba(0,0,0,0.9)]"
+          style={{ fontSize: "clamp(2.2rem, 6.2vw, 5.2rem)" }}
           initial={{
             opacity: 0,
-            scale: 1.25,
+            scale: 1.15,
             filter: "blur(20px)",
-            letterSpacing: "0.2em",
+            letterSpacing: "0.08em",
           }}
           animate={
             beat >= 2
@@ -166,25 +166,25 @@ export function OpeningSequence({ onDone }: { onDone: () => void }) {
                   opacity: 1,
                   scale: 1,
                   filter: "blur(0px)",
-                  letterSpacing: "-0.04em",
-                  y: beat >= 4 ? "-26vh" : 0,
+                  letterSpacing: "-0.035em",
+                  y: beat >= 4 ? "-33vh" : 0,
                 }
               : {}
           }
           transition={{ duration: 1.3, ease: EASE }}
         >
-          {profile.shortName}
+          {profile.name}
         </motion.h1>
 
         <motion.p
-          className="font-mono text-xs sm:text-base font-semibold text-accent uppercase tracking-[0.35em] [text-shadow:0_2px_20px_rgba(211,255,69,0.35)]"
-          initial={{ opacity: 0, letterSpacing: "0.8em" }}
+          className="mt-3 font-mono text-xs sm:text-sm font-semibold text-accent uppercase tracking-[0.32em] [text-shadow:0_2px_20px_rgba(211,255,69,0.35)]"
+          initial={{ opacity: 0, letterSpacing: "0.6em" }}
           animate={
             beat >= 3
               ? {
                   opacity: 1,
-                  letterSpacing: "0.35em",
-                  y: beat >= 4 ? "-26vh" : 0,
+                  letterSpacing: "0.32em",
+                  y: beat >= 4 ? "-33vh" : 0,
                 }
               : {}
           }

@@ -19,7 +19,7 @@ const directoryPages: PageDirectoryItem[] = [
     title: "Capabilities",
     badge: "Stack & Architecture",
     description:
-      "Deep dive into full-stack engineering proficiencies: Next.js, React, Node.js, Python/Django, database schemas, and AI application workflows.",
+      "Explore my full-stack engineering stack, including Next.js, React, Node.js, Python/Django, database architecture, and AI-powered application development.",
     href: "/capabilities",
     icon: Layers,
   },
@@ -35,7 +35,7 @@ const directoryPages: PageDirectoryItem[] = [
     title: "Work",
     badge: "Shipped Products",
     description:
-      "Explore 8 production applications, e-commerce architectures, query management systems, and open-source software with live previews.",
+      "Discover my professional journey, freelance engagements, and experience delivering production-ready solutions for clients across diverse industries and international markets.",
     href: "/work",
     icon: Terminal,
   },
@@ -43,7 +43,7 @@ const directoryPages: PageDirectoryItem[] = [
     title: "Credentials",
     badge: "Verified Proof",
     description:
-      "Formal academic Computer Science education, verified university degree credentials, and official Coursera specialization certificates.",
+      "Review my Computer Science degree, academic qualifications, and verified Coursera certificates supporting my technical foundation and continued learning.",
     href: "/credentials",
     icon: Award,
   },
@@ -54,7 +54,7 @@ export function PageNavigationBlock() {
     <Section id="explore" className="border-t border-line" containerClassName="max-w-6xl">
       <SectionHeading
         title="Explore the Portfolio"
-        description="Navigate to dedicated sections for technical skills, professional career history, featured case studies, and verified credentials."
+        description="Navigate dedicated sections showcasing technical expertise, professional experience, featured projects, and verified academic credentials."
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
