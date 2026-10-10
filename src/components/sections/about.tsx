@@ -1,3 +1,9 @@
+/**
+ * @fileoverview About Section Component
+ * Biographical overview detailing engineering background, core stack, and project engagement models.
+ * Used in: src/app/page.tsx (Home page).
+ */
+
 import { Portrait } from "@/components/motion/portrait";
 import { Reveal } from "@/components/motion/reveal";
 import { Section, SectionHeading } from "@/components/ui/section";

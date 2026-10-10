@@ -1,3 +1,9 @@
+/**
+ * @fileoverview How It Works Timeline Component
+ * Interactive SDLC engineering process timeline with scroll progress beam, phase navigation, and photorealistic artifacts.
+ * Used in: src/components/sections/experience.tsx.
+ */
+
 "use client";
 
 import { useRef, useState, useEffect } from "react";
@@ -5,8 +11,6 @@ import Image from "next/image";
 import { motion, useScroll, useSpring } from "motion/react";
 import { ActionLink } from "@/components/ui/action";
 import { cn } from "@/lib/utils";
-
-/* ─── SDLC Waterfall Phases ────────────────────────────────────────────── */
 
 export interface WaterfallPhase {
   id: string;
@@ -74,41 +78,14 @@ export const waterfallPhases: WaterfallPhase[] = [
   },
 ];
 
-const deliverablesOverview = [
-  {
-    number: "01",
-    title: "Clear Scope",
-    body: "Requirements, priorities, and deliverables are defined before development begins.",
-  },
-  {
-    number: "02",
-    title: "Maintainable Code",
-    body: "Reusable components, clean architecture, and documentation make future changes easier.",
-  },
-  {
-    number: "03",
-    title: "Production-Ready Delivery",
-    body: "Responsive, optimized, tested, and prepared for real users and real traffic.",
-  },
-  {
-    number: "04",
-    title: "Post-Launch Support",
-    body: "Deployment assistance, fixes, improvements, and technical support after launch.",
-  },
-];
-
-/* ─── Premium Visual Image Card Component (No Dots, Calm & High-End) ──── */
-
 function PulsingImageCard({ phase }: { phase: WaterfallPhase }) {
   return (
     <div className="group relative w-full overflow-hidden rounded-2xl border border-line-2/80 bg-canvas-2 shadow-2xl transition-all duration-500 hover:border-accent/60 hover:shadow-[0_0_35px_rgba(211,255,69,0.14)] hover:-translate-y-1">
-      {/* Ambient Glow behind card */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -inset-2 rounded-3xl bg-gradient-to-r from-accent/15 via-transparent to-accent/10 opacity-30 blur-2xl transition-all duration-700 group-hover:opacity-70 group-hover:scale-105"
       />
 
-      {/* Hairline sweep on hover */}
       <span className="sweep z-20" />
 
       {/* 3D Image Canvas */}
@@ -122,11 +99,9 @@ function PulsingImageCard({ phase }: { phase: WaterfallPhase }) {
           priority={phase.number === "01"}
         />
 
-        {/* Scrim Gradient Overlays - subtle edge vignette so the diagrams and UI remain crisp */}
         <div className="absolute inset-0 bg-gradient-to-t from-canvas/60 via-transparent to-transparent pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-canvas/30 via-transparent to-transparent pointer-events-none" />
 
-        {/* Bottom Waterfall Output Artifact Plaque (Clean, No Technical Acronyms) */}
         <div className="absolute inset-x-0 bottom-0 p-3.5 sm:p-4.5 z-10">
           <div className="flex items-center justify-between gap-2 rounded-xl border border-line-2/80 bg-surface/90 backdrop-blur-md px-4 py-2.5 shadow-xl transition-colors group-hover:border-accent/40">
             <span className="font-mono text-[0.625rem] tracking-[0.16em] uppercase text-muted font-medium">
@@ -142,8 +117,6 @@ function PulsingImageCard({ phase }: { phase: WaterfallPhase }) {
   );
 }
 
-/* ─── Waterfall Timeline Row ───────────────────────────────────────────── */
-
 function WaterfallRow({
   phase,
   index,
@@ -153,14 +126,13 @@ function WaterfallRow({
   index: number;
   isActive: boolean;
 }) {
-  const isEven = index % 2 === 1; // Alternating layout on desktop
+  const isEven = index % 2 === 1;
 
   return (
     <div
       id={phase.id}
       className="relative mb-14 last:mb-0 sm:mb-18 lg:mb-22 scroll-mt-28"
     >
-      {/* ─── Desktop Centered Milestone Node ─── */}
       <div className="hidden lg:flex absolute left-1/2 top-8 -translate-x-1/2 -translate-y-1/2 z-20 items-center justify-center">
         <div
           className={cn(
@@ -181,7 +153,6 @@ function WaterfallRow({
         </div>
       </div>
 
-      {/* ─── Mobile Left Milestone Node ─── */}
       <div className="lg:hidden absolute left-4 sm:left-5 top-6 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center">
         <div
           className={cn(
@@ -200,14 +171,12 @@ function WaterfallRow({
         </div>
       </div>
 
-      {/* ─── Alternating Two-Column Grid ─── */}
       <div
         className={cn(
           "grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-14 items-center",
           "pl-9 sm:pl-12 lg:pl-0",
         )}
       >
-        {/* Theory / Text Side */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -218,18 +187,15 @@ function WaterfallRow({
             isEven ? "lg:order-2 lg:pl-8" : "lg:order-1 lg:pr-8 lg:text-right",
           )}
         >
-          {/* Phase Title */}
           <h3 className="text-2xl sm:text-3xl font-medium tracking-[-0.03em] text-fg">
             {phase.title}
           </h3>
 
-          {/* Concise Description */}
           <p className="mt-3 text-sm sm:text-base leading-relaxed text-fg-dim max-w-xl">
             {phase.description}
           </p>
         </motion.div>
 
-        {/* Visual Image Card Side */}
         <motion.div
           initial={{ opacity: 0, scale: 0.97, y: 16 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -253,14 +219,10 @@ function WaterfallRow({
   );
 }
 
-/* ─── Main Work Process Section ────────────────────────────────────────── */
-
 export function HowItWorksTimeline() {
   const containerRef = useRef<HTMLDivElement>(null);
-  // Default initially to index 0 (01 Requirements Analysis)
   const [activePhaseIndex, setActivePhaseIndex] = useState(0);
 
-  // Progressive Waterfall scroll line
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start 65%", "end 75%"],
@@ -272,7 +234,6 @@ export function HowItWorksTimeline() {
     restDelta: 0.001,
   });
 
-  // Accurate active phase tracking using getBoundingClientRect
   useEffect(() => {
     const updateActivePhase = () => {
       const container = containerRef.current;
@@ -281,13 +242,11 @@ export function HowItWorksTimeline() {
       const containerRect = container.getBoundingClientRect();
       const triggerLine = window.innerHeight * 0.45;
 
-      // If the timeline hasn't reached the trigger line yet, always keep index 0 active
       if (containerRect.top > triggerLine) {
         setActivePhaseIndex(0);
         return;
       }
 
-      // Find the latest phase that has scrolled past the trigger line
       let bestIndex = 0;
       waterfallPhases.forEach((phase, index) => {
         const el = document.getElementById(phase.id);
@@ -302,7 +261,6 @@ export function HowItWorksTimeline() {
       setActivePhaseIndex(bestIndex);
     };
 
-    // Initialize immediately on mount
     updateActivePhase();
 
     window.addEventListener("scroll", updateActivePhase, { passive: true });
@@ -315,7 +273,6 @@ export function HowItWorksTimeline() {
 
   return (
     <div className="mt-14 sm:mt-18" suppressHydrationWarning>
-      {/* ─── Section Intro (Center Aligned) ─── */}
       <div className="mx-auto max-w-4xl text-center mb-14 sm:mb-18">
         <h3 className="mt-3 text-3xl font-medium tracking-[-0.03em] text-fg sm:text-4xl">
           My Work Process
@@ -324,7 +281,6 @@ export function HowItWorksTimeline() {
           A structured process keeps requirements clear, decisions deliberate, and delivery predictable.
         </p>
 
-        {/* Center-Aligned Premium Process Navigation Pills (Fully Responsive & Wrapping on Mobile) */}
         <div className="mt-8 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 px-2">
           {waterfallPhases.map((p, idx) => {
             const isActive = idx === activePhaseIndex;
@@ -346,9 +302,7 @@ export function HowItWorksTimeline() {
         </div>
       </div>
 
-      {/* ─── Central Waterfall Timeline ─── */}
       <div ref={containerRef} className="relative">
-        {/* Desktop Center Vertical Beam */}
         <div
           aria-hidden="true"
           className="hidden lg:block absolute left-1/2 top-4 bottom-4 w-[2px] -translate-x-1/2 bg-line-2/40"
@@ -359,7 +313,6 @@ export function HowItWorksTimeline() {
           />
         </div>
 
-        {/* Mobile Left Vertical Beam */}
         <div
           aria-hidden="true"
           className="lg:hidden absolute left-4 sm:left-5 top-4 bottom-4 w-[2px] -translate-x-1/2 bg-line-2/40"
@@ -370,7 +323,6 @@ export function HowItWorksTimeline() {
           />
         </div>
 
-        {/* Alternating Waterfall Rows */}
         <div className="relative">
           {waterfallPhases.map((phase, index) => (
             <WaterfallRow
@@ -383,7 +335,6 @@ export function HowItWorksTimeline() {
         </div>
       </div>
 
-      {/* ─── Final CTA ─── */}
       <div className="mt-14 sm:mt-18 rounded-2xl border border-line-2/70 bg-gradient-to-br from-surface/80 via-surface/40 to-canvas-2/90 p-6 sm:p-10 text-center relative overflow-hidden">
         <span className="sweep" />
         <div className="mx-auto max-w-xl">
@@ -405,3 +356,4 @@ export function HowItWorksTimeline() {
     </div>
   );
 }
+

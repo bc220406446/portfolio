@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Contact Page Route
+ * Dedicated route presenting the project enquiry form, direct contact channels, and file upload capabilities.
+ * Route: /contact
+ */
+
 import { Contact } from "@/components/sections/contact";
 
 export default function ContactPage() {
@@ -7,3 +13,4 @@ export default function ContactPage() {
     </div>
   );
 }
+

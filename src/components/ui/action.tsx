@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Action Button & Link Components
+ * Stylized interactive controls for links, primary/secondary action triggers, and inline text links.
+ * Used throughout section CTAs, header navigation, hero actions, and project links.
+ */
+
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 
@@ -29,7 +35,6 @@ export function ActionLink({
 }: ComponentProps<"a"> & {
   variant?: Variant;
   children: ReactNode;
-  /** Force the new-tab treatment for non-http links (e.g. mailto). */
   external?: boolean;
 }) {
   const isExternal =
@@ -79,7 +84,6 @@ export function ActionButton({
   );
 }
 
-/** Small monospace call-to-action rendered as underlined text, not a pill. */
 export function TextLink({
   children,
   className,
@@ -106,3 +110,4 @@ export function TextLink({
     </a>
   );
 }
+

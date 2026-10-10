@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Text Reveal Motion Components
+ * Word-by-word and character-by-character mask entrance animations for headings and titles.
+ * Used in: src/components/sections/hero.tsx and section headings.
+ */
+
 "use client";
 
 import { motion, type Variants } from "motion/react";
@@ -22,10 +28,6 @@ const word: Variants = {
   },
 };
 
-/**
- * Word-by-word mask reveal. Each word sits in an overflow-hidden box and slides
- * up into place.
- */
 export function TextReveal({
   text,
   className,
@@ -72,9 +74,6 @@ export function TextReveal({
   );
 }
 
-/**
- * Per-character reveal for short, high-impact strings such as the name.
- */
 export function CharReveal({
   text,
   className,

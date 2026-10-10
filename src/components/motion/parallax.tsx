@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Parallax Motion & Scroll Progress Components
+ * Provides scroll-linked parallax motion effects and a pinned page-level progress bar.
+ * Used in: src/app/layout.tsx (ScrollProgress) and reusable across pages.
+ */
+
 "use client";
 
 import {
@@ -11,10 +17,6 @@ import { useRef, type ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
-/**
- * Scroll-linked vertical parallax. Positive `distance` moves the child down as
- * the section travels up the viewport.
- */
 export function Parallax({
   children,
   className,
@@ -46,7 +48,6 @@ export function Parallax({
   );
 }
 
-/** Thin scroll-progress indicator pinned under the header. */
 export function ScrollProgress() {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -64,28 +65,3 @@ export function ScrollProgress() {
   );
 }
 
-/**
- * Section wrapper that fades its content in and leaves a tick on the shared
- * scroll timeline. Used for the full-bleed statement blocks.
- */
-export function ScrollFade({
-  children,
-  className,
-  amount = 0.4,
-}: {
-  children: ReactNode;
-  className?: string;
-  amount?: number;
-}) {
-  return (
-    <motion.div
-      className={cn(className)}
-      initial={{ opacity: 0.15 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ amount }}
-      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
-}

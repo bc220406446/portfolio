@@ -149,13 +149,6 @@
     backdrop-filter: blur(10px);
   }
 
-  /* Softer, inset variant for nested content. */
-  .panel-inset {
-    border-radius: calc(var(--radius-panel) - 0.5rem);
-    border: 1px solid color-mix(in oklab, var(--color-line) 80%, transparent);
-    background-color: color-mix(in oklab, var(--color-canvas-2) 70%, transparent);
-  }
-
   /* Accent hairline that draws itself on hover. */
   .sweep {
     position: absolute;
@@ -186,27 +179,6 @@
   }
 }
 
-@keyframes marquee-right {
-  from {
-    transform: translate3d(-50%, 0, 0);
-  }
-  to {
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes pulse-dot {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.35;
-    transform: scale(0.82);
-  }
-}
-
 @keyframes blink-caret {
   0%,
   49% {
@@ -233,14 +205,6 @@
 
 @utility animate-marquee-left {
   animation: marquee-left var(--marquee-duration, 38s) linear infinite;
-}
-
-@utility animate-marquee-right {
-  animation: marquee-right var(--marquee-duration, 38s) linear infinite;
-}
-
-@utility animate-pulse-dot {
-  animation: pulse-dot 2.4s ease-in-out infinite;
 }
 
 @utility animate-blink-caret {

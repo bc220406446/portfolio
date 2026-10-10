@@ -1,3 +1,9 @@
+/**
+ * @fileoverview HomeIntroManager Component
+ * Manages session-based visibility of the cinematic opening intro on the home page.
+ * Used in: src/app/page.tsx
+ */
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -8,7 +14,6 @@ export function HomeIntroManager() {
   const [showIntro, setShowIntro] = useState(false);
 
   useEffect(() => {
-    // Check if intro has already been seen in this session
     const hasPlayed = sessionStorage.getItem("intro_played_v1");
     const urlParams = new URLSearchParams(window.location.search);
     const forceIntro = urlParams.get("intro") === "1";
@@ -29,4 +34,3 @@ export function HomeIntroManager() {
     </AnimatePresence>
   );
 }
-

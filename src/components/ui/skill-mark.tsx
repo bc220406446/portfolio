@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Skill Mark Icon Component
+ * Vector tech mark renderer matching technologies to brand SVGs or fallback concept glyphs with dark canvas tint balancing.
+ * Used in: src/components/ui/skill-carousel.tsx, src/components/sections/work.tsx, and src/components/ui/tech-marquee.tsx.
+ */
+
 "use client";
 
 import {
@@ -16,10 +22,6 @@ import {
 import { brandMarks, type BrandKey, type BrandMark } from "@/lib/brand-marks";
 import { cn } from "@/lib/utils";
 
-/**
- * Concept glyphs for the few entries that are not a product and so have no
- * published logo of their own.
- */
 const glyphs = {
   network: Network,
   performance: Gauge,
@@ -29,13 +31,11 @@ const glyphs = {
   brain: Brain,
   sparkles: Sparkles,
   bot: Bot,
-  // Used for anything newly added to `skillGroups` before it gets a real mark.
   fallback: Layers,
 } satisfies Record<string, LucideIcon>;
 
 type Visual = { brand: BrandKey } | { glyph: keyof typeof glyphs };
 
-/** Every skill listed in `skillGroups`, resolved to a mark. */
 const visuals: Record<string, Visual> = {
   "Next.js": { brand: "nextjs" },
   React: { brand: "react" },
@@ -104,15 +104,8 @@ const visuals: Record<string, Visual> = {
 
 const FALLBACK: Visual = { glyph: "fallback" };
 
-/** Neutral tone for entries that are concepts rather than branded products. */
 const NEUTRAL = "#eef0f3";
 
-/**
- * Brand hexes run from near-white to pure black. The black ones (Next.js,
- * Vercel, GitHub, Render, Medusa, Markdown, JWT, Express, Django) would be
- * invisible on this canvas, so those fall back to the light tone those brands
- * themselves use on dark backgrounds.
- */
 function markColour(hex: string): string {
   const r = parseInt(hex.slice(0, 2), 16) / 255;
   const g = parseInt(hex.slice(2, 4), 16) / 255;
@@ -122,22 +115,17 @@ function markColour(hex: string): string {
 }
 
 export type SkillVisual = {
-  /** Which of the three mark shapes was resolved. */
   kind: "glyph" | "path" | "svg";
   mark: BrandMark | null;
   Glyph: LucideIcon | null;
-  /** Colour the mark should be painted in, already adjusted for this canvas. */
   colour: string;
   viewBox: string;
 };
 
-/** Resolves a skill name to its mark, glyph, colour and artboard. */
 export function skillVisual(skill: string): SkillVisual {
   const visual = visuals[skill] ?? FALLBACK;
   const mark = "brand" in visual ? brandMarks[visual.brand] : null;
   const Glyph = "glyph" in visual ? glyphs[visual.glyph] : null;
-  // Marks that ship their own palette are painted as-is; single-path marks are
-  // tinted with the brand hex.
   const colour = mark && mark.path ? markColour(mark.hex) : NEUTRAL;
 
   return {
@@ -149,11 +137,6 @@ export function skillVisual(skill: string): SkillVisual {
   };
 }
 
-/**
- * A technology's logo, tinted in its own brand colour, at whatever size the
- * caller sets through `className`. Colour comes from the resolved brand hex
- * unless the logo brings its own palette (Matplotlib).
- */
 export function SkillMark({
   skill,
   className,
@@ -187,3 +170,4 @@ export function SkillMark({
     </span>
   );
 }
+

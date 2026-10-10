@@ -1,9 +1,14 @@
+/**
+ * @fileoverview Project Preview Component
+ * Responsive image preview display for project work cards with zoom transition and bottom vignette gradient.
+ * Used in: src/components/sections/work.tsx and src/app/projects/[slug]/page.tsx.
+ */
+
 import Image from "next/image";
 
 import type { Project } from "@/data/profile";
 import { cn } from "@/lib/utils";
 
-// Fallback for client projects that don't have a dedicated screenshot yet.
 const clientSampleImage = "/sovereign-e-commerce-store.vercel.app.webp";
 
 export function ProjectPreview({
@@ -33,8 +38,8 @@ export function ProjectPreview({
         priority={priority}
         className="object-fit object-top transition-transform duration-700 ease-out group-hover/preview:scale-105"
       />
-      {/* Subtle bottom fade so content below reads cleanly */}
       <div className="absolute inset-0 bg-gradient-to-t from-canvas/40 via-transparent to-transparent pointer-events-none" />
     </div>
   );
 }
+

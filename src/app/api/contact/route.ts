@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Contact API Route Handler
+ * Validates submissions, enforces rate limiting, parses multipart/form-data with file attachments, and delivers notifications via Resend.
+ * Route: POST /api/contact
+ */
+
 import { NextResponse } from "next/server";
 
 import {
@@ -7,15 +13,9 @@ import {
 
 export const runtime = "nodejs";
 
-/** Fallback address shown whenever an enquiry cannot be delivered. */
 const RECIPIENT_EMAIL = process.env.CONTACT_TO || "muhammadkamranyar@gmail.com";
-
-/**
- * Without this key there is no way to deliver an enquiry in production.
- */
 const canDeliver = Boolean(process.env.RESEND_API_KEY);
 
-/** Small in-memory throttle: 5 submissions per IP per 10 minutes. */
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_PER_WINDOW = 5;
 const hits = new Map<string, number[]>();
@@ -37,12 +37,9 @@ function rateLimited(ip: string) {
 
 interface AttachmentPayload {
   filename: string;
-  content: string; // Base64 string
+  content: string;
 }
 
-/**
- * Delivers the enquiry through Resend to muhammadkamranyar@gmail.com.
- */
 async function deliver(payload: {
   name: string;
   email: string;
@@ -52,6 +49,7 @@ async function deliver(payload: {
   message: string;
   attachment?: AttachmentPayload;
 }) {
+
   const apiKey = process.env.RESEND_API_KEY;
   const to = RECIPIENT_EMAIL;
 
@@ -199,7 +197,6 @@ export async function POST(request: Request) {
       const formData = await request.formData();
       for (const [key, value] of formData.entries()) {
         if (key === "file" && value instanceof File && value.size > 0) {
-          // 5MB limit
           if (value.size > 5 * 1024 * 1024) {
             return NextResponse.json<ContactResponse>(
               { ok: false, message: "File is too large. Maximum size is 5MB." },
@@ -247,7 +244,6 @@ export async function POST(request: Request) {
     );
   }
 
-  // Honeypot tripped - accept silently so bots do not learn anything.
   if (parsed.data.website) {
     return NextResponse.json<ContactResponse>({
       ok: true,

@@ -1,3 +1,9 @@
+/**
+ * @fileoverview SiteHeader Component
+ * Renders the fixed global navigation bar, desktop route links, mobile drawer menu, and CTA button.
+ * Used in: src/app/layout.tsx
+ */
+
 "use client";
 
 import { useLenis } from "lenis/react";
@@ -28,7 +34,6 @@ export function SiteHeader() {
     };
   }, [open]);
 
-  /** Return to the hero from the wordmark, through Lenis when it is running. */
   const backToHero = (event: MouseEvent<HTMLAnchorElement>) => {
     if (!isHome) return;
     event.preventDefault();

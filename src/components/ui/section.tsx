@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Section & SectionHeading UI Components
+ * Layout containers providing standard spacing, view-constrained maxWidth grids, and motion typography headers.
+ * Used across all landing and subpage sections (about, capabilities, experience, work, credentials, contact, explore).
+ */
+
 import type { ReactNode } from "react";
 
 import { Reveal } from "@/components/motion/reveal";
@@ -27,24 +33,12 @@ export function Section({
   );
 }
 
-/**
- * Editorial section header. The section's own name carries the heading, and a
- * single short line says what the section holds underneath it.
- *
- * The name is the heading on purpose: a long, comma-balanced sentence ("formal
- * training in computer science, applied training in the tools") is hard to read
- * at display size, tells you nothing the section does not, and reads like a
- * slogan. Two or three words sit better big and let the line below do the
- * explaining.
- */
 export function SectionHeading({
   title,
   description,
   className,
 }: {
-  /** The section's name - what it is called, not what it argues. */
   title: string;
-  /** One short line on what the section covers. */
   description?: string;
   className?: string;
 }) {
@@ -65,21 +59,3 @@ export function SectionHeading({
   );
 }
 
-/** Square-cornered tag list. Replaces the usual rounded "pill" chips. */
-export function TagRow({
-  items,
-  className,
-}: {
-  items: readonly string[];
-  className?: string;
-}) {
-  return (
-    <ul className={cn("flex flex-wrap gap-1.5", className)}>
-      {items.map((item) => (
-        <li key={item} className="tag">
-          {item}
-        </li>
-      ))}
-    </ul>
-  );
-}

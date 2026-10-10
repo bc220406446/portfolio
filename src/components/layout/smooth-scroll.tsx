@@ -1,3 +1,9 @@
+/**
+ * @fileoverview SmoothScroll Component
+ * Provides momentum-based smooth scrolling via Lenis with reduced-motion fallback.
+ * Used in: src/app/layout.tsx
+ */
+
 "use client";
 
 import { ReactLenis } from "lenis/react";
@@ -5,10 +11,6 @@ import { useEffect, useState, type ReactNode } from "react";
 
 import "lenis/dist/lenis.css";
 
-/**
- * Momentum scrolling via Lenis. Disabled when the visitor prefers reduced
- * motion, in which case the browser's native scrolling is left untouched.
- */
 export function SmoothScroll({ children }: { children: ReactNode }) {
   const [enabled, setEnabled] = useState(false);
 

@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Contact Section Component
+ * Client enquiry contact form supporting budget selection, direct contact channels, and project file attachments.
+ * Used in: src/app/contact/page.tsx.
+ */
+
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
@@ -21,7 +27,8 @@ import { cn } from "@/lib/utils";
 const fieldBase =
   "w-full min-w-0 max-w-full rounded-xl border border-line-2/60 bg-surface/60 px-3.5 py-3 sm:px-4 sm:py-3.5 text-sm text-fg placeholder:text-muted transition-all duration-300 focus:border-accent focus:bg-surface focus:outline-none";
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
+
 
 function formatFileSize(bytes: number) {
   if (bytes < 1024) return `${bytes} B`;
@@ -301,7 +308,6 @@ export function Contact() {
                   />
                 </Field>
 
-                {/* File Attachment */}
                 <div className="sm:col-span-2">
                   <div className="mb-2 flex flex-col sm:flex-row sm:items-center justify-between gap-1">
                     <span className="label flex items-center gap-1.5">
@@ -404,7 +410,6 @@ export function Contact() {
                   ) : null}
                 </div>
 
-                {/* Honeypot - hidden from users, tempting to bots. */}
                 <input
                   {...register("website")}
                   type="text"

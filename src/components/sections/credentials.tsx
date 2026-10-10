@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Credentials Section Component
+ * Displays university degree, academic qualifications, and verified technical certifications with external credential validation links.
+ * Used in: src/app/credentials/page.tsx.
+ */
+
 import { Award, Calendar, ExternalLink, GraduationCap, Hash } from "lucide-react";
 import { Stagger, StaggerItem } from "@/components/motion/reveal";
 import { Section, SectionHeading } from "@/components/ui/section";
@@ -15,7 +21,6 @@ export function Credentials() {
         description="My academic background and certifications are part of the journey - but the real learning has always happened while building."
       />
 
-      {/* ── Featured education cards ─────────────────────────────── */}
       {featured.length > 0 && (
         <Stagger className="mb-16 grid gap-6 sm:grid-cols-3">
           {featured.map((entry) => (
@@ -31,12 +36,10 @@ export function Credentials() {
               >
                 <span className="sweep" />
 
-                {/* Title */}
                 <h3 className="text-lg font-medium leading-snug tracking-[-0.015em] text-fg">
                   {entry.qualification}
                 </h3>
 
-                {/* Institution + date */}
                 <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5">
                   <span className="font-mono text-[0.625rem] tracking-[0.12em] text-muted uppercase">
                     {entry.institution}
@@ -47,14 +50,12 @@ export function Credentials() {
                   </span>
                 </div>
 
-                {/* Description */}
                 {entry.description && (
                   <p className="mt-4 text-sm leading-relaxed text-fg-dim">
                     {entry.description}
                   </p>
                 )}
 
-                {/* Grade / percentage */}
                 {(entry.grade || entry.percentage) && (
                   <p className="mt-3 font-mono text-[0.625rem] tracking-[0.12em] text-muted uppercase">
                     {[
@@ -66,7 +67,6 @@ export function Credentials() {
                   </p>
                 )}
 
-                {/* Credential link */}
                 {entry.credentialUrl && (
                   <a
                     href={entry.credentialUrl}
@@ -84,7 +84,6 @@ export function Credentials() {
         </Stagger>
       )}
 
-      {/* ── Remaining education entries ──────────────────────────── */}
       {remaining.length > 0 && (
         <div className="mb-16">
           <div className="mb-7 flex items-center gap-4">
@@ -132,7 +131,6 @@ export function Credentials() {
         </div>
       )}
 
-      {/* ── Certifications ──────────────────────────────────────── */}
       <div>
         <div className="mb-7 flex items-center gap-4">
           <Award className="h-5 w-5 text-accent" />
@@ -145,14 +143,11 @@ export function Credentials() {
             <StaggerItem key={cert.title}>
               <div className="group relative rounded-2xl border border-transparent px-5 py-5 transition-colors duration-500 hover:border-line hover:bg-surface/50 sm:px-6">
                 <div className="flex items-start gap-5">
-                  {/* Icon */}
                   <div className="mt-0.5 hidden h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface-2 text-violet sm:flex">
                     <Award className="h-5 w-5" />
                   </div>
 
-                  {/* Content */}
                   <div className="min-w-0 flex-1">
-                    {/* Title row */}
                     <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
                       <h3 className="text-base font-medium leading-snug tracking-[-0.01em] text-fg">
                         {cert.title}
@@ -171,7 +166,6 @@ export function Credentials() {
                       )}
                     </div>
 
-                    {/* Issuer + date */}
                     <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1">
                       <span className="font-mono text-[0.625rem] tracking-[0.12em] text-muted uppercase">
                         {cert.issuer}
@@ -187,7 +181,6 @@ export function Credentials() {
                       )}
                     </div>
 
-                    {/* Credential ID */}
                     {cert.credentialId && (
                       <p className="mt-3 flex items-center gap-1.5 font-mono text-[0.5625rem] tracking-[0.12em] text-muted uppercase">
                         <Hash className="h-3 w-3" />
@@ -195,7 +188,6 @@ export function Credentials() {
                       </p>
                     )}
 
-                    {/* Tags */}
                     {cert.tags && cert.tags.length > 0 && (
                       <div className="mt-4 flex flex-wrap gap-2">
                         {cert.tags.map((tag) => (
@@ -220,4 +212,5 @@ export function Credentials() {
     </Section>
   );
 }
+
 

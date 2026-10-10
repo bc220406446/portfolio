@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Reveal & Stagger Animation Components
+ * Provides viewport-triggered entrance animation wrappers, spring easing constants, and stagger orchestrators.
+ * Used across section components (hero, about, capabilities, experience, work, credentials, contact).
+ */
+
 "use client";
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
@@ -52,9 +58,6 @@ export function Reveal({
   );
 }
 
-/* -------------------------------------------------------------------------- */
-/* Staggered groups                                                           */
-/* -------------------------------------------------------------------------- */
 
 export const staggerParent: Variants = {
   hidden: {},

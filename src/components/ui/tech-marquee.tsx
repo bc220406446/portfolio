@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Tech Marquee Component
+ * Infinite looping horizontal badge marquee showcasing project tech stack chips with hover pause.
+ * Used in: src/app/projects/[slug]/page.tsx.
+ */
+
 "use client";
 
 import { SkillMark } from "@/components/ui/skill-mark";
@@ -12,7 +18,6 @@ export function TechMarquee({
 }) {
   if (!stack || stack.length === 0) return null;
 
-  // Multiply the stack items so there are enough items to loop seamlessly
   const minItems = 12;
   const repeatCount = Math.max(2, Math.ceil(minItems / stack.length));
   const items = Array(repeatCount).fill(stack).flat();
@@ -24,14 +29,12 @@ export function TechMarquee({
         className,
       )}
     >
-      {/* Primary track */}
       <div className="flex shrink-0 animate-marquee-left items-center gap-4 group-hover:[animation-play-state:paused] [animation-duration:28s]">
         {items.map((tech, i) => (
           <TechChip key={`${tech}-${i}`} tech={tech} />
         ))}
       </div>
 
-      {/* Duplicate track for continuous loop */}
       <div
         className="flex shrink-0 animate-marquee-left items-center gap-4 group-hover:[animation-play-state:paused] [animation-duration:28s]"
         aria-hidden
@@ -54,3 +57,4 @@ function TechChip({ tech }: { tech: string }) {
     </div>
   );
 }
+

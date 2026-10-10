@@ -1,3 +1,9 @@
+/**
+ * @fileoverview OpeningSequence Component
+ * Cinematic fullscreen animated opening titles and entry reveal for the portfolio.
+ * Used in: src/components/motion/home-intro-manager.tsx
+ */
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -8,17 +14,13 @@ import { EASE } from "@/components/motion/reveal";
 import { Magnetic } from "@/components/motion/magnetic";
 import { cn } from "@/lib/utils";
 
-/**
- * Opening Sequence Timeline:
- * black -> studio title card -> KAMRAN -> FULL STACK ARCHITECT -> portrait reveal -> tech tagline -> ▶ ENTER
- */
 const TIMELINE = [
-  { at: 300, beat: 1 }, // studio title card
-  { at: 1800, beat: 2 }, // large name reveal
-  { at: 2600, beat: 3 }, // subtitle tag
-  { at: 3300, beat: 4 }, // portrait reveal
-  { at: 4100, beat: 5 }, // tech stack tagline
-  { at: 4800, beat: 6 }, // enter button
+  { at: 300, beat: 1 },
+  { at: 1800, beat: 2 },
+  { at: 2600, beat: 3 },
+  { at: 3300, beat: 4 },
+  { at: 4100, beat: 5 },
+  { at: 4800, beat: 6 },
 ];
 
 export function OpeningSequence({ onDone }: { onDone: () => void }) {
@@ -33,7 +35,6 @@ export function OpeningSequence({ onDone }: { onDone: () => void }) {
     return () => timers.forEach(clearTimeout);
   }, [reduced]);
 
-  // Lock body scroll while opening sequence is visible
   useEffect(() => {
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -42,7 +43,6 @@ export function OpeningSequence({ onDone }: { onDone: () => void }) {
     };
   }, []);
 
-  // Keyboard shortcut listener (Escape or Enter skips/completes)
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape" || e.key === "Enter") {
@@ -64,27 +64,25 @@ export function OpeningSequence({ onDone }: { onDone: () => void }) {
 
   return (
     <motion.div
-      className="fixed inset-0 z-[120] overflow-hidden bg-[#07080a]"
+      className="fixed inset-0 z-[120] overflow-hidden bg-canvas"
       exit={{ opacity: 0, scale: 1.04, filter: "blur(12px)" }}
       transition={{ duration: 0.9, ease: EASE }}
       role="dialog"
       aria-label="Opening sequence"
     >
-      {/* Cinematic Letterbox Bars */}
       <motion.div
-        className="pointer-events-none absolute inset-x-0 top-0 z-30 h-[7vh] bg-[#07080a]"
+        className="pointer-events-none absolute inset-x-0 top-0 z-30 h-[7vh] bg-canvas"
         initial={{ y: 0 }}
         animate={{ y: beat >= 6 ? "-100%" : 0 }}
         transition={{ duration: 1.2, ease: EASE }}
       />
       <motion.div
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-30 h-[7vh] bg-[#07080a]"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-30 h-[7vh] bg-canvas"
         initial={{ y: 0 }}
         animate={{ y: beat >= 6 ? "100%" : 0 }}
         transition={{ duration: 1.2, ease: EASE }}
       />
 
-      {/* Atmospheric Neon Lime Projector Glow */}
       <motion.div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -97,7 +95,6 @@ export function OpeningSequence({ onDone }: { onDone: () => void }) {
         transition={{ duration: 1.4 }}
       />
 
-      {/* Beat 1: Studio Card */}
       <AnimatePresence>
         {beat === 1 && (
           <motion.div
@@ -120,7 +117,6 @@ export function OpeningSequence({ onDone }: { onDone: () => void }) {
         )}
       </AnimatePresence>
 
-      {/* Beat 4+: Portrait Reveal */}
       <motion.div
         className="pointer-events-none absolute inset-x-0 bottom-0 z-0 mx-auto flex h-[58vh] sm:h-[62vh] max-w-[800px] items-end justify-center"
         initial={{ opacity: 0, scale: 1.08, filter: "blur(18px) brightness(0.25)" }}
@@ -133,7 +129,7 @@ export function OpeningSequence({ onDone }: { onDone: () => void }) {
       >
         <div className="relative h-full w-full max-w-[540px]">
           <Image
-            src="/sequence-portrait.webp"
+            src="/portrait.webp"
             alt={profile.name}
             fill
             priority
@@ -143,13 +139,11 @@ export function OpeningSequence({ onDone }: { onDone: () => void }) {
         </div>
       </motion.div>
 
-      {/* Radial vignette scrim over background */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(75%_65%_at_50%_45%,transparent_25%,rgba(7,8,10,0.85)_100%)]"
       />
 
-      {/* Beat 2 & 3: Large Title + Subtitle Tag */}
       <div className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center px-4 text-center">
         <motion.h1
           className="font-medium leading-[0.92] tracking-[-0.035em] text-fg drop-shadow-[0_8px_40px_rgba(0,0,0,0.9)]"
@@ -194,7 +188,6 @@ export function OpeningSequence({ onDone }: { onDone: () => void }) {
         </motion.p>
       </div>
 
-      {/* Beat 5 & 6: Tagline Chips + Action Button */}
       <div className="absolute inset-x-0 bottom-[9vh] z-20 flex flex-col items-center gap-6 px-4 text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -220,6 +213,18 @@ export function OpeningSequence({ onDone }: { onDone: () => void }) {
           </Magnetic>
         </motion.div>
       </div>
+
+      <button
+        type="button"
+        onClick={onDone}
+        className={cn(
+          "absolute right-6 top-[calc(7vh+14px)] z-40 rounded-full border border-line-2/80 bg-surface/40 backdrop-blur-md",
+          "px-4 py-2 font-mono text-[11px] font-medium tracking-[0.16em] text-muted transition-all duration-300",
+          "hover:border-accent/60 hover:text-fg hover:bg-surface/80 cursor-pointer",
+        )}
+      >
+        SKIP INTRO [ESC]
+      </button>
     </motion.div>
   );
 }

@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Home Page Route
+ * Renders the primary landing experience, including cinematic opening sequence, hero, about, and explore navigation blocks.
+ * Route: /
+ */
+
 import { About } from "@/components/sections/about";
 import { Hero } from "@/components/sections/hero";
 import { PageNavigationBlock } from "@/components/sections/page-navigation-block";
@@ -39,7 +45,6 @@ export default function Home() {
     <>
       <script
         type="application/ld+json"
-        // Structured data helps the profile surface correctly in search results.
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
 
@@ -51,3 +56,4 @@ export default function Home() {
     </>
   );
 }
+

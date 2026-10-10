@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Root Layout Component
+ * Defines HTML structure, web fonts (Geist Sans, Geist Mono, Instrument Serif), SEO metadata, OpenGraph tags, backdrop, and global shell.
+ * Used across the entire application as Next.js App Router Root Layout.
+ */
+
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 
@@ -9,6 +15,7 @@ import { profile } from "@/data/profile";
 
 import "./globals.css";
 import { SiteFooter } from "@/components/layout/site-footer";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

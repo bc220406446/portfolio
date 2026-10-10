@@ -1,3 +1,9 @@
+/**
+ * @fileoverview SiteFooter Component
+ * Renders the global footer with copyright verification and direct social/communication channels.
+ * Used in: src/app/layout.tsx
+ */
+
 import { Mail } from "lucide-react";
 import { profile } from "@/data/profile";
 
@@ -62,14 +68,12 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-line bg-canvas/40 backdrop-blur-sm">
       <div className="mx-auto flex w-full max-w-6xl flex-col sm:flex-row items-center justify-between gap-6 px-6 py-8">
-        {/* Left side: Copyright claim */}
         <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 text-xs font-mono tracking-[0.06em] text-fg-dim">
           <span>© {year} {profile.name}.</span>
           <span className="hidden sm:inline text-line-2">•</span>
           <span>All rights reserved.</span>
         </div>
 
-        {/* Right side: Social & contact icon links */}
         <div className="flex items-center gap-3">
           {socialLinks.map((item) => (
             <a

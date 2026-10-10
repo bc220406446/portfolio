@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Capabilities Page Route
+ * Dedicated route presenting the full-stack technology layers and tools.
+ * Route: /capabilities
+ */
+
 import { Capabilities } from "@/components/sections/capabilities";
 
 export default function CapabilitiesPage() {
@@ -7,3 +13,4 @@ export default function CapabilitiesPage() {
     </div>
   );
 }
+

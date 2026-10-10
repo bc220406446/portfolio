@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Skill Carousel Component
+ * 3D coverflow carousel showcasing tech stack layers with procedural spring transitions and gesture swipe support.
+ * Used in: src/components/sections/capabilities.tsx.
+ */
+
 "use client";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -15,24 +21,10 @@ import { SkillMark } from "@/components/ui/skill-mark";
 import { skillGroups, type SkillGroup } from "@/data/profile";
 import { cn } from "@/lib/utils";
 
-/** Gap between cards, in px. Kept in JS because the track step is measured. */
 const GAP = 20;
-
-/** How long a card holds the centre before the next one drifts in. */
 const AUTOPLAY_MS = 6500;
-
-/**
- * Card width as a share of the stage. The neighbours only read as "blurred
- * cards beside the active one" if they actually clear the stage edge - a card
- * much wider than half the stage pushes both of them fully out of sight.
- */
 const CARD_WIDTH = "min(56%, 30rem)";
 
-/**
- * Every key the flourish wrapper may touch. All of them are always animated
- * back to these values, otherwise a card keyed with `rotateY: -38` would keep
- * that rotation forever once its entrance ended.
- */
 const IDENTITY = {
   x: 0,
   y: 0,
@@ -46,15 +38,10 @@ const IDENTITY = {
 
 type Flourish = {
   name: string;
-  /** Where the incoming card starts from. */
   from: Partial<Record<keyof typeof IDENTITY, number | string>>;
   transition: Transition;
 };
 
-/**
- * One is drawn at random on every move, so the card that takes the centre
- * never arrives the same way twice.
- */
 const FLOURISHES: Flourish[] = [
   {
     name: "lift",
@@ -88,10 +75,6 @@ const FLOURISHES: Flourish[] = [
   },
 ];
 
-/**
- * Where a card sits relative to the centre: the neighbours are pushed back,
- * shrunk and blurred so the eye lands on one card only.
- */
 function frame(offset: number) {
   const depth = Math.abs(offset);
   const toward = offset > 0 ? -1 : 1;
@@ -137,7 +120,6 @@ export function SkillCarousel() {
   const [stageWidth, setStageWidth] = useState(0);
   const [cardWidth, setCardWidth] = useState(0);
 
-  /** Both widths drive the card offsets, so they are measured, not assumed. */
   useLayoutEffect(() => {
     const measure = () => {
       const stage = stageRef.current;
@@ -153,7 +135,6 @@ export function SkillCarousel() {
     return () => observer.disconnect();
   }, []);
 
-  /** One frame after the first measurement, so nothing slides in on load. */
   useEffect(() => {
     const id = requestAnimationFrame(() => setReady(true));
     return () => cancelAnimationFrame(id);
@@ -161,7 +142,6 @@ export function SkillCarousel() {
 
   const mounted = useRef(false);
 
-  /** A fresh random entrance for the card taking the centre. */
   useEffect(() => {
     if (!mounted.current) {
       mounted.current = true;
@@ -177,7 +157,6 @@ export function SkillCarousel() {
     setSerial((n) => n + 1);
   }, [active]);
 
-  /** Wraps in both directions, so the carousel has no ends. */
   const go = useCallback(
     (next: number) => setActive(((next % count) + count) % count),
     [count],
@@ -190,13 +169,8 @@ export function SkillCarousel() {
   }, [active, go, paused, reduce]);
 
   const step = cardWidth + GAP;
-  /** Left offset that puts a card in the middle of the stage. */
   const centre = stageWidth / 2 - cardWidth / 2;
 
-  /**
-   * Signed distance to the centre on a ring, so the card to the left of the
-   * first one is the last one - there is always a neighbour on both sides.
-   */
   const offsetFor = (i: number) => {
     const raw = (i - active + count) % count;
     return raw > count / 2 ? raw - count : raw;
@@ -232,8 +206,6 @@ export function SkillCarousel() {
         onBlur={() => setPaused(false)}
         className="relative overflow-hidden py-6 outline-offset-8"
       >
-        {/* Drag is a swipe on a wrapper that snaps back; each card positions
-            itself, so the ring can wrap without the whole track re-shuffling. */}
         <motion.div
           drag={reduce ? false : "x"}
           dragConstraints={{ left: 0, right: 0 }}
@@ -332,14 +304,6 @@ function CarouselButton({
   );
 }
 
-/**
- * One layer of the stack: title, a one-line brief and the layer's marks with
- * their names under them, each in an equal column.
- *
- * `play` is only non-null for the card in the centre, so the entrance replays
- * each time a card takes the middle - the key changes, the wrapper remounts and
- * the random flourish runs again.
- */
 function SkillCard({
   group,
   play,
@@ -356,8 +320,6 @@ function SkillCard({
       <h3 className="text-2xl leading-tight font-medium tracking-[-0.02em] text-fg sm:text-[1.75rem]">
         {group.title}
       </h3>
-      {/* Flex rather than a grid: the columns are still equal, but a part-full
-          last row centres under the others instead of hugging the left edge. */}
       <ul className="mt-9 flex flex-wrap justify-center gap-x-2 gap-y-7 sm:gap-x-3 sm:gap-y-8">
         {group.skills.map((skill) => (
           <li
@@ -388,3 +350,4 @@ function SkillCard({
     </motion.div>
   );
 }
+

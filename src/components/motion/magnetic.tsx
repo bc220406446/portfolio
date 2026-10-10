@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Magnetic and SpotlightCard Components
+ * Interactive motion primitives providing magnetic cursor pull and 3D tilting spotlight cards.
+ * Used in: Hero, OpeningSequence, ProjectPreview, and ActionButton components.
+ */
+
 "use client";
 
 import {
@@ -11,10 +17,6 @@ import { useRef, type PointerEvent, type ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
-/**
- * Magnetic wrapper: the element leans toward the pointer and springs back on
- * exit. Pointer-only, so touch devices are unaffected.
- */
 export function Magnetic({
   children,
   className,
@@ -55,10 +57,6 @@ export function Magnetic({
   );
 }
 
-/**
- * Card that tilts in 3D toward the pointer and carries a soft spotlight that
- * tracks the cursor.
- */
 export function SpotlightCard({
   children,
   className,

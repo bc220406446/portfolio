@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Work Page Route
+ * Dedicated route presenting the portfolio of client applications, SaaS projects, and open-source contributions.
+ * Route: /work
+ */
+
 import { Work } from "@/components/sections/work";
 
 export default function WorkPage() {
@@ -7,3 +13,4 @@ export default function WorkPage() {
     </div>
   );
 }
+

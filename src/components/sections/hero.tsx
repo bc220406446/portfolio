@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Hero Section Component
+ * High-impact hero with developer name typography, cycling specializations, value proposition, and interactive portrait.
+ * Used in: src/app/page.tsx (Home page).
+ */
+
 "use client";
 
 import {
@@ -70,7 +76,6 @@ export function Hero() {
               </span>
             </h1>
 
-            {/* Rotating role line */}
             <Reveal delay={0.62} className="mt-7">
               <div className="flex h-8 items-center">
                 <AnimatePresence mode="wait" initial={false}>
@@ -114,8 +119,6 @@ export function Hero() {
             </Reveal>
           </div>
 
-          {/* Not wrapped in Reveal: the portrait runs its own curtain wipe and
-              zoom, and an invisible animated parent would hide both. */}
           <div className="mx-auto w-full max-w-[23rem] lg:mx-0 lg:max-w-none">
             <Portrait
               priority
@@ -129,3 +132,4 @@ export function Hero() {
     </section>
   );
 }
+

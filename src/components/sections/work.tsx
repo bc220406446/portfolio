@@ -1,10 +1,16 @@
+/**
+ * @fileoverview Work Section Component
+ * Filterable portfolio showcase with category tabs, alternating project rows, tech badges, and lazy expansion.
+ * Used in: src/app/work/page.tsx.
+ */
+
 "use client";
 
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
-import { ProjectPreview } from "@/components/projects/project-preview";
+import { ProjectPreview } from "@/components/ui/project-preview";
 import { Reveal } from "@/components/motion/reveal";
 import { ActionButton, ActionLink } from "@/components/ui/action";
 import { Section, SectionHeading } from "@/components/ui/section";
@@ -38,7 +44,6 @@ export function Work() {
         description="A collection of products, experiments, and client work - built around real problems, practical solutions, and a lot of curiosity."
       />
 
-      {/* Filter tabs */}
       <div
         role="tablist"
         aria-label="Filter projects"
@@ -69,7 +74,6 @@ export function Work() {
         })}
       </div>
 
-      {/* Project Rows */}
       {displayed.length > 0 && (
         <div className="flex flex-col divide-y divide-line">
           <AnimatePresence initial={false} mode="popLayout">
@@ -80,7 +84,6 @@ export function Work() {
         </div>
       )}
 
-      {/* Load More Button */}
       {hasMore && (
         <Reveal className="mt-16 flex justify-center">
           <ActionButton
@@ -97,7 +100,6 @@ export function Work() {
   );
 }
 
-/* ─── Alternating two-column row ─────────────────────────────────────── */
 function ProjectRow({
   project,
   index,
@@ -120,7 +122,6 @@ function ProjectRow({
       }}
       className="group grid items-center gap-10 py-14 sm:py-16 lg:grid-cols-2 lg:gap-16"
     >
-      {/* Image */}
       <div className={cn(isEven ? "lg:order-first" : "lg:order-last")}>
         <Link href={`/projects/${project.slug}`} className="block">
           <ProjectPreview
@@ -131,24 +132,19 @@ function ProjectRow({
         </Link>
       </div>
 
-      {/* Content */}
       <div className={cn(isEven ? "lg:order-last" : "lg:order-first")}>
-        {/* Kind badge */}
         <p className="label mb-4 text-accent">{project.kind}</p>
 
-        {/* Title */}
         <Link href={`/projects/${project.slug}`}>
           <h2 className="text-2xl font-medium leading-snug tracking-[-0.04em] text-fg transition-colors hover:text-accent sm:text-3xl">
             {project.name}
           </h2>
         </Link>
 
-        {/* Summary */}
         <p className="mt-4 max-w-md text-sm leading-relaxed text-fg-dim">
           {project.summary}
         </p>
 
-        {/* Tech stack (Reference style: icon on top, uppercase label centered below) */}
         <div className="mt-8 flex flex-wrap items-start gap-6 sm:gap-7">
           {project.stack.map((tech) => (
             <div
@@ -166,7 +162,6 @@ function ProjectRow({
           ))}
         </div>
 
-        {/* CTA */}
         <div className="mt-8">
           <ActionLink
             href={`/projects/${project.slug}`}
@@ -181,3 +176,4 @@ function ProjectRow({
     </motion.div>
   );
 }
+

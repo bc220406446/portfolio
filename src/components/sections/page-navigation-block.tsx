@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Page Navigation Block Component
+ * Interactive directory card grid routing users from the home page to Capabilities, Experience, Work, and Credentials pages.
+ * Used in: src/app/page.tsx (Home page).
+ */
+
 "use client";
 
 import Link from "next/link";
@@ -69,16 +75,13 @@ export function PageNavigationBlock() {
                   "transition-all duration-500 hover:border-accent/60 hover:-translate-y-1.5 hover:shadow-[0_0_35px_rgba(211,255,69,0.12)]",
                 )}
               >
-                {/* Hairline sweep line on hover */}
                 <span className="sweep z-10" />
 
-                {/* Ambient glow behind card */}
                 <div
                   aria-hidden="true"
                   className="pointer-events-none absolute -inset-2 rounded-3xl bg-gradient-to-r from-accent/15 via-transparent to-accent/10 opacity-0 blur-2xl transition-all duration-700 group-hover:opacity-40"
                 />
 
-                {/* Top Row: Index number, Badge, and Arrow Action */}
                 <div>
                   <div className="flex items-center justify-between gap-3 mb-6">
                     <div className="flex items-center gap-3">
@@ -92,7 +95,6 @@ export function PageNavigationBlock() {
                     </div>
                   </div>
 
-                  {/* Header Title with Icon */}
                   <div className="flex items-center gap-3 mb-3">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-line-2/70 bg-canvas-2 text-muted transition-colors group-hover:border-accent/40 group-hover:text-accent">
                       <Icon className="h-5 w-5" />
@@ -102,7 +104,6 @@ export function PageNavigationBlock() {
                     </h3>
                   </div>
 
-                  {/* Description */}
                   <p className="text-sm sm:text-[0.9375rem] leading-relaxed text-fg-dim">
                     {page.description}
                   </p>
@@ -116,3 +117,4 @@ export function PageNavigationBlock() {
     </Section>
   );
 }
+

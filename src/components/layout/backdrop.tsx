@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Backdrop Component
+ * Renders the global ambient animated background gradient and interactive pointer glow.
+ * Used in: src/app/layout.tsx
+ */
+
 "use client";
 
 import {
@@ -10,11 +16,6 @@ import {
 } from "motion/react";
 import { useEffect, type CSSProperties } from "react";
 
-/**
- * Ambient backdrop: three slow drifting blooms plus a soft glow that follows the
- * pointer. Purely decorative, pointer-transparent, and transform-only so it stays
- * on the compositor. The pointer glow is skipped for touch and reduced motion.
- */
 export function Backdrop() {
   const reduce = useReducedMotion();
 

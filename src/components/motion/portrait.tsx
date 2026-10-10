@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Portrait Component
+ * Renders the developer portrait image with scroll-driven parallax, ambient glow, and entrance reveal.
+ * Used in: src/components/sections/hero.tsx and src/components/sections/about.tsx.
+ */
+
 "use client";
 
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
@@ -8,18 +14,6 @@ import { EASE } from "@/components/motion/reveal";
 import { profile } from "@/data/profile";
 import { cn } from "@/lib/utils";
 
-/**
- * Portrait treatment: a curtain wipe on entry, a slow zoom-out, scroll-linked
- * parallax and a rotating accent halo. Used both in the hero and in About - the
- * differing column widths give each instance its own presence.
- *
- * IMPORTANT: the reveal is driven by a *curtain* sibling, never by clipping the
- * image itself. An element whose own `clip-path` hides it is reported by
- * IntersectionObserver as never intersecting, so a `whileInView` that would
- * remove that clip can never fire - the reveal deadlocks and the image stays
- * invisible forever. The curtain is always fully intersecting, so it animates
- * reliably and the photograph is never gated behind an observer.
- */
 export function Portrait({
   priority = false,
   sizes = "(max-width: 1024px) 80vw, 460px",
@@ -44,7 +38,6 @@ export function Portrait({
 
   return (
     <div ref={ref} className={cn("relative", className)}>
-      {/* Rotating accent halo */}
       {reduce ? null : (
         <motion.span
           aria-hidden
@@ -90,8 +83,6 @@ export function Portrait({
               />
             </motion.div>
 
-            {/* Curtain: a sibling that is always visible, so its observer always
-                fires. Bottom origin means it sweeps downward as it collapses. */}
             {reduce ? null : (
               <motion.span
                 aria-hidden
