@@ -85,6 +85,7 @@ export function Portrait({
                 height={1024}
                 priority={priority}
                 sizes={sizes}
+                loading="eager"
                 className="h-full w-full object-cover object-center brightness-[0.92] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] group-hover:brightness-105"
               />
             </motion.div>

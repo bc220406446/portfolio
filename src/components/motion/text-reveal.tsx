@@ -45,28 +45,30 @@ export function TextReveal({
   const MotionTag = motion[Tag as "span"];
 
   return (
-    <MotionTag
-      className={cn("inline", className)}
-      variants={container}
-      custom={{ stagger, delay: delay + 0.08 }}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once, amount: 0.5 }}
-      aria-label={text}
-    >
-      {words.map((w, i) => (
-        <span
-          key={`${w}-${i}`}
-          className="inline-block overflow-hidden align-bottom pb-[0.12em]"
-          aria-hidden
-        >
-          <motion.span variants={word} className="inline-block whitespace-pre">
-            {w}
-            {i < words.length - 1 ? " " : ""}
-          </motion.span>
-        </span>
-      ))}
-    </MotionTag>
+    <span className={cn("inline", className)}>
+      <span className="sr-only">{text}</span>
+      <MotionTag
+        aria-hidden="true"
+        className="inline"
+        variants={container}
+        custom={{ stagger, delay: delay + 0.08 }}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once, amount: 0.5 }}
+      >
+        {words.map((w, i) => (
+          <span
+            key={`${w}-${i}`}
+            className="inline-block overflow-hidden align-bottom pb-[0.12em]"
+          >
+            <motion.span variants={word} className="inline-block whitespace-pre">
+              {w}
+              {i < words.length - 1 ? " " : ""}
+            </motion.span>
+          </span>
+        ))}
+      </MotionTag>
+    </span>
   );
 }
 
@@ -83,19 +85,21 @@ export function CharReveal({
   delay?: number;
 }) {
   return (
-    <span className={cn("inline-flex overflow-hidden", className)} aria-label={text}>
-      {text.split("").map((c, i) => (
-        <motion.span
-          key={i}
-          aria-hidden
-          className="inline-block whitespace-pre"
-          initial={{ y: "115%", opacity: 0 }}
-          animate={{ y: "0%", opacity: 1 }}
-          transition={{ duration: 0.9, ease: EASE, delay: delay + i * 0.035 }}
-        >
-          {c}
-        </motion.span>
-      ))}
+    <span className={cn("inline-flex overflow-hidden", className)}>
+      <span className="sr-only">{text}</span>
+      <span aria-hidden="true" className="inline-flex">
+        {text.split("").map((c, i) => (
+          <motion.span
+            key={i}
+            className="inline-block whitespace-pre"
+            initial={{ y: "115%", opacity: 0 }}
+            animate={{ y: "0%", opacity: 1 }}
+            transition={{ duration: 0.9, ease: EASE, delay: delay + i * 0.035 }}
+          >
+            {c}
+          </motion.span>
+        ))}
+      </span>
     </span>
   );
 }
