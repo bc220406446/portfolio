@@ -8,7 +8,7 @@ import { About } from "@/components/sections/about";
 import { Hero } from "@/components/sections/hero";
 import { PageNavigationBlock } from "@/components/sections/page-navigation-block";
 import { HomeIntroManager } from "@/components/motion/home-intro-manager";
-import { profile } from "@/data/profile";
+import { profile } from "@/lib/profile";
 
 const personSchema = {
   "@context": "https://schema.org",

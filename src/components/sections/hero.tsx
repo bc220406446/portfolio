@@ -20,7 +20,7 @@ import { Portrait } from "@/components/motion/portrait";
 import { EASE, Reveal } from "@/components/motion/reveal";
 import { CharReveal } from "@/components/motion/text-reveal";
 import { ActionLink } from "@/components/ui/action";
-import { profile } from "@/data/profile";
+import { profile } from "@/lib/profile";
 
 const rotating = [
   "Full Stack Web Developer",

@@ -14,7 +14,7 @@ import { useEffect, useState, type MouseEvent } from "react";
 
 import { EASE } from "@/components/motion/reveal";
 import { ActionLink } from "@/components/ui/action";
-import { navigation, profile } from "@/data/profile";
+import { navigation, profile } from "@/lib/profile";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {

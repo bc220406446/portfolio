@@ -14,7 +14,7 @@ import { FileText, Paperclip, UploadCloud, X } from "lucide-react";
 import { EASE, Reveal } from "@/components/motion/reveal";
 import { ActionButton } from "@/components/ui/action";
 import { Section, SectionHeading } from "@/components/ui/section";
-import { profile } from "@/data/profile";
+import { profile } from "@/lib/profile";
 import {
   budgetOptions,
   contactSchema,

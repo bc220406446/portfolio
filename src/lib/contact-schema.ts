@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Contact Enquiry Validation Schema & Types
+ * Zod validation schema, budget ranges, and TypeScript types for client enquiry form and backend verification.
+ * Used in: src/components/sections/contact.tsx and src/app/api/contact/route.ts.
+ */
+
 import { z } from "zod";
 
 export const budgetOptions = [
@@ -29,7 +35,6 @@ export const contactSchema = z.object({
     .email("Enter a valid email address.")
     .max(254, "Email address is too long."),
   company: z.string().trim().max(120).optional().or(z.literal("")),
-  // Empty selects submit "" rather than being omitted, so allow it explicitly.
   projectType: z
     .union([z.enum(projectTypes), z.literal("")])
     .optional()
@@ -43,8 +48,6 @@ export const contactSchema = z.object({
     .trim()
     .min(20, "A little more detail helps - 20 characters minimum.")
     .max(4000, "Please keep it under 4000 characters."),
-  // Honeypot: real users never fill this in. Accepted by the schema so that a
-  // tripped trap can be answered with a normal success response.
   website: z.string().max(500).optional(),
 });
 
@@ -53,3 +56,4 @@ export type ContactInput = z.infer<typeof contactSchema>;
 export type ContactResponse =
   | { ok: true; message: string }
   | { ok: false; message: string; errors?: Record<string, string[]> };
+

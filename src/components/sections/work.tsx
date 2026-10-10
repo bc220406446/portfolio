@@ -15,7 +15,7 @@ import { Reveal } from "@/components/motion/reveal";
 import { ActionButton, ActionLink } from "@/components/ui/action";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { SkillMark } from "@/components/ui/skill-mark";
-import { projects, type Project } from "@/data/profile";
+import { projects, type Project } from "@/lib/profile";
 import { cn } from "@/lib/utils";
 
 type Filter = "All" | Project["kind"];

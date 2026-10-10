@@ -7,7 +7,7 @@
 import { Award, Calendar, ExternalLink, GraduationCap, Hash } from "lucide-react";
 import { Stagger, StaggerItem } from "@/components/motion/reveal";
 import { Section, SectionHeading } from "@/components/ui/section";
-import { certifications, education } from "@/data/profile";
+import { certifications, education } from "@/lib/profile";
 import { cn } from "@/lib/utils";
 
 export function Credentials() {

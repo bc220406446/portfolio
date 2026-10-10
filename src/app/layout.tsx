@@ -11,7 +11,7 @@ import { Backdrop } from "@/components/layout/backdrop";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SmoothScroll } from "@/components/layout/smooth-scroll";
 import { ScrollProgress } from "@/components/motion/parallax";
-import { profile } from "@/data/profile";
+import { profile } from "@/lib/profile";
 
 import "./globals.css";
 import { SiteFooter } from "@/components/layout/site-footer";

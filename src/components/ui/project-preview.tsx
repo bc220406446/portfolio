@@ -6,7 +6,7 @@
 
 import Image from "next/image";
 
-import type { Project } from "@/data/profile";
+import type { Project } from "@/lib/profile";
 import { cn } from "@/lib/utils";
 
 const clientSampleImage = "/sovereign-e-commerce-store.vercel.app.webp";

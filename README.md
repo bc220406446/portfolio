@@ -49,11 +49,14 @@ src/
     api/contact/route.ts    Validated enquiry endpoint
   components/
     layout/                 Header, footer, smooth scroll, ambient backdrop
-    motion/                 Reveal, TextReveal, Marquee, Magnetic, Parallax, Counter
-    sections/               Hero, About, Capabilities, Experience, Work, …
-    ui/                     Section shell, buttons, square tags
-  data/profile.ts           Single source of truth for all content
-  lib/                      Schema and helpers
+    motion/                 Reveal, TextReveal, Magnetic, Parallax, OpeningSequence
+    sections/               Hero, About, Capabilities, Experience, Work, Credentials, Contact, Explore
+    ui/                     Action, Section, ProjectPreview, TechMarquee, SkillCarousel, SkillMark
+  lib/
+    profile.ts              Single source of truth for all content
+    brand-marks.ts          Vector icon path definitions for technologies
+    contact-schema.ts       Zod validation schema for enquiry form
+    utils.ts                Tailwind clsx/twMerge class utility
 ```
 
 ## Contact form

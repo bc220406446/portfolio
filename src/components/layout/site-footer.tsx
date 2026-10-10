@@ -5,7 +5,7 @@
  */
 
 import { Mail } from "lucide-react";
-import { profile } from "@/data/profile";
+import { profile } from "@/lib/profile";
 
 function GithubIcon({ className }: { className?: string }) {
   return (

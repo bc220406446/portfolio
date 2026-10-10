@@ -11,7 +11,7 @@ import Image from "next/image";
 import { useRef } from "react";
 
 import { EASE } from "@/components/motion/reveal";
-import { profile } from "@/data/profile";
+import { profile } from "@/lib/profile";
 import { cn } from "@/lib/utils";
 
 export function Portrait({

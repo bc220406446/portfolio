@@ -9,7 +9,7 @@
 import { Stagger, StaggerItem } from "@/components/motion/reveal";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { HowItWorksTimeline } from "@/components/sections/how-it-works-timeline";
-import { experience } from "@/data/profile";
+import { experience } from "@/lib/profile";
 
 export function Experience() {
   return (

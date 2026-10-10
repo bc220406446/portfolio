@@ -11,7 +11,7 @@ import { notFound } from "next/navigation";
 import { ProjectPreview } from "@/components/ui/project-preview";
 import { TechMarquee } from "@/components/ui/tech-marquee";
 import { ActionLink } from "@/components/ui/action";
-import { projects } from "@/data/profile";
+import { projects } from "@/lib/profile";
 
 type PageProps = { params: Promise<{ slug: string }> };
 

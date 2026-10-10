@@ -9,7 +9,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
-import { profile } from "@/data/profile";
+import { profile } from "@/lib/profile";
 import { EASE } from "@/components/motion/reveal";
 import { Magnetic } from "@/components/motion/magnetic";
 import { cn } from "@/lib/utils";
@@ -53,15 +53,6 @@ export function OpeningSequence({ onDone }: { onDone: () => void }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [onDone]);
 
-  const techStackTagline = [
-    "Next.js",
-    "React",
-    "TypeScript",
-    "Node.js",
-    "Django",
-    "AI Systems",
-  ];
-
   return (
     <motion.div
       className="fixed inset-0 z-[120] overflow-hidden bg-canvas"
@@ -99,26 +90,35 @@ export function OpeningSequence({ onDone }: { onDone: () => void }) {
         {beat === 1 && (
           <motion.div
             key="studio"
-            className="absolute inset-0 flex items-center justify-center p-6 text-center"
+            className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0, filter: "blur(6px)" }}
+            exit={{ opacity: 0, filter: "blur(8px)" }}
             transition={{ duration: 0.6 }}
           >
-            <motion.p
-              className="font-mono text-xs font-medium tracking-[0.3em] text-muted uppercase sm:text-sm"
-              initial={{ letterSpacing: "0.2em", opacity: 0 }}
-              animate={{ letterSpacing: "0.55em", opacity: 1 }}
-              transition={{ duration: 1.5, ease: EASE }}
+            <motion.h2
+              className="font-medium tracking-[-0.035em] text-fg drop-shadow-[0_8px_40px_rgba(0,0,0,0.9)]"
+              style={{ fontSize: "clamp(2.4rem, 6.5vw, 5.5rem)" }}
+              initial={{ opacity: 0, scale: 0.95, filter: "blur(12px)" }}
+              animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+              transition={{ duration: 1.2, ease: EASE }}
             >
-              MUHAMMAD KAMRAN // FULL STACK WEB DEVELOPER
+              Muhammad Kamran
+            </motion.h2>
+            <motion.p
+              className="mt-4 font-mono text-xs sm:text-sm font-semibold tracking-[0.28em] sm:tracking-[0.35em] text-accent uppercase [text-shadow:0_2px_20px_rgba(211,255,69,0.35)]"
+              initial={{ opacity: 0, letterSpacing: "0.15em" }}
+              animate={{ opacity: 1, letterSpacing: "0.32em" }}
+              transition={{ duration: 1.2, delay: 0.15, ease: EASE }}
+            >
+              Full Stack Web Developer
             </motion.p>
           </motion.div>
         )}
       </AnimatePresence>
 
       <motion.div
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-0 mx-auto flex h-[58vh] sm:h-[62vh] max-w-[800px] items-end justify-center"
+        className="pointer-events-none absolute inset-x-0 bottom-[4.5vh] sm:bottom-[6vh] z-0 mx-auto flex h-[62vh] sm:h-[66vh] max-w-[840px] items-end justify-center"
         initial={{ opacity: 0, scale: 1.08, filter: "blur(18px) brightness(0.25)" }}
         animate={
           beat >= 4
@@ -127,13 +127,13 @@ export function OpeningSequence({ onDone }: { onDone: () => void }) {
         }
         transition={{ duration: 1.6, ease: EASE }}
       >
-        <div className="relative h-full w-full max-w-[540px]">
+        <div className="relative h-full w-full max-w-[560px]">
           <Image
-            src="/portrait.webp"
+            src="/sequence-portrait.webp"
             alt={profile.name}
             fill
             priority
-            sizes="(max-width: 768px) 100vw, 800px"
+            sizes="(max-width: 768px) 100vw, 840px"
             className="object-contain object-bottom [mask-image:linear-gradient(to_bottom,black_45%,transparent_98%)]"
           />
         </div>
@@ -161,7 +161,7 @@ export function OpeningSequence({ onDone }: { onDone: () => void }) {
                   scale: 1,
                   filter: "blur(0px)",
                   letterSpacing: "-0.035em",
-                  y: beat >= 4 ? "-33vh" : 0,
+                  y: beat >= 4 ? "-32vh" : 0,
                 }
               : {}
           }
@@ -171,14 +171,14 @@ export function OpeningSequence({ onDone }: { onDone: () => void }) {
         </motion.h1>
 
         <motion.p
-          className="mt-3 font-mono text-xs sm:text-sm font-semibold text-accent uppercase tracking-[0.32em] [text-shadow:0_2px_20px_rgba(211,255,69,0.35)]"
+          className="mt-3.5 font-mono text-xs sm:text-sm font-semibold text-accent uppercase tracking-[0.32em] [text-shadow:0_2px_20px_rgba(211,255,69,0.35)]"
           initial={{ opacity: 0, letterSpacing: "0.6em" }}
           animate={
             beat >= 3
               ? {
                   opacity: 1,
                   letterSpacing: "0.32em",
-                  y: beat >= 4 ? "-33vh" : 0,
+                  y: beat >= 4 ? "-32vh" : 0,
                 }
               : {}
           }
@@ -213,18 +213,6 @@ export function OpeningSequence({ onDone }: { onDone: () => void }) {
           </Magnetic>
         </motion.div>
       </div>
-
-      <button
-        type="button"
-        onClick={onDone}
-        className={cn(
-          "absolute right-6 top-[calc(7vh+14px)] z-40 rounded-full border border-line-2/80 bg-surface/40 backdrop-blur-md",
-          "px-4 py-2 font-mono text-[11px] font-medium tracking-[0.16em] text-muted transition-all duration-300",
-          "hover:border-accent/60 hover:text-fg hover:bg-surface/80 cursor-pointer",
-        )}
-      >
-        SKIP INTRO [ESC]
-      </button>
     </motion.div>
   );
 }

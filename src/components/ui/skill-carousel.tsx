@@ -18,7 +18,7 @@ import {
 } from "react";
 
 import { SkillMark } from "@/components/ui/skill-mark";
-import { skillGroups, type SkillGroup } from "@/data/profile";
+import { skillGroups, type SkillGroup } from "@/lib/profile";
 import { cn } from "@/lib/utils";
 
 const GAP = 20;

@@ -7,11 +7,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { OpeningSequence } from "@/components/motion/opening-sequence";
 
 export function HomeIntroManager() {
   const [showIntro, setShowIntro] = useState(false);
+  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     const hasPlayed = sessionStorage.getItem("intro_played_v1");
@@ -21,6 +22,7 @@ export function HomeIntroManager() {
     if (!hasPlayed || forceIntro) {
       setShowIntro(true);
     }
+    setChecked(true);
   }, []);
 
   const handleDone = () => {
@@ -29,8 +31,16 @@ export function HomeIntroManager() {
   };
 
   return (
-    <AnimatePresence>
-      {showIntro ? <OpeningSequence onDone={handleDone} /> : null}
-    </AnimatePresence>
+    <>
+      {/* Seamless black shield to prevent any flash of hero while checking session */}
+      {!checked && (
+        <div className="fixed inset-0 z-[140] bg-canvas" aria-hidden="true" />
+      )}
+
+      <AnimatePresence>
+        {showIntro ? <OpeningSequence onDone={handleDone} /> : null}
+      </AnimatePresence>
+    </>
   );
 }
+

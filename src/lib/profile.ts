@@ -1,3 +1,9 @@
+/**
+ * @fileoverview Portfolio Profile & Content Data
+ * Single source of truth for portfolio profile details, navigation links, project showcases, work history, skill taxonomy, and academic credentials.
+ * Used across all pages and sections (layout, hero, about, capabilities, experience, work, credentials, contact, project details).
+ */
+
 export const profile = {
   name: "Muhammad Kamran",
   shortName: "Kamran",
@@ -25,7 +31,6 @@ export const profile = {
     "Contract work",
     "Long-term partnerships",
   ],
-  // Rendered as an animated readout in the hero.
   stats: [
     { value: 1.8, suffix: "+", label: "Years freelancing", decimals: 1 },
     { value: 8, suffix: "", label: "Shipped products", decimals: 0 },
@@ -115,12 +120,8 @@ export type TechCategory = {
 export type Engagement = {
   role: string;
   period: string;
-  duration?: string;
   summary: string;
   focus: string[];
-  techGroups: TechCategory[];
-  highlights: string[];
-  stack: string[];
 };
 
 export const experience: Engagement[] = [
@@ -137,50 +138,6 @@ export const experience: Engagement[] = [
       "Intelligent Automation",
       "Performance & SEO",
     ],
-    techGroups: [
-      {
-        category: "Frontend",
-        items: ["Next.js", "React", "TypeScript", "JavaScript", "Tailwind CSS"],
-      },
-      {
-        category: "Backend",
-        items: ["Node.js", "Express", "Django", "REST APIs"],
-      },
-      {
-        category: "Data",
-        items: ["PostgreSQL", "MongoDB", "Supabase"],
-      },
-      {
-        category: "AI & ML",
-        items: ["Python", "NLP", "Machine Learning", "LLMs", "AI Automation"],
-      },
-      {
-        category: "CMS & Commerce",
-        items: ["WordPress", "WooCommerce", "Shopify", "SureCart"],
-      },
-      {
-        category: "Infrastructure",
-        items: ["Git", "GitHub", "Vercel", "Cloudinary", "CI/CD"],
-      },
-    ],
-    highlights: [],
-    stack: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
-      "Node.js",
-      "Python",
-      "Django",
-      "PostgreSQL",
-      "MongoDB",
-      "Supabase",
-      "LLMs",
-      "WordPress",
-      "WooCommerce",
-      "Shopify",
-      "Vercel",
-    ],
   },
 ];
 
@@ -196,7 +153,6 @@ export type Project = {
   stack: string[];
   links: { label: string; href: string }[];
   featured?: boolean;
-  /** WordPress/Shopify client projects grouped separately in the Work section */
   group?: "wordpress-clients";
 };
 
@@ -384,13 +340,13 @@ export type EducationEntry = {
   qualification: string;
   field: string;
   period: string;
-  status: string;
   grade?: string;
   percentage?: string;
   credentialUrl?: string;
   description?: string;
   featured?: boolean;
   accentColor?: string;
+  status?: string;
 };
 
 export const education: EducationEntry[] = [
@@ -399,7 +355,6 @@ export const education: EducationEntry[] = [
     qualification: "Bachelor of Computer Science",
     field: "Computer Science",
     period: "October 2022 - September 2026",
-    status: "Completed",
     description:
       "A comprehensive degree program focusing on software engineering, data structures, algorithms, and full-stack web development.",
     featured: true,
@@ -414,7 +369,6 @@ export const education: EducationEntry[] = [
     qualification: "F.Sc Pre-Engineering",
     field: "Engineering",
     period: "September 2019 - October 2021",
-    status: "Completed",
     description:
       "Pre-engineering foundation covering advanced mathematics, physics, and chemistry.",
     featured: true,
@@ -429,7 +383,6 @@ export const education: EducationEntry[] = [
     qualification: "Matric",
     field: "Computer Science",
     period: "April 2017 - July 2019",
-    status: "Completed",
     description: "Foundational education in computer science and basic programming concepts.",
     featured: true,
     accentColor: "bg-teal-500",
@@ -443,7 +396,6 @@ export const education: EducationEntry[] = [
 export type Certification = {
   title: string;
   issuer: string;
-  focus: string;
   date?: string;
   credentialUrl?: string;
   credentialId?: string;
@@ -454,35 +406,30 @@ export const certifications: Certification[] = [
   {
     title: "The Freelance Stack: Real project with NextJS and Strapi",
     issuer: "Coursera",
-    focus: "Headless CMS architecture",
     credentialUrl: "https://www.coursera.org/account/accomplishments/certificate/V88SNL5B7IKL",
     credentialId: "V88SNL5B7IKL",
   },
   {
     title: "Build a Full Website using WordPress",
     issuer: "Coursera",
-    focus: "End-to-end site build",
     credentialUrl: "https://www.coursera.org/account/accomplishments/certificate/NOT13D4BARED",
     credentialId: "NOT13D4BARED",
   },
   {
     title: "Use WordPress to Create a Blog for your Business",
     issuer: "Coursera",
-    focus: "Publishing & content",
     credentialUrl: "https://www.coursera.org/account/accomplishments/certificate/B6QDF0L6OF90",
     credentialId: "B6QDF0L6OF90",
   },
   {
     title: "Create your e-commerce store with Shopify",
     issuer: "Coursera",
-    focus: "Commerce foundations",
     credentialUrl: "https://www.coursera.org/account/accomplishments/certificate/4S5D0ATHC175",
     credentialId: "4S5D0ATHC175",
   },
   {
     title: "Create and Design Digital Products using Canva",
     issuer: "Coursera",
-    focus: "Visual design",
     credentialUrl: "https://www.coursera.org/account/accomplishments/certificate/R42V3GH794SE",
     credentialId: "R42V3GH794SE",
   },
