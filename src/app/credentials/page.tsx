@@ -4,7 +4,16 @@
  * Route: /credentials
  */
 
+import type { Metadata } from "next";
 import { Credentials } from "@/components/sections/credentials";
+
+export const metadata: Metadata = {
+  title: "Credentials",
+  description: "Academic qualifications, professional certifications, and technical achievements.",
+  alternates: {
+    canonical: "/credentials",
+  },
+};
 
 export default function CredentialsPage() {
   return (

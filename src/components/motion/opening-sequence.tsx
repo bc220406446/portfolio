@@ -86,7 +86,7 @@ export function OpeningSequence({ onDone }: { onDone: () => void }) {
       />
 
       <motion.div
-        className="pointer-events-none absolute inset-x-0 bottom-[4.5vh] sm:bottom-[6vh] z-0 mx-auto flex h-[62vh] sm:h-[66vh] max-w-[840px] items-end justify-center"
+        className="pointer-events-none absolute inset-x-0 bottom-[10vh] sm:bottom-[6vh] z-0 mx-auto flex h-[60vh] sm:h-[66vh] max-w-[840px] items-end justify-center"
         initial={{ opacity: 0, scale: 1.08, filter: "blur(18px) brightness(0.25)" }}
         animate={
           beat >= 4

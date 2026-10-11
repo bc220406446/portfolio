@@ -9,6 +9,13 @@ import { Hero } from "@/components/sections/hero";
 import { PageNavigationBlock } from "@/components/sections/page-navigation-block";
 import { HomeIntroManager } from "@/components/motion/home-intro-manager";
 import { profile } from "@/lib/profile";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 const personSchema = {
   "@context": "https://schema.org",

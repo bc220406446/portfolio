@@ -4,7 +4,16 @@
  * Route: /contact
  */
 
+import type { Metadata } from "next";
 import { Contact } from "@/components/sections/contact";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description: "Get in touch with Muhammad Kamran for full-stack engineering, web application, and AI development projects.",
+  alternates: {
+    canonical: "/contact",
+  },
+};
 
 export default function ContactPage() {
   return (

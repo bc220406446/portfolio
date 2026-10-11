@@ -167,8 +167,9 @@ function ProjectRow({
             href={`/projects/${project.slug}`}
             variant="secondary"
             className="px-5 py-2.5"
+            aria-label={`Learn more about ${project.name}`}
           >
-            <span>Learn More</span>
+            <span>Learn More<span className="sr-only"> about {project.name}</span></span>
             <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover/action:translate-x-1 text-accent" />
           </ActionLink>
         </div>

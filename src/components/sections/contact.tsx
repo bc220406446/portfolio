@@ -145,7 +145,7 @@ export function Contact() {
 
       <div className="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:gap-20 w-full min-w-0">
         <div className="w-full min-w-0">
-          <Reveal delay={0.18} direction="up" className="w-full min-w-0">
+          <div className="w-full min-w-0">
             <dl className="divide-y divide-line/70">
               <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 sm:gap-6 py-3.5 sm:py-4">
                 <dt className="label">Email</dt>
@@ -202,11 +202,11 @@ export function Contact() {
                 </dd>
               </div>
             </dl>
-          </Reveal>
+          </div>
         </div>
 
         <div className="w-full min-w-0">
-          <Reveal delay={0.12} direction="up" className="w-full min-w-0">
+          <div className="w-full min-w-0">
             <form
               onSubmit={handleSubmit(onSubmit)}
               noValidate
@@ -451,7 +451,7 @@ export function Contact() {
                 ) : null}
               </AnimatePresence>
             </form>
-          </Reveal>
+          </div>
         </div>
       </div>
     </Section>

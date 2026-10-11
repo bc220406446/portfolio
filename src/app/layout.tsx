@@ -65,9 +65,6 @@ export const metadata: Metadata = {
     "Pakistan freelance developer",
   ],
   metadataBase: new URL("https://devkamran.me"),
-  alternates: {
-    canonical: "https://devkamran.me",
-  },
   robots: {
     index: true,
     follow: true,
