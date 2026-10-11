@@ -64,11 +64,26 @@ export const metadata: Metadata = {
     "Muhammad Kamran",
     "Pakistan freelance developer",
   ],
-  alternates: { canonical: "/" },
+  metadataBase: new URL("https://devkamran.me"),
+  alternates: {
+    canonical: "https://devkamran.me",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     type: "website",
     title: `${profile.name} - Full Stack Web Developer`,
     description,
+    url: "https://devkamran.me",
     siteName: profile.name,
     locale: "en_US",
   },
@@ -77,7 +92,6 @@ export const metadata: Metadata = {
     title: `${profile.name} - Full Stack Web Developer`,
     description,
   },
-  robots: { index: true, follow: true },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
