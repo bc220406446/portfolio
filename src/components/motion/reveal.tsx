@@ -48,10 +48,11 @@ export function Reveal({
   return (
     <MotionTag
       className={cn(className)}
-      initial={{ opacity: 0, ...offsets[direction], filter: "blur(6px)" }}
-      whileInView={{ opacity: 1, x: 0, y: 0, filter: "blur(0px)" }}
+      initial={{ opacity: 0, ...offsets[direction] }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once, amount }}
       transition={{ duration: reduce ? 0 : duration, delay, ease: EASE }}
+      style={{ willChange: "transform, opacity" }}
     >
       {children}
     </MotionTag>

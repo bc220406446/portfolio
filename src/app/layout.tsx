@@ -12,9 +12,8 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { SmoothScroll } from "@/components/layout/smooth-scroll";
 import { ScrollProgress } from "@/components/motion/parallax";
 import { profile } from "@/lib/profile";
-
-import "./globals.css";
 import { SiteFooter } from "@/components/layout/site-footer";
+import "./globals.css";
 
 
 const geistSans = Geist({
@@ -38,7 +37,7 @@ const instrumentSerif = Instrument_Serif({
 });
 
 const description =
-  "Muhammad Kamran - Full Stack Web Developer building modern, scalable web products with Next.js, React, TypeScript, Node.js and Django, plus WordPress, Shopify, WooCommerce and SureCart e-commerce.";
+  "I'm a full-stack web developer focused on building modern, scalable, and user-focused digital products. My work spans full-stack applications, e-commerce, CMS platforms, and AI-powered solutions.";
 
 export const metadata: Metadata = {
   title: {
@@ -51,15 +50,16 @@ export const metadata: Metadata = {
   creator: profile.name,
   keywords: [
     "Full Stack Web Developer",
+    "NLP & Machine Learning Developer",
+    "LLM Application Developer",
+    "AI Automation Engineer",
+    "Generative AI Developer",
+    "AI-Powered Product Engineer",
+    "E-commerce Solutions Engineer",
+    "Intelligent Systems Developer",
     "Next.js developer",
     "React developer",
-    "TypeScript",
-    "Node.js",
-    "Django",
     "WordPress developer",
-    "Shopify developer",
-    "WooCommerce",
-    "SureCart",
     "E-commerce development",
     "Muhammad Kamran",
     "Pakistan freelance developer",
@@ -103,7 +103,7 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-canvas text-fg" suppressHydrationWarning>
         <a
-          href="#work"
+          href="#content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[70] focus:border focus:border-accent focus:bg-canvas focus:px-4 focus:py-2 focus:font-mono focus:text-xs focus:tracking-[0.14em] focus:text-accent focus:uppercase"
         >
           Skip to content

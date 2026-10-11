@@ -81,10 +81,11 @@ export function Hero() {
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.span
                     key={roleIndex}
-                    initial={reduce ? false : { y: 18, opacity: 0, filter: "blur(6px)" }}
-                    animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-                    exit={reduce ? undefined : { y: -18, opacity: 0, filter: "blur(6px)" }}
-                    transition={{ duration: 0.55, ease: EASE }}
+                    initial={reduce ? false : { y: 14, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={reduce ? undefined : { y: -14, opacity: 0 }}
+                    transition={{ duration: 0.45, ease: EASE }}
+                    style={{ willChange: "transform, opacity" }}
                     className="font-mono text-sm tracking-[0.18em] text-accent uppercase sm:text-base"
                   >
                     {rotating[roleIndex]}

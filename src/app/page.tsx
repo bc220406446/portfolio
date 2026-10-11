@@ -18,26 +18,8 @@ const personSchema = {
   email: `mailto:${profile.email}`,
   telephone: profile.phone,
   description:
-    "Full Stack Web Developer specialising in Next.js, React, TypeScript, Node.js, Django and e-commerce platforms.",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Hyderabad",
-    addressCountry: "PK",
-  },
+    "I'm a full-stack web developer focused on building modern, scalable, and user-focused digital products. My work spans full-stack applications, e-commerce, CMS platforms, and AI-powered solutions.",
   sameAs: [profile.links.github, profile.links.linkedin],
-  knowsAbout: [
-    "Next.js",
-    "React",
-    "TypeScript",
-    "Node.js",
-    "Django",
-    "PostgreSQL",
-    "WordPress",
-    "Shopify",
-    "WooCommerce",
-    "SureCart",
-    "Technical SEO",
-  ],
 };
 
 export default function Home() {
@@ -47,9 +29,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
-
       <HomeIntroManager />
-
       <Hero />
       <About />
       <PageNavigationBlock />
