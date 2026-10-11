@@ -365,7 +365,7 @@ export const education: EducationEntry[] = [
     grade: "A+",
     percentage: "98%",
     credentialUrl:
-      "https://centralized.bisesargodha.edu.pk/RecordBr/VerificationLetterForQRCode.aspx?MatOrInt=1&AppID=427176",
+      "/Intermediate-Result-Card.pdf",
   },
   {
     institution: "Govt Higher Secondary School Salam, Sargodha",
