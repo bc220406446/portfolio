@@ -112,7 +112,7 @@ export function Hero() {
                   </ActionLink>
                 </Magnetic>
                 <Magnetic strength={0.18}>
-                  <ActionLink href="/Muhammad Kamran - Resume.pdf" variant="secondary">
+                  <ActionLink href="/Resume.pdf" variant="secondary">
                     Download CV
                   </ActionLink>
                 </Magnetic>

@@ -39,8 +39,16 @@ export default async function ProjectPage({ params }: PageProps) {
   if (projectIndex === -1) notFound();
   const project = projects[projectIndex];
 
-  const primaryLink = project.links.find((link) => link.label === "View live");
-  const sourceLink = project.links.find((link) => link.label === "GitHub");
+  const primaryLink = project.links.find(
+    (link) => link.label.toLowerCase() === "view live"
+  );
+  const landingPageLink = project.links.find(
+    (link) => link.label.toLowerCase() === "view landing page"
+  );
+  const sourceLink = project.links.find(
+    (link) => link.label.toLowerCase() === "github"
+  );
+  const hasButtons = Boolean(primaryLink || landingPageLink || sourceLink);
 
   return (
     <>
@@ -62,20 +70,28 @@ export default async function ProjectPage({ params }: PageProps) {
             <p className="mt-6 max-w-xl text-base leading-relaxed text-fg-dim sm:text-lg">
               {project.summary}
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {primaryLink ? (
-                <ActionLink href={primaryLink.href} variant="primary" external>
-                  <ArrowUpRight className="h-3.5 w-3.5" />
-                  {primaryLink.label}
-                </ActionLink>
-              ) : null}
-              {sourceLink ? (
-                <ActionLink href={sourceLink.href} variant="secondary" external>
-                  <GitFork className="h-3.5 w-3.5" />
-                  GitHub
-                </ActionLink>
-              ) : null}
-            </div>
+            {hasButtons ? (
+              <div className="mt-8 flex flex-wrap gap-3">
+                {primaryLink ? (
+                  <ActionLink href={primaryLink.href} variant="primary" external>
+                    <ArrowUpRight className="h-3.5 w-3.5" />
+                    {primaryLink.label}
+                  </ActionLink>
+                ) : null}
+                {landingPageLink ? (
+                  <ActionLink href={landingPageLink.href} variant="primary" external>
+                    <ArrowUpRight className="h-3.5 w-3.5" />
+                    {landingPageLink.label}
+                  </ActionLink>
+                ) : null}
+                {sourceLink ? (
+                  <ActionLink href={sourceLink.href} variant="secondary" external>
+                    <GitFork className="h-3.5 w-3.5" />
+                    GitHub
+                  </ActionLink>
+                ) : null}
+              </div>
+            ) : null}
           </div>
 
           <div className="w-full">

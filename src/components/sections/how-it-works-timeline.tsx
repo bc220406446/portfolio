@@ -29,7 +29,7 @@ export const waterfallPhases: WaterfallPhase[] = [
     description:
       "Gather and document the functional and non-functional requirements, understand user needs, define project scope, and establish the expected system behavior before development begins.",
     outputName: "Finalized Requirements",
-    imageSrc: "/sdlc-01-requirements.webp",
+    imageSrc: "/How I Work/sdlc-01-requirements.webp",
   },
   {
     id: "phase-02",
@@ -38,7 +38,7 @@ export const waterfallPhases: WaterfallPhase[] = [
     description:
       "Translate the approved requirements into a technical blueprint by defining the system architecture, database structure, interfaces, modules, and technologies.",
     outputName: "Approved System Design",
-    imageSrc: "/sdlc-02-system-design.webp",
+    imageSrc: "/How I Work/sdlc-02-system-design.webp",
   },
   {
     id: "phase-03",
@@ -47,7 +47,7 @@ export const waterfallPhases: WaterfallPhase[] = [
     description:
       "Develop the system according to the approved design. Build the individual modules, integrate components, and write the code required to implement the defined functionality.",
     outputName: "Working Product",
-    imageSrc: "/sdlc-03-implementation.webp",
+    imageSrc: "/How I Work/sdlc-03-implementation.webp",
   },
   {
     id: "phase-04",
@@ -56,7 +56,7 @@ export const waterfallPhases: WaterfallPhase[] = [
     description:
       "Verify that the implemented system works as expected by identifying defects, validating functionality, testing integrations, and ensuring the software meets the defined requirements.",
     outputName: "Tested & Verified Product",
-    imageSrc: "/sdlc-04-testing.webp",
+    imageSrc: "/How I Work/sdlc-04-testing.webp",
   },
   {
     id: "phase-05",
@@ -65,7 +65,7 @@ export const waterfallPhases: WaterfallPhase[] = [
     description:
       "Release the tested software into the production environment, configure the required infrastructure, and make the system available to its intended users.",
     outputName: "Live Production System",
-    imageSrc: "/sdlc-05-deployment.webp",
+    imageSrc: "/How I Work/sdlc-05-deployment.webp",
   },
   {
     id: "phase-06",
@@ -74,7 +74,7 @@ export const waterfallPhases: WaterfallPhase[] = [
     description:
       "Provide ongoing technical assistance, monitor system stability and performance, address updates and optimizations, and ensure smooth continuous operations as user needs evolve.",
     outputName: "Supported & Maintained System",
-    imageSrc: "/sdlc-06-maintenance.webp",
+    imageSrc: "/How I Work/sdlc-06-maintenance.webp",
   },
 ];
 
